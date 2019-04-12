@@ -2081,6 +2081,8 @@ var versTrinkets = [
 $(".classImage").on("click", function (event) {
     event.preventDefault();
     playerClass = $(this).attr("data-class");
+    $(".classImage").removeClass("selected");
+    $(this).addClass("selected");
 });
 
 $(document).on("click", ".specImage", function (event) {
@@ -2091,6 +2093,8 @@ $(document).on("click", ".specImage", function (event) {
 $(document).on("click", ".dungeonImage", function (event) {
     event.preventDefault();
     dungeon = $(this).attr("data-dungeon");
+    $(".dungeonImage").removeClass("selected");
+    $(this).addClass("selected");
 });
 
 $(document).on("click", "#dungeonContinue", function (event) {
