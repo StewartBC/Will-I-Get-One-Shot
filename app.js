@@ -2088,6 +2088,8 @@ $(".classImage").on("click", function (event) {
 $(document).on("click", ".specImage", function (event) {
     event.preventDefault();
     playerSpec = $(this).attr("data-spec");
+    $(".specImage").removeClass("selected");
+    $(this).addClass("selected");
 });
 
 $(document).on("click", ".dungeonImage", function (event) {
