@@ -1820,18 +1820,6 @@ var absorbs = [
 
 var externals = [
     {
-        name: "Power_Word:_Fortitude",
-        magicDR: 0,
-        physicalDR: 0,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "Infuses the target with vitality, increasing their Stamina by 10% for 60 min.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_wordfortitude.da6141705dfd22fec7aaa097b2a63c7131ec5c3e.jpg"
-    }, {
         name: "Ironbark",
         magicDR: .2,
         physicalDR: .2,
@@ -1940,18 +1928,6 @@ var externals = [
         description: "Reduces all damage taken by a friendly target by 40% for 8 sec. Castable while stunned.",
         image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_painsupression.0dfc33c65184f8b90bed1db3da01cb9fcd44781d.jpg"
     }, {
-        name: "Ancestral_Protection_Totem",
-        magicDR: 0,
-        physicalDR: 0,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "Summons a totem at the target location for 30 sec. All allies within 20 yards of the totem gain 10% increased health. If an ally dies, the totem will be consumed to allow them to Reincarnate with 20% health and mana.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_reincarnation.0f66f2d35a25ccdd8a71ce942372e6e51bb4f547.jpg"
-    }, {
         name: "Spirit_Link_Totem",
         magicDR: .1,
         physicalDR: .1,
@@ -1963,18 +1939,6 @@ var externals = [
         selected: false,
         description: "Summons a totem at the target location for 6 sec, which reduces damage taken by all party and raid members within 10 yards by 10%. Every 1 sec the health of all affected players is redistributed, such that all players are at the same percentage of maximum health.",
         image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shaman_spiritlink.f35cb0fb1725afbcfb62816e431eb91dbe06f0c8.jpg"
-    }, {
-        name: "Rallying_Cry",
-        magicDR: 0,
-        physicalDR: 0,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "Lets loose a rallying cry, granting all party or raid members within 40 yards 15% temporary and maximum health for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_rallyingcry.22e6f5cd68c301c9f3071839e99250cfc6c5cff2.jpg"
     }, {
         name: "Safeguard",
         magicDR: 0.3,
@@ -2036,18 +2000,6 @@ var externals = [
         description: "Use: Increases Stamina by 357 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
         image: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_80_flask01red.jpg"
     }, {
-        name: "War_Scroll_of_Fortitude",
-        magicDR: 0,
-        physicalDR: 0,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "Use: Increases the target's Stamina by 7% for 30 min.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_inscription_80_warscroll_fortitude.jpg"
-    }, {
         name: "Seasoned_Steak_and_Potatoes",
         magicDR: 0,
         physicalDR: 0,
@@ -2059,6 +2011,54 @@ var externals = [
         selected: false,
         description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 150 Stamina for 1 hour.",
         image: "https://wow.zamimg.com/images/wow/icons/large/inv_cooking_81_paleosteakandpotatoes.jpg"
+    }, {
+        name: "Ancestral_Protection_Totem",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Summons a totem at the target location for 30 sec. All allies within 20 yards of the totem gain 10% increased health. If an ally dies, the totem will be consumed to allow them to Reincarnate with 20% health and mana.",
+        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_reincarnation.0f66f2d35a25ccdd8a71ce942372e6e51bb4f547.jpg"
+    }, {
+        name: "Rallying_Cry",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Lets loose a rallying cry, granting all party or raid members within 40 yards 15% temporary and maximum health for 10 sec.",
+        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_rallyingcry.22e6f5cd68c301c9f3071839e99250cfc6c5cff2.jpg"
+    }, {
+        name: "Power_Word:_Fortitude",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Infuses the target with vitality, increasing their Stamina by 10% for 60 min.",
+        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_wordfortitude.da6141705dfd22fec7aaa097b2a63c7131ec5c3e.jpg"
+    }, {
+        name: "War_Scroll_of_Fortitude",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Use: Increases the target's Stamina by 7% for 30 min.",
+        image: "https://wow.zamimg.com/images/wow/icons/large/inv_inscription_80_warscroll_fortitude.jpg"
     }
 ];
 
@@ -2149,19 +2149,25 @@ $(document).on("click", "#specContinue", function (event) {
                 $(".personalCol").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${personals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${personals[i].description}" class="personalImage" data-name=${personals[i].name} src=${personals[i].image} alt=${personals[i].name}>`);
             }
         }
-        $("#classInput").append(`<h2>Externals:</h2>`);
+        $("#classInput").append(`
+        <div class="row externalRow">
+        <div class="col-md-6 externals">
+        <h2>Externals:</h2>
+        `);
         for (i = 0; i < externals.length; i++) {
-            $("#classInput").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${externals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${externals[i].description}"class="externalImage" data-name=${externals[i].name} src=${externals[i].image} alt=${externals[i].name}>`);
+            $(".externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${externals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${externals[i].description}"class="externalImage" data-name=${externals[i].name} src=${externals[i].image} alt=${externals[i].name}>`);
         }
-        $("#classInput").append(`<h2>Absorbs:</h2>`);
+        $(".externalRow").append(`
+        <div class="col-md-6 absorbs">
+        <h2>Absorbs:</h2>`);
         for (i = 0; i < 4; i++) {
-            $("#classInput").append(`
+            $(".absorbs").append(`
             <div class="row absorbRow">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[i].name.replace("_", " ").replace("_", " ").replace("_", " ").replace("-", ":")}</h6>${absorbs[i].description}"class="absorbImage" data-name=${absorbs[i].name} src=${absorbs[i].image} alt=${absorbs[i].name}>
                 </div>
                 <div class="col-md-5">
-                    <div class="input-group mb-3" style="margin-top: 9px">
+                    <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name=${absorbs[i].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[i].name} type="button">Okay</button>
@@ -2172,13 +2178,13 @@ $(document).on("click", "#specContinue", function (event) {
             `);
         }
         if (playerClass === "Warrior" && playerSpec === "Protection") {
-            $("#classInput").append(`
+            $(".absorbs").append(`
             <div class="row absorbRow">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[5].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${absorbs[5].description}"class="absorbImage" data-name=${absorbs[5].name} src=${absorbs[5].image} alt=${absorbs[5].name}>
                 </div>
                 <div class="col-md-5">
-                    <div class="input-group mb-3" style="margin-top: 9px">
+                    <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name=${absorbs[5].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[5].name} type="button">Okay</button>
@@ -2188,13 +2194,13 @@ $(document).on("click", "#specContinue", function (event) {
             </div>
             `);
         }
-        $("#classInput").append(`
+        $(".absorbs").append(`
             <div class="row absorbRow">
-                <div class="col-md-6">
-                    <p style="margin-top: 15px">Other Absorbs: </p>
+                <div class="col-md-3">
+                    <p style="margin-top: 15px">Other: </p>
                 </div>
                 <div class="col-md-5">
-                    <div class="input-group mb-3" style="margin-top: 9px">
+                    <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name="otherAbsorb" placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary shieldOkay" data-name="otherAbsorb" type="button">Okay</button>
@@ -2203,24 +2209,6 @@ $(document).on("click", "#specContinue", function (event) {
                 </div
             </div>
             `);
-        $("#classInput").append(`<h2>Versatility Trinkets:</h2>`);
-        for (i = 0; i < versTrinkets.length; i++) {
-            $("#classInput").append(`
-            <div class="row absorbRow">
-                <div class="col-md-6">
-                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${versTrinkets[i].name.replace("_", " ").replace("_", " ")}</h6>${versTrinkets[i].description}"class="absorbImage" data-name=${versTrinkets[i].name} src=${versTrinkets[i].image} alt=${versTrinkets[i].name}>
-                </div>
-                <div class="col-md-5">
-                    <div class="input-group mb-3" style="margin-top: 9px">
-                        <input type="text" class="form-control" data-name=${versTrinkets[i].name} placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary versOkay" data-name=${versTrinkets[i].name} type="button">Okay</button>
-                        </div>
-                    </div>
-                </div
-            </div>
-            `);
-        }
         $("#classInput").append(`</div>`);
         $("#classInput").append(`
         <h2>Stats:</h2>
@@ -2309,6 +2297,24 @@ $(document).on("click", "#specContinue", function (event) {
             </div>
             </div>
         </div>
+            `);
+        }
+        $("#classInput").append(`<h2>Versatility Trinkets:</h2>`);
+        for (i = 0; i < 1; i++) {
+            $("#classInput").append(`
+            <div class="row absorbRow">
+                <div class="col-md-6">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${versTrinkets[i].name.replace("_", " ").replace("_", " ")}</h6>${versTrinkets[i].description}"class="absorbImage" data-name=${versTrinkets[i].name} src=${versTrinkets[i].image} alt=${versTrinkets[i].name}>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group mb-3" style="margin-top: 9px">
+                        <input type="text" class="form-control" data-name=${versTrinkets[i].name} placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary versOkay" data-name=${versTrinkets[i].name} type="button">Okay</button>
+                        </div>
+                    </div>
+                </div
+            </div>
             `);
         }
         $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
