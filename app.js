@@ -224,12 +224,42 @@ function calcDamage() {
             if (dungeons[i].bossAbilities[k].aoe) {
                 damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
             }
+            if (dungeons[i].bossAbilities[k].aoe && feint) {
+                damage = damage - (damage * .4);
+            }
             dungeons[i].bossAbilities[k].damage = Math.round(damage);
         }
     }
-    $(".totalHealth").html(`Total Health: ${Math.round(health)}`);
-    $(".totalAbsorb").html(`Total Absorb: ${Math.round(absorbAmount)}`);
-    $(".effectiveHealth").html(`Effective Health: ${Math.round(health + absorbAmount)}`);
+    for (i = 0; i < dungeons.length; i++) {
+        for (k = 0; k < dungeons[i].trashAbilities.length; k++) {
+            var damage = dungeons[i].trashAbilities[k].baseDamage;
+            damage = damage * scaling[level - 2];
+            if (fortified) {
+                damage = damage * 1.15;
+            }
+            damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
+            if (dungeons[i].trashAbilities[k].type === "physical") {
+                for (m = 0; m < physical.length; m++) {
+                    damage = damage - damage * physical[m];
+                }
+                damage = damage - (damage * 0.01 * ((armor / (armor + 8467)) * 100));
+            } else {
+                for (m = 0; m < magic.length; m++) {
+                    damage = damage - damage * magic[m];
+                }
+            }
+            if (dungeons[i].trashAbilities[k].aoe) {
+                damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
+            }
+            if (dungeons[i].trashAbilities[k].aoe && feint) {
+                damage = damage - (damage * .4);
+            }
+            dungeons[i].trashAbilities[k].damage = Math.round(damage);
+        }
+    }
+    $(".totalHealth").html(`<span style="font-size: 23px">Total Health: ${Math.round(health)}</span>`);
+    $(".totalAbsorb").html(`<span style="font-size: 23px">Total Absorb: ${Math.round(absorbAmount)}</span>`);
+    $(".effectiveHealth").html(`<span style="font-size: 23px">Effective Health: ${Math.round(health + absorbAmount)}</span>`);
     displayDungeons();
 }
 var dungeons = [
@@ -1375,8 +1405,8 @@ var personals = [
         class: "Rogue",
         specs: ["Assassination", "Subtlety", "Outlaw"],
         name: "Elusiveness",
-        magicDR: .35,
-        physicalDR: .35,
+        magicDR: .3,
+        physicalDR: .3,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -1389,8 +1419,8 @@ var personals = [
         class: "Rogue",
         specs: ["Assassination", "Subtlety", "Outlaw"],
         name: "Feint",
-        magicDR: .4,
-        physicalDR: .4,
+        magicDR: 0,
+        physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -2138,9 +2168,9 @@ $(document).on("click", "#specContinue", function (event) {
                 <h2>Personals:</h2>
             </div>
             <div class="col-md-6 healthCol">
-                <h4 class="totalHealth">Total Health: 0</h4>
-                <h4 class="totalAbsorb">Total Absorb: 0</h4>
-                <h4 class="effectiveHealth">Effective Health: 0</h4>
+                <h4 class="totalHealth" style="font-size: 23px">Total Health: 0</h4>
+                <h4 class="totalAbsorb" style="font-size: 23px">Total Absorb: 0</h4>
+                <h4 class="effectiveHealth" style="font-size: 23px">Effective Health: 0</h4>
             </div>
         </div>    
         `);
@@ -2150,18 +2180,20 @@ $(document).on("click", "#specContinue", function (event) {
             }
         }
         $("#classInput").append(`
-        <div class="row externalRow">
-        <div class="col-md-6 externals">
-        <h2>Externals:</h2>
+        <button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#externals" aria-expanded="false" aria-controls="externals">
+        Externals Show/Hide
+        </button></br>
+        <div class="collapse" id="externals">
         `);
         for (i = 0; i < externals.length; i++) {
-            $(".externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${externals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${externals[i].description}"class="externalImage" data-name=${externals[i].name} src=${externals[i].image} alt=${externals[i].name}>`);
+            $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${externals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${externals[i].description}"class="externalImage" data-name=${externals[i].name} src=${externals[i].image} alt=${externals[i].name}>`);
         }
-        $(".externalRow").append(`
-        <div class="col-md-6 absorbs">
-        <h2>Absorbs:</h2>`);
+        $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#absorbs" aria-expanded="false" aria-controls="absorbs">
+        Absorbs Show/Hide
+        </button></br>
+        <div class="collapse" id="absorbs">`);
         for (i = 0; i < 4; i++) {
-            $(".absorbs").append(`
+            $("#absorbs").append(`
             <div class="row absorbRow">
                 <div class="col-md-3">
                     <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[i].name.replace("_", " ").replace("_", " ").replace("_", " ").replace("-", ":")}</h6>${absorbs[i].description}"class="absorbImage" data-name=${absorbs[i].name} src=${absorbs[i].image} alt=${absorbs[i].name}>
@@ -2170,7 +2202,7 @@ $(document).on("click", "#specContinue", function (event) {
                     <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name=${absorbs[i].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[i].name} type="button">Okay</button>
+                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[i].name} type="button">OK</button>
                         </div>
                     </div>
                 </div
@@ -2178,7 +2210,7 @@ $(document).on("click", "#specContinue", function (event) {
             `);
         }
         if (playerClass === "Warrior" && playerSpec === "Protection") {
-            $(".absorbs").append(`
+            $("#absorbs").append(`
             <div class="row absorbRow">
                 <div class="col-md-3">
                     <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[5].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${absorbs[5].description}"class="absorbImage" data-name=${absorbs[5].name} src=${absorbs[5].image} alt=${absorbs[5].name}>
@@ -2187,14 +2219,14 @@ $(document).on("click", "#specContinue", function (event) {
                     <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name=${absorbs[5].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[5].name} type="button">Okay</button>
+                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[5].name} type="button">OK</button>
                         </div>
                     </div>
                 </div
             </div>
             `);
         }
-        $(".absorbs").append(`
+        $("#absorbs").append(`
             <div class="row absorbRow">
                 <div class="col-md-3">
                     <p style="margin-top: 15px">Other: </p>
@@ -2203,7 +2235,7 @@ $(document).on("click", "#specContinue", function (event) {
                     <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name="otherAbsorb" placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary shieldOkay" data-name="otherAbsorb" type="button">Okay</button>
+                            <button class="btn btn-outline-secondary shieldOkay" data-name="otherAbsorb" type="button">OK</button>
                         </div>
                     </div>
                 </div
@@ -2220,7 +2252,7 @@ $(document).on("click", "#specContinue", function (event) {
             <div class="input-group mb-3">
                 <input type="text" class="form-control" data-name="stamina" placeholder="Amount" aria-label="Stamina Amount" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary stamOkay" data-name="stamina" type="button">Okay</button>
+                    <button class="btn btn-outline-secondary stamOkay" data-name="stamina" type="button">OK</button>
                 </div>
             </div>
             </div>
@@ -2233,7 +2265,7 @@ $(document).on("click", "#specContinue", function (event) {
             <div class="input-group mb-3">
                 <input type="text" class="form-control" data-name="vers" placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary versatilityOkay" data-name="vers" type="button">Okay</button>
+                    <button class="btn btn-outline-secondary versatilityOkay" data-name="vers" type="button">OK</button>
                 </div>
             </div>
             </div>
@@ -2246,7 +2278,7 @@ $(document).on("click", "#specContinue", function (event) {
         <div class="input-group mb-3">
             <input type="text" class="form-control" data-name="armor" placeholder="Amount" aria-label="Armor Amount" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary armorOkay" data-name="armor" type="button">Okay</button>
+                <button class="btn btn-outline-secondary armorOkay" data-name="armor" type="button">OK</button>
             </div>
         </div>
         </div>
@@ -2259,7 +2291,7 @@ $(document).on("click", "#specContinue", function (event) {
     <div class="input-group mb-3">
         <input type="text" class="form-control" data-name="avoidance" placeholder="Amount" aria-label="Avoidance Amount" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary avoidanceOkay" data-name="avoidance" type="button">Okay</button>
+            <button class="btn btn-outline-secondary avoidanceOkay" data-name="avoidance" type="button">OK</button>
         </div>
     </div>
     </div>
@@ -2275,7 +2307,7 @@ $(document).on("click", "#specContinue", function (event) {
             <div class="input-group mb-3">
                 <input type="text" class="form-control" data-name="mainStat" placeholder="Amount" aria-label="Main Stat Amount" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary mainStatOkay" data-name="mainStat" type="button">Okay</button>
+                    <button class="btn btn-outline-secondary mainStatOkay" data-name="mainStat" type="button">OK</button>
                 </div>
             </div>
             </div>
@@ -2292,7 +2324,7 @@ $(document).on("click", "#specContinue", function (event) {
             <div class="input-group mb-3">
                 <input type="text" class="form-control" data-name="mastery" placeholder="Amount" aria-label="Mastery Amount" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary masteryOkay" data-name="mastery" type="button">Okay</button>
+                    <button class="btn btn-outline-secondary masteryOkay" data-name="mastery" type="button">OK</button>
                 </div>
             </div>
             </div>
@@ -2310,7 +2342,7 @@ $(document).on("click", "#specContinue", function (event) {
                     <div class="input-group mb-3" style="margin-top: 9px">
                         <input type="text" class="form-control" data-name=${versTrinkets[i].name} placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary versOkay" data-name=${versTrinkets[i].name} type="button">Okay</button>
+                            <button class="btn btn-outline-secondary versOkay" data-name=${versTrinkets[i].name} type="button">OK</button>
                         </div>
                     </div>
                 </div
@@ -2435,6 +2467,43 @@ $(document).on("click", ".versOkay", function (event) {
 $(document).on("click", ".personalImage", function (event) {
     event.preventDefault();
     var personalName = $(this).attr("data-name");
+    if (personalName === "feint" && !feint) {
+        feint = true;
+    } else if (personalName === "feint" && feint) {
+        feint = false;
+    }
+    if (personalName === "Desperate_Instincts") {
+        for (i = 0; i < personals.length; i++) {
+            if (personals[i].name === "Blur" && personals[i].selected) {
+                personals[i].selected = false;
+                $(`img[data-name=Blur]`).removeClass("selected");
+            }
+        }
+    }
+    if (personalName === "Blur") {
+        for (i = 0; i < personals.length; i++) {
+            if (personals[i].name === "Desperate_Instincts" && personals[i].selected) {
+                personals[i].selected = false;
+                $(`img[data-name=Desperate_Instincts]`).removeClass("selected");
+            }
+        }
+    }
+    if (personalName === "Bear_Form") {
+        for (i = 0; i < personals.length; i++) {
+            if (personals[i].name === "Moonkin_Form" && personals[i].selected) {
+                personals[i].selected = false;
+                $(`img[data-name=Moonkin_Form]`).removeClass("selected");
+            }
+        }
+    }
+    if (personalName === "Moonkin_Form") {
+        for (i = 0; i < personals.length; i++) {
+            if (personals[i].name === "Bear_Form" && personals[i].selected) {
+                personals[i].selected = false;
+                $(`img[data-name=Bear_Form]`).removeClass("selected");
+            }
+        }
+    }
     for (i = 0; i < personals.length; i++) {
         if (personals[i].name === personalName && personals[i].class === playerClass && personals[i].specs.includes(playerSpec)) {
             if (personals[i].selected) {
@@ -2452,6 +2521,22 @@ $(document).on("click", ".personalImage", function (event) {
 $(document).on("click", ".externalImage", function (event) {
     event.preventDefault();
     var externalName = $(this).attr("data-name");
+    if (externalName === "War_Scroll_of_Fortitude") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Power_Word:_Fortitude" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name="Power_Word:_Fortitude"]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName === "Power_Word:_Fortitude") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "War_Scroll_of_Fortitude" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=War_Scroll_of_Fortitude]`).removeClass("selected");
+            }
+        }
+    }
     for (i = 0; i < externals.length; i++) {
         if (externals[i].name === externalName) {
             if (externals[i].selected) {
