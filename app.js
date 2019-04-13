@@ -2618,7 +2618,7 @@ $("#classContinue").on("click", function (event) {
         $("#classInput").append("</div>");
     } else if (playerClass === "Warlock") {
         $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Demonology\" class=\"specImage\" data-spec=\"Demononlogy\" src=\"images/Demonology.png\" alt=\"Demonology\">");
+        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Demonology\" class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
         $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Destruction\" class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
         $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Affliction\" class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
         $("#classInput").append("</div>");
