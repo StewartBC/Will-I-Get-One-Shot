@@ -2467,9 +2467,9 @@ $(document).on("click", ".versOkay", function (event) {
 $(document).on("click", ".personalImage", function (event) {
     event.preventDefault();
     var personalName = $(this).attr("data-name");
-    if (personalName === "feint" && !feint) {
+    if (personalName === "Feint" && !feint) {
         feint = true;
-    } else if (personalName === "feint" && feint) {
+    } else if (personalName === "Feint" && feint) {
         feint = false;
     }
     if (personalName === "Desperate_Instincts") {
