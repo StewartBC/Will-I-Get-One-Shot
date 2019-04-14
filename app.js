@@ -15,6 +15,7 @@ var playerHealth = 0;
 var playerAbsorb = 0;
 var selectedDungeon = "";
 var level = 2;
+var recentInput = "";
 var scaling = [1, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59, 1.71, 1.85, 2, 2.16, 2.33, 2.52, 2.72, 2.94, 3.17, 3.43, 3.70, 4, 4.32, 4.66, 5.04, 5.44, 5.87];
 var slider = document.getElementById("myRange");
 var output = document.getElementById("keyLevel");
@@ -2701,7 +2702,7 @@ $(document).on("click", ".stamOkay", function (event) {
     calcDamage();
 });
 
-$(document).on("click", ".versOkay", function (event) {
+$(document).on("click", ".versatilityOkay", function (event) {
     event.preventDefault();
     var versAmount = Number($(`input[type=text][data-name=${$(this).attr("data-name")}]`).val());
     if (versAmount === "") {
@@ -2710,9 +2711,61 @@ $(document).on("click", ".versOkay", function (event) {
     playerVers = versAmount;
     calcDamage();
 });
+
+$(document).on("click", "input", function(event) {
+    event.preventDefault();
+    recentInput = $(this).attr("data-name");
+})
+
 $(document).keypress(function(keyPressed) {
     if (keyPressed.which === 13) {
-        alert('You pressed enter!');
+        var amount = Number($(`input[type=text][data-name=${recentInput}]`).val());
+        if (amount > 0) {
+            if (recentInput === "stamina") {
+                playerStamina = amount;
+            } else if (recentInput === "vers") {
+                playerVers = amount;
+            } else if (recentInput === "armor") {
+                playerArmor = amount;
+            } else if (recentInput === "avoidance") {
+                avoidance = amount;
+            } else if (recentInput === "mainStat") {
+                playerMainStat = amount;
+            } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
+                for (i = 0; i < versTrinkets.length; i++) {
+                    if (versTrinkets[i].name === trinketName) {
+                        versTrinkets[i].amount = amount;
+                        if (versTrinkets[i].selected && amount === 0) {
+                            versTrinkets[i].selected = false;
+                            $(`img[data-name=${recentInput}]`).removeClass("selected");
+                        } else if (amount > 0) {
+                            versTrinkets[i].selected = true;
+                            $(`img[data-name=${recentInput}]`).addClass("selected");
+                        }
+                    }
+                }
+                if (amount === 0) {
+                    $(`img[data-name=${recentInput}]`).removeClass("selected");
+                }
+            } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
+                for (i = 0; i < absorbs.length; i++) {
+                    if (absorbs[i].name === recentInput) {
+                        absorbs[i].amount = amount;
+                        if (absorbs[i].selected && amount === 0) {
+                            $(`img[data-name=${recentInput}]`).removeClass("selected");
+                            absorbs[i].selected = false;
+                        } else if (amount > 0) {
+                            absorbs[i].selected = true;
+                            $(`img[data-name=${recentInput}]`).addClass("selected");
+                        }
+                    }
+                }
+                if (amount === 0) {
+                    $(`img[data-name=${recentInput}]`).removeClass("selected");
+                }
+            }
+            calcDamage();
+        }
     }
 });
 
@@ -2769,7 +2822,7 @@ $(document).on("click", ".shieldOkay", function (event) {
             if (absorbs[i].selected && shieldAmount === 0) {
                 $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
                 absorbs[i].selected = false;
-            } else if (shieldAmount) {
+            } else if (shieldAmount > 0) {
                 absorbs[i].selected = true;
                 $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
             }
