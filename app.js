@@ -2,6 +2,7 @@ var playerClass = "";
 var playerSpec = "";
 var dungeon = "";
 var feint = false;
+var elusiveness = false;
 var fortified = false;
 var tyrannical = false;
 var playerMainStat = 0;
@@ -105,6 +106,7 @@ function displayDungeons() {
         $(".slidecontainer").removeClass("hide");
         $("#tyrannical").removeClass("hide");
         $("#fortified").removeClass("hide");
+        $("#dungeonInput").append("<button type=\"button\" id=\"changeDungeon\" class=\"btn btn-primary\">Choose Another Dungeon</button>");
     }
 }
 function calcDamage() {
@@ -227,6 +229,9 @@ function calcDamage() {
             if (dungeons[i].bossAbilities[k].aoe && feint) {
                 damage = damage - (damage * .4);
             }
+            if (!dungeons[i].bossAbilities[k].aoe && elusiveness) {
+                damage = damage - (damage * .3);
+            }
             dungeons[i].bossAbilities[k].damage = Math.round(damage);
         }
     }
@@ -253,6 +258,9 @@ function calcDamage() {
             }
             if (dungeons[i].trashAbilities[k].aoe && feint) {
                 damage = damage - (damage * .4);
+            }
+            if (!dungeons[i].trashAbilities[k].aoe && elusiveness) {
+                damage = damage - (damage * .3);
             }
             dungeons[i].trashAbilities[k].damage = Math.round(damage);
         }
@@ -1405,8 +1413,8 @@ var personals = [
         class: "Rogue",
         specs: ["Assassination", "Subtlety", "Outlaw"],
         name: "Elusiveness",
-        magicDR: .3,
-        physicalDR: .3,
+        magicDR: 0,
+        physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -2108,58 +2116,341 @@ var versTrinkets = [
     }
 ];
 
-$(".classImage").on("click", function (event) {
+$(document).on("click", ".classImage", function (event) {
     event.preventDefault();
     playerClass = $(this).attr("data-class");
-    $(".classImage").removeClass("selected");
-    $(this).addClass("selected");
+    $(".classImage").removeClass("selectedClass");
+    $(this).addClass("selectedClass");
+    if (playerClass !== "") {
+        $("#classInput").empty();
+    };
+    if (playerClass === "Demon Hunter") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Havoc\" src=\"images/Havoc.png\" alt=\"Havoc\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Vengeance\" src=\"images/Vengeance.png\" alt=\"Vengeance\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Death Knight") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Blood\" src=\"images/Blood.png\" alt=\"Blood\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost.png\" alt=\"Frost\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Unholy\" src=\"images/Unholy.png\" alt=\"Unholy\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Druid") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Feral\" src=\"images/Feral.png\" alt=\"Feral\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Balance\" src=\"images/Balance.png\" alt=\"Balance\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration.png\" alt=\"Restoration\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Guardian\" src=\"images/Guardian.png\" alt=\"Guardian\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Hunter") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Beast Mastery\" src=\"images/Beast Mastery.png\" alt=\"Beast Mastery\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Marksmanship\" src=\"images/Marksmanship.png\" alt=\"Marksmanship\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Survival\" src=\"images/Survival.png\" alt=\"Survival\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Mage") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost Mage.png\" alt=\"Frost\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fire\" src=\"images/Fire.png\" alt=\"Fire\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arcane\" src=\"images/Arcane.png\" alt=\"Arcane\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Monk") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Brewmaster\" src=\"images/Brewmaster.png\" alt=\"Brewmaster\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Mistweaver\" src=\"images/Mistweaver.png\" alt=\"Mistweaver\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Windwalker\" src=\"images/Windwalker.png\" alt=\"Windwalker\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Paladin") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection Paladin.png\" alt=\"Protection\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Retribution\" src=\"images/Retribution.png\" alt=\"Retribution\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy.png\" alt=\"Holy\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Priest") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Shadow\" src=\"images/Shadow.png\" alt=\"Shadow\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy Priest.png\" alt=\"Holy\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Discipline\" src=\"images/Discipline.png\" alt=\"Discipline\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Rogue") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Assassination\" src=\"images/Assassination.png\" alt=\"Assassination\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Outlaw\" src=\"images/Outlaw.png\" alt=\"Outlaw\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Subtlety\" src=\"images/Subtlety.png\" alt=\"Subtlety\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Shaman") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration Shaman.png\" alt=\"Restoration\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Elemental\" src=\"images/Elemental.png\" alt=\"Elemental\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Enhancement\" src=\"images/Enhancement.png\" alt=\"Enhancement\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Warlock") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Warrior") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection.png\" alt=\"Protection\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arms\" src=\"images/Arms.png\" alt=\"Arms\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fury\" src=\"images/Fury.png\" alt=\"Fury\">");
+        $("#classInput").append("</div>");
+    }
+    $("#classInput").append("<button type=\"button\" id=\"changeClass\" class=\"btn btn-primary\">Choose Another Class</button>");
+});
+
+$(document).on("click", "#changeClass", function (event) {
+    event.preventDefault();
+    $("#classInput").empty();
+    $("#classInput").append(`
+    <div class="row">
+    <img class="classImage" data-class="Death Knight" src="images/deathKnight.svg"
+        alt="Death Knight">
+    <img class="classImage" data-class="Demon Hunter" src="images/demonHunter.svg"
+        alt="Demon Hunter">
+    <img class="classImage" data-class="Druid" src="images/druid.svg"
+        alt="Druid">
+    <img class="classImage" data-class="Hunter" src="images/hunter.svg"
+        alt="Hunter">
+</div>
+<div class="row">
+    <img class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
+    <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
+    <img class="classImage" data-class="Paladin" src="images/paladin.svg"
+        alt="Paladin">
+    <img data-class="Priest" src="images/priest.svg"
+        alt="Priest">
+</div>
+<div class="row">
+    <img class="classImage" data-class="Rogue" src="images/rogue.svg"
+        alt="Rogue">
+    <img class="classImage" data-class="Shaman" src="images/shaman.svg"
+        alt="Shaman">
+    <img class="classImage" data-class="Warlock" src="images/warlock.svg"
+        alt="Warlock">
+    <img class="classImage" data-class="Warrior" src="images/warrior.svg"
+        alt="Warrior">
+</div>
+    `);
+});
+
+$(document).on("click", "#changeDungeon", function (event) {
+    event.preventDefault();
+    $("#dungeonInput").empty();
+    $(".slidecontainer").addClass("hide");
+    $(".affix").addClass("hide");
+    $("#dungeonInput").append(`
+    <div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Atal'Dazar">
+        <img class="dungeonImage" data-dungeon="Atal'Dazar" src="images/Atal'Dazar.jpeg" alt="Atal'Dazar">
+        <div class="overlay">
+            <div class="text">Atal'Dazar</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Atal'Dazar</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="Freehold">
+        <img class="dungeonImage" data-dungeon="Freehold" src="images/Freehold.jpeg" alt="Freehold">
+        <div class="overlay">
+            <div class="text">Freehold</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Freehold</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Kings' Rest">
+        <img class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
+        <div class="overlay">
+            <div class="text">Kings' Rest</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Kings' Rest</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="Shrine of the Storm">
+        <img class="dungeonImage" data-dungeon="Shrine of the Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
+        <div class="overlay">
+            <div class="text">Shrine of the Storm</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Shrine of the Storm</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Siege of Boralus">
+        <img class="dungeonImage" data-dungeon="Siege of Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
+        <div class="overlay">
+            <div class="text">Siege of Boralus</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Siege of Boralus</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="Temple of Sethraliss">
+        <img class="dungeonImage" data-dungeon="Temple of Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
+        <div class="overlay">
+            <div class="text">Temple of Sethraliss</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Temple of Sethraliss</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="The Motherlode">
+        <img class="dungeonImage" data-dungeon="The Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
+        <div class="overlay">
+            <div class="text">The Motherlode</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">The Motherlode</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="The Underrot">
+        <img class="dungeonImage" data-dungeon="The Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
+        <div class="overlay">
+            <div class="text">The Underrot</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">The Underrot</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Waycrest Manor">
+        <img class="dungeonImage" data-dungeon="Waycrest Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
+        <div class="overlay">
+            <div class="text">Waycrest Manor</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Waycrest Manor</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="Tol Dagor">
+        <img class="dungeonImage" data-dungeon="Tol Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+        <div class="overlay">
+            <div class="text">Tol Dagor</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Tol Dagor</div>
+        </div>
+    </div>
+</div>
+    `);
+});
+
+$(document).on("click", "#changeSpec", function (event) {
+    event.preventDefault();
+    $("#classInput").empty();
+    if (playerClass === "Demon Hunter") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Havoc\" src=\"images/Havoc.png\" alt=\"Havoc\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Vengeance\" src=\"images/Vengeance.png\" alt=\"Vengeance\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Death Knight") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Blood\" src=\"images/Blood.png\" alt=\"Blood\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost.png\" alt=\"Frost\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Unholy\" src=\"images/Unholy.png\" alt=\"Unholy\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Druid") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Feral\" src=\"images/Feral.png\" alt=\"Feral\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Balance\" src=\"images/Balance.png\" alt=\"Balance\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration.png\" alt=\"Restoration\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Guardian\" src=\"images/Guardian.png\" alt=\"Guardian\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Hunter") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Beast Mastery\" src=\"images/Beast Mastery.png\" alt=\"Beast Mastery\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Marksmanship\" src=\"images/Marksmanship.png\" alt=\"Marksmanship\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Survival\" src=\"images/Survival.png\" alt=\"Survival\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Mage") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost Mage.png\" alt=\"Frost\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fire\" src=\"images/Fire.png\" alt=\"Fire\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arcane\" src=\"images/Arcane.png\" alt=\"Arcane\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Monk") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Brewmaster\" src=\"images/Brewmaster.png\" alt=\"Brewmaster\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Mistweaver\" src=\"images/Mistweaver.png\" alt=\"Mistweaver\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Windwalker\" src=\"images/Windwalker.png\" alt=\"Windwalker\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Paladin") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection Paladin.png\" alt=\"Protection\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Retribution\" src=\"images/Retribution.png\" alt=\"Retribution\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy.png\" alt=\"Holy\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Priest") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Shadow\" src=\"images/Shadow.png\" alt=\"Shadow\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy Priest.png\" alt=\"Holy\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Discipline\" src=\"images/Discipline.png\" alt=\"Discipline\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Rogue") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Assassination\" src=\"images/Assassination.png\" alt=\"Assassination\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Outlaw\" src=\"images/Outlaw.png\" alt=\"Outlaw\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Subtlety\" src=\"images/Subtlety.png\" alt=\"Subtlety\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Shaman") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration Shaman.png\" alt=\"Restoration\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Elemental\" src=\"images/Elemental.png\" alt=\"Elemental\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Enhancement\" src=\"images/Enhancement.png\" alt=\"Enhancement\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Warlock") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
+        $("#classInput").append("</div>");
+    } else if (playerClass === "Warrior") {
+        $("#classInput").append("<div class=\"row\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection.png\" alt=\"Protection\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arms\" src=\"images/Arms.png\" alt=\"Arms\">");
+        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fury\" src=\"images/Fury.png\" alt=\"Fury\">");
+        $("#classInput").append("</div>");
+    }
+    $("#classInput").append("<button type=\"button\" id=\"changeClass\" class=\"btn btn-primary\">Choose Another Class</button>");
+    for (i = 0; i < personals.length; i++) {
+        if (personals[i].selected) {
+            personals[i].selected = false;
+        }
+    }
+    for (i = 0; i < absorbs.length; i++) {
+        if (absorbs[i].selected) {
+            absorbs[i].selected = false;
+        }
+    }
+    for (i = 0; i < externals.length; i++) {
+        if (externals[i].selected) {
+            externals[i].selected = false;
+        }
+    }
+    feint = false;
+    elusiveness = false;
+    playerMainStat = 0;
+    playerArmor = 0;
+    avoidance = 0;
+    playerVers = 0;
+    playerMastery = 0;
+    playerStamina = 0;
+    playerHealth = 0;
+    playerAbsorb = 0;
 });
 
 $(document).on("click", ".specImage", function (event) {
     event.preventDefault();
     playerSpec = $(this).attr("data-spec");
-    $(".specImage").removeClass("selected");
-    $(this).addClass("selected");
-});
-
-$(document).on("click", ".dungeonImage", function (event) {
-    event.preventDefault();
-    dungeon = $(this).attr("data-dungeon");
-    $(".dungeonImage").removeClass("selected");
-    $(this).addClass("selected");
-});
-
-$(document).on("click", "#dungeonContinue", function (event) {
-    event.preventDefault();
-    calcDamage();
-});
-
-$(document).on("click", "#tyrannical", function (event) {
-    event.preventDefault();
-    if (tyrannical) {
-        tyrannical = false;
-        $("#tyrannical").removeClass("selected");
-    } else {
-        tyrannical = true;
-        $("#tyrannical").addClass("selected");
-    }
-    calcDamage();
-});
-
-$(document).on("click", "#fortified", function (event) {
-    event.preventDefault();
-    if (fortified) {
-        fortified = false;
-        $("#fortified").removeClass("selected");
-    } else {
-        fortified = true;
-        $("#fortified").addClass("selected");
-    }
-    calcDamage();
-});
-
-$(document).on("click", "#specContinue", function (event) {
-    event.preventDefault();
     if (playerSpec !== "") {
         $("#classInput").empty();
         $("#classInput").append(`
@@ -2332,7 +2623,7 @@ $(document).on("click", "#specContinue", function (event) {
             `);
         }
         $("#classInput").append(`<h2>Versatility Trinkets:</h2>`);
-        for (i = 0; i < 1; i++) {
+        for (i = 0; i < versTrinkets.length; i++) {
             $("#classInput").append(`
             <div class="row absorbRow">
                 <div class="col-md-6">
@@ -2349,10 +2640,50 @@ $(document).on("click", "#specContinue", function (event) {
             </div>
             `);
         }
-        $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
     };
+    $("#classInput").append("<button type=\"button\" id=\"changeSpec\" class=\"btn btn-primary\">Choose Another Spec</button>");
+    $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 });
 
+$(document).on("click", ".imgContainer", function (event) {
+    event.preventDefault();
+    dungeon = $(this).attr("data-dungeon");
+    $(".dungeonImage").removeClass("selected");
+    $(this).addClass("selected");
+    calcDamage();
+});
+
+$(document).on("click", "#tyrannical", function (event) {
+    event.preventDefault();
+    if (tyrannical) {
+        tyrannical = false;
+        fortified = true;
+        $("#tyrannical").removeClass("selected");
+        $("#fortified").addClass("selected");
+    } else {
+        tyrannical = true;
+        fortified = false;
+        $("#tyrannical").addClass("selected");
+        $("#fortified").removeClass("selected");
+    }
+    calcDamage();
+});
+
+$(document).on("click", "#fortified", function (event) {
+    event.preventDefault();
+    if (fortified) {
+        fortified = false;
+        tyrannical = true;
+        $("#fortified").removeClass("selected");
+        $("#tyrannical").addClass("selected");
+    } else {
+        fortified = true;
+        tyrannical = false;
+        $("#fortified").addClass("selected");
+        $("#tyrannical").removeClass("selected");
+    }
+    calcDamage();
+});
 
 $(document).on("click", ".stamOkay", function (event) {
     event.preventDefault();
@@ -2472,6 +2803,11 @@ $(document).on("click", ".personalImage", function (event) {
     } else if (personalName === "Feint" && feint) {
         feint = false;
     }
+    if (personalName === "Elusiveness" && !elusiveness) {
+        elusiveness = true;
+    } else if (personalName === "Elusiveness" && elusiveness) {
+        elusiveness = false;
+    }
     if (personalName === "Desperate_Instincts") {
         for (i = 0; i < personals.length; i++) {
             if (personals[i].name === "Blur" && personals[i].selected) {
@@ -2550,88 +2886,3 @@ $(document).on("click", ".externalImage", function (event) {
     }
     calcDamage();
 });
-
-$("#classContinue").on("click", function (event) {
-    event.preventDefault();
-    if (playerClass !== "") {
-        $("#classInput").empty();
-    };
-    if (playerClass === "Demon Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Havoc\" class=\"specImage\" data-spec=\"Havoc\" src=\"images/Havoc.png\" alt=\"Havoc\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Vengeance\" class=\"specImage\" data-spec=\"Vengeance\" src=\"images/Vengeance.png\" alt=\"Vengeance\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Death Knight") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Blood\" class=\"specImage\" data-spec=\"Blood\" src=\"images/Blood.png\" alt=\"Blood\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Frost\" class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost.png\" alt=\"Frost\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Unholy\" class=\"specImage\" data-spec=\"Unholy\" src=\"images/Unholy.png\" alt=\"Unholy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Druid") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Feral\" class=\"specImage\" data-spec=\"Feral\" src=\"images/Feral.png\" alt=\"Feral\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Balance\" class=\"specImage\" data-spec=\"Balance\" src=\"images/Balance.png\" alt=\"Balance\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Restoration\" class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Guardian\" class=\"specImage\" data-spec=\"Guardian\" src=\"images/Guardian.png\" alt=\"Guardian\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Beast Mastery\" class=\"specImage\" data-spec=\"Beast Mastery\" src=\"images/Beast Mastery.png\" alt=\"Beast Mastery\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Marksmanship\" class=\"specImage\" data-spec=\"Marksmanship\" src=\"images/Marksmanship.png\" alt=\"Marksmanship\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Survival\" class=\"specImage\" data-spec=\"Survival\" src=\"images/Survival.png\" alt=\"Survival\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Mage") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Frost\" class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost Mage.png\" alt=\"Frost\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Fire\" class=\"specImage\" data-spec=\"Fire\" src=\"images/Fire.png\" alt=\"Fire\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Arcane\" class=\"specImage\" data-spec=\"Arcane\" src=\"images/Arcane.png\" alt=\"Arcane\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Monk") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Brewmaster\" class=\"specImage\" data-spec=\"Brewmaster\" src=\"images/Brewmaster.png\" alt=\"Brewmaster\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Mistweaver\" class=\"specImage\" data-spec=\"Mistweaver\" src=\"images/Mistweaver.png\" alt=\"Mistweaver\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Windwalker\" class=\"specImage\" data-spec=\"Windwalker\" src=\"images/Windwalker.png\" alt=\"Windwalker\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Paladin") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Protection\" class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection Paladin.png\" alt=\"Protection\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Retribution\" class=\"specImage\" data-spec=\"Retribution\" src=\"images/Retribution.png\" alt=\"Retribution\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Holy\" class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy.png\" alt=\"Holy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Priest") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Shadow\" class=\"specImage\" data-spec=\"Shadow\" src=\"images/Shadow.png\" alt=\"Shadow\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Holy\" class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy Priest.png\" alt=\"Holy\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Discipline\" class=\"specImage\" data-spec=\"Discipline\" src=\"images/Discipline.png\" alt=\"Discipline\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Rogue") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Assassination\" class=\"specImage\" data-spec=\"Assassination\" src=\"images/Assassination.png\" alt=\"Assassination\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Outlaw\" class=\"specImage\" data-spec=\"Outlaw\" src=\"images/Outlaw.png\" alt=\"Outlaw\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Subtlety\" class=\"specImage\" data-spec=\"Subtlety\" src=\"images/Subtlety.png\" alt=\"Subtlety\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Shaman") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Restoration\" class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration Shaman.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Elemental\" class=\"specImage\" data-spec=\"Elemental\" src=\"images/Elemental.png\" alt=\"Elemental\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Enhancement\" class=\"specImage\" data-spec=\"Enhancement\" src=\"images/Enhancement.png\" alt=\"Enhancement\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warlock") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Demonology\" class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Destruction\" class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Affliction\" class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warrior") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Protection\" class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection.png\" alt=\"Protection\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Arms\" class=\"specImage\" data-spec=\"Arms\" src=\"images/Arms.png\" alt=\"Arms\">");
-        $("#classInput").append("<img data-toggle=\"tooltip\" data-placement=\"top\" title=\"Fury\" class=\"specImage\" data-spec=\"Fury\" src=\"images/Fury.png\" alt=\"Fury\">");
-        $("#classInput").append("</div>");
-    }
-    $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
-    if (playerClass !== "") {
-        $("#classInput").append("<button type=\"button\" id=\"specContinue\" class=\"btn btn-primary\">Continue</button>");
-    };
-});
-$('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });

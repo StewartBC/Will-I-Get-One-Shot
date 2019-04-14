@@ -8,13 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <title>Will I Get One Shot</title>
+    <title>Just Heal Us</title>
     <style>
-        /* @font-face {
-      font-family: wow;
-      src: url(wow.ttf);
-    } */
-
         #wrap {
             color: white
         }
@@ -51,6 +46,11 @@
 
         .selected {
             opacity: 1 !important;
+            border: 3px solid #87C5CA;
+        }
+
+        .selectedClass {
+            opacity: 1 !important;
         }
 
         .specImage {
@@ -62,22 +62,17 @@
             margin-bottom: 20px;
         }
 
-
         #classInput img {
             width: 20%
         }
-
 
         #classInput button {
             width: 83%
         }
 
         #dungeonInput img {
-            width: 47%;
-            height: 47%;
-
+            width: 100%;
         }
-
 
         #dungeonInput button {
             width: 100%
@@ -90,7 +85,6 @@
         .slidecontainer {
             width: 50%;
         }
-
 
         .slider {
             -webkit-appearance: none;
@@ -119,21 +113,59 @@
             appearance: none;
             width: 25px;
             height: 25px;
-            background: #4CAF50;
+            background: #45628e;
             cursor: pointer;
+        }
+
+        .imgContainer:hover .overlay {
+            opacity: 1;
+        }
+
+        .imgContainer:hover .dungeonImage {
+            opacity: 0.5;
+            box-shadow: 0 8px 16px 0 black, 0 8px 16px 0 black;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+        }
+
+        .text {
+            color: white;
+            font-size: 25px;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
 
         .slider::-moz-range-thumb {
             width: 25px;
             border-radius: 25px;
             height: 25px;
-            background: #4CAF50;
+            background: #45628e;
             cursor: pointer;
         }
 
         .affix {
             border-radius: 10px;
             opacity: 0.5;
+        }
+
+        .affixImage {
+            border-radius: 10px;
+            margin-right: 8px;
         }
 
         .classImage {
@@ -157,7 +189,7 @@
         .btn {
             background-color: #141A26 !important;
             border: 2px solid #87C5CA;
-            margin-top: 10px;      
+            margin-top: 10px;
         }
 
         .btn-outline-secondary {
@@ -186,10 +218,10 @@
         .tooltip-inner {
             background-color: #45628e;
         }
+
         .absorbInput {
             width: 200px !important;
         }
-
     </style>
 
 </head>
@@ -201,10 +233,12 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid mainNav">
                     <div class="navbar-header">
-                        <h1 class="navbar-brand">Will I get one shot</h1>
+                        <h1 class="navbar-brand">Just Heal Us</h1>
                     </div>
-                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Tyrannical:</h6>Boss enemies have 40% more health and inflict up to 15% increased damage." class="affix hide" id="tyrannical" src="images/Tyrannical.jpg">
-                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Fortified:</h6>Non-boss enemies have 20% more health and inflict up to 30% increased damage."class="affix hide" id="fortified" src="images/Fortified.jpg">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Tyrannical:</h6>Boss enemies have 40% more health and inflict up to 15% increased damage."
+                        class="affix hide" id="tyrannical" src="images/Tyrannical.jpg">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Fortified:</h6>Non-boss enemies have 20% more health and inflict up to 30% increased damage."
+                        class="affix hide" id="fortified" src="images/Fortified.jpg">
                     <div class="slidecontainer hide">
                         <h3 id="keyLevel">Key level: 2</h3>
                         <input type="range" min="2" max="25" value="2" class="slider" id="myRange">
@@ -215,48 +249,126 @@
                 <div class="row">
                     <div id="classInput" class="col-lg-6">
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Death Knight" class="classImage" data-class="Death Knight" src="images/deathKnight.svg" alt="Death Knight">
-                            <img data-toggle="tooltip" data-placement="top" title="Demon Hunter" class="classImage" data-class="Demon Hunter" src="images/demonHunter.svg" alt="Demon Hunter">
-                            <img data-toggle="tooltip" data-placement="top" title="Druid" class="classImage" data-class="Druid" src="images/druid.svg" alt="Druid">
-                            <img data-toggle="tooltip" data-placement="top" title="Hunter" class="classImage" data-class="Hunter" src="images/hunter.svg" alt="Hunter">
+                            <img class="classImage" data-class="Death Knight" src="images/deathKnight.svg" alt="Death Knight">
+                            <img class="classImage" data-class="Demon Hunter" src="images/demonHunter.svg" alt="Demon Hunter">
+                            <img class="classImage" data-class="Druid" src="images/druid.svg" alt="Druid">
+                            <img class="classImage" data-class="Hunter" src="images/hunter.svg" alt="Hunter">
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Mage" class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
-                            <img data-toggle="tooltip" data-placement="top" title="Monk" class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
-                            <img data-toggle="tooltip" data-placement="top" title="Paladin" class="classImage" data-class="Paladin" src="images/paladin.svg" alt="Paladin">
-                            <img data-toggle="tooltip" data-placement="top" title="Priest" class="classImage" data-class="Priest" src="images/priest.svg" alt="Priest">
+                            <img class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
+                            <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
+                            <img class="classImage" data-class="Paladin" src="images/paladin.svg" alt="Paladin">
+                            <img data-class="Priest" src="images/priest.svg" alt="Priest">
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Rogue" class="classImage" data-class="Rogue" src="images/rogue.svg" alt="Rogue">
-                            <img data-toggle="tooltip" data-placement="top" title="Shaman" class="classImage" data-class="Shaman" src="images/shaman.svg" alt="Shaman">
-                            <img data-toggle="tooltip" data-placement="top" title="Warlock" class="classImage" data-class="Warlock" src="images/warlock.svg" alt="Warlock">
-                            <img data-toggle="tooltip" data-placement="top" title="Warrior" class="classImage" data-class="Warrior" src="images/warrior.svg" alt="Warrior">
+                            <img class="classImage" data-class="Rogue" src="images/rogue.svg" alt="Rogue">
+                            <img class="classImage" data-class="Shaman" src="images/shaman.svg" alt="Shaman">
+                            <img class="classImage" data-class="Warlock" src="images/warlock.svg" alt="Warlock">
+                            <img class="classImage" data-class="Warrior" src="images/warrior.svg" alt="Warrior">
                         </div>
-                        <button type="button" id="classContinue" class="btn btn-primary">Continue</button>
                     </div>
 
                     <div id="dungeonInput" class="col-lg-6">
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Atal'Dazar" class="dungeonImage" data-dungeon="Atal'Dazar" src="images/Atal'Dazar.jpeg" alt="Atal'Dazar">
-                            <img data-toggle="tooltip" data-placement="top" title="Freehold" class="dungeonImage" data-dungeon="Freehold" src="images/Freehold.jpeg" alt="Freehold">
+                            <div class="imgContainer col-md-6" data-dungeon="Atal'Dazar">
+                                <img class="dungeonImage" data-dungeon="Atal'Dazar" src="images/Atal'Dazar.jpeg" alt="Atal'Dazar">
+                                <div class="overlay">
+                                    <div class="text">Atal'Dazar</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Atal'Dazar</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Freehold">
+                                <img class="dungeonImage" data-dungeon="Freehold" src="images/Freehold.jpeg" alt="Freehold">
+                                <div class="overlay">
+                                    <div class="text">Freehold</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Freehold</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Kings' Rest" class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
-                            <img data-toggle="tooltip" data-placement="top" title="Shrine of the Storm" class="dungeonImage" data-dungeon="Shrine of the Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
+                            <div class="imgContainer col-md-6" data-dungeon="Kings' Rest">
+                                <img class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
+                                <div class="overlay">
+                                    <div class="text">Kings' Rest</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Kings' Rest</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Shrine of the Storm">
+                                <img class="dungeonImage" data-dungeon="Shrine of the Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
+                                <div class="overlay">
+                                    <div class="text">Shrine of the Storm</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Shrine of the Storm</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Siege of Boralus" class="dungeonImage" data-dungeon="Siege of Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
-                            <img data-toggle="tooltip" data-placement="top" title="Temple of Sethraliss" class="dungeonImage" data-dungeon="Temple of Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
+                            <div class="imgContainer col-md-6" data-dungeon="Siege of Boralus">
+                                <img class="dungeonImage" data-dungeon="Siege of Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
+                                <div class="overlay">
+                                    <div class="text">Siege of Boralus</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Siege of Boralus</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Temple of Sethraliss">
+                                <img class="dungeonImage" data-dungeon="Temple of Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
+                                <div class="overlay">
+                                    <div class="text">Temple of Sethraliss</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Temple of Sethraliss</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="The Motherlode" class="dungeonImage" data-dungeon="The Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
-                            <img data-toggle="tooltip" data-placement="top" title="The Underrot" class="dungeonImage" data-dungeon="The Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
+                            <div class="imgContainer col-md-6" data-dungeon="The Motherlode">
+                                <img class="dungeonImage" data-dungeon="The Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
+                                <div class="overlay">
+                                    <div class="text">The Motherlode</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">The Motherlode</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="The Underrot">
+                                <img class="dungeonImage" data-dungeon="The Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
+                                <div class="overlay">
+                                    <div class="text">The Underrot</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">The Underrot</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <img data-toggle="tooltip" data-placement="top" title="Waycrest Manor" class="dungeonImage" data-dungeon="Waycrest Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
-                            <img data-toggle="tooltip" data-placement="top" title="Tol Dagor" class="dungeonImage" data-dungeon="Tol Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+                            <div class="imgContainer col-md-6" data-dungeon="Waycrest Manor">
+                                <img class="dungeonImage" data-dungeon="Waycrest Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
+                                <div class="overlay">
+                                    <div class="text">Waycrest Manor</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Waycrest Manor</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Tol Dagor">
+                                <img class="dungeonImage" data-dungeon="Tol Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+                                <div class="overlay">
+                                    <div class="text">Tol Dagor</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Tol Dagor</div>
+                                </div>
+                            </div>
                         </div>
-                        <button id="dungeonContinue" type="button" class="btn btn-primary">Continue</button>
                     </div>
                 </div>
             </div>
