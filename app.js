@@ -39,7 +39,7 @@ function displayDungeons() {
                         $("#dungeonInput").append(`
                     <div class="row">
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].bossAbilities[k].damage}</p>
@@ -50,7 +50,7 @@ function displayDungeons() {
                         $("#dungeonInput").append(`
                     <div class="row">
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].bossAbilities[k].damage}</p>
@@ -58,7 +58,7 @@ function displayDungeons() {
                         <div class="col-md-2">
                         </div>
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].bossAbilities[k + 1].image}" alt="${dungeons[i].bossAbilities[k + 1].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k + 1].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k + 1].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k + 1].image}" alt="${dungeons[i].bossAbilities[k + 1].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].bossAbilities[k + 1].damage}</p>
@@ -73,7 +73,7 @@ function displayDungeons() {
                         $("#dungeonInput").append(`
                     <div class="row">
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage}</p>
@@ -84,7 +84,7 @@ function displayDungeons() {
                         $("#dungeonInput").append(`
                     <div class="row">
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage}</p>
@@ -92,7 +92,7 @@ function displayDungeons() {
                         <div class="col-md-2">
                         </div>
                         <div class="col-md-2">
-                            <img class="abilityImage" src="${dungeons[i].trashAbilities[k + 1].image}" alt="${dungeons[i].trashAbilities[k + 1].name}">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k + 1].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k + 1].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k + 1].image}" alt="${dungeons[i].trashAbilities[k + 1].name}">
                         </div>
                         <div class="col-md-1">
                             <p class="abilityDamage">${dungeons[i].trashAbilities[k + 1].damage}</p>
@@ -107,7 +107,9 @@ function displayDungeons() {
         $("#tyrannical").removeClass("hide");
         $("#fortified").removeClass("hide");
         $("#dungeonInput").append("<button type=\"button\" id=\"changeDungeon\" class=\"btn btn-primary\">Choose Another Dungeon</button>");
+        $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
     }
+    $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 }
 function calcDamage() {
     var health = playerStamina * 20;
@@ -152,6 +154,12 @@ function calcDamage() {
             }
             if (personals[i].name === "Fortifying_Brew") {
                 health = health * 1.2;
+            }
+            if (personals[i].name === "Bear_Form" && playerSpec !== "Guardian") {
+                health = health * 1.25;
+            }
+            if (personals[i].name === "Bear_Form" && playerSpec === "Guardian") {
+                health = health * 1.45;
             }
         }
     }
@@ -1123,7 +1131,6 @@ var personals = [
         armorPercentIncrease: 2.2,
         absorb: 0,
         healthIncrease: 0,
-        stamIncrease: .25,
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 25%, granting protection from Polymorph effects, and increasing threat generation.",
@@ -1138,7 +1145,6 @@ var personals = [
         armorPercentIncrease: 2.2,
         absorb: 0,
         healthIncrease: 0,
-        stamIncrease: .45,
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 45%, granting protection from Polymorph effects, and increasing threat generation.",
@@ -2703,6 +2709,11 @@ $(document).on("click", ".versOkay", function (event) {
     }
     playerVers = versAmount;
     calcDamage();
+});
+$(document).keypress(function(keyPressed) {
+    if (keyPressed.which === 13) {
+        alert('You pressed enter!');
+    }
 });
 
 $(document).on("click", ".avoidanceOkay", function (event) {
