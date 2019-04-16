@@ -2746,7 +2746,7 @@ $(document).on("click", "#changeClass", function (event) {
     <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
     <img class="classImage" data-class="Paladin" src="images/paladin.svg"
         alt="Paladin">
-    <img data-class="Priest" src="images/priest.svg"
+    <img class="classImage" data-class="Priest" src="images/priest.svg"
         alt="Priest">
 </div>
 <div class="row">
