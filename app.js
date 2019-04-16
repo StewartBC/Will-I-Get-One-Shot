@@ -184,6 +184,9 @@ function calcDamage() {
             if (externals[i].name === "Power_Word:_Fortitude") {
                 health = health * 1.1;
             }
+            if (externals[i].name === "Infusion:_Fortitude") {
+                health = health * 1.1;
+            }
             if (externals[i].name === "War_Scroll_of_Fortitude") {
                 health = health * 1.07;
             }
@@ -284,22 +287,6 @@ var dungeons = [
         name: "Atal'Dazar",
         bossAbilities: [
             {
-                name: "Devour",
-                baseDamage: 30059,
-                damage: 30059,
-                type: "physical",
-                aoe: false,
-                description: "Rezan tries to eat the victim whole, inflicting 30,059 Physical damage every 1 sec. for 8 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_mount_fossilizedraptor.jpg"
-            }, {
-                name: "Toxic_Leap",
-                baseDamage: 43210,
-                damage: 43210,
-                type: "nature",
-                aoe: true,
-                description: "Vol'kaal leaps towards a random player inflicting 43,210 Nature to players within 8 yards of the impact, knocking them back.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_quickrecovery.jpg"
-            }, {
                 name: "Toxic_Pool",
                 baseDamage: 30146,
                 damage: 30146,
@@ -331,14 +318,6 @@ var dungeons = [
                 aoe: false,
                 description: "Upon reaching 100 Energy, Yazma inflicts 27,444 Shadow damage to all players. The impact rips a piece of the target's soul free, creating a Soulspawn at the target's location.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/ability_demonhunter_soulcleave2.jpg"
-            }, {
-                name: "Soulfeast",
-                baseDamage: 6447,
-                damage: 6447,
-                type: "shadow",
-                aoe: true,
-                description: "Yazma unleashes a wave of shadowy energy that hits all players, inflicting 6,447 Shadow damage every 1.5 sec for 21 sec. This effect stacks.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_shadow-mend.jpg"
             }
         ],
         trashAbilities: [
@@ -390,44 +369,12 @@ var dungeons = [
                 aoe: false,
                 description: "Inflicts 45,756 Physical damage and additional 4,023 Physical damage every 2 sec for 20 sec. This effect stacks.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/ability_druid_ravage.jpg"
-            }, {
-                name: "Quickshot",
-                baseDamage: 39358,
-                damage: 39358,
-                type: "physical",
-                aoe: false,
-                description: "Shoots at an enemy, inflicting 39,358 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_arrow_01.jpg"
-            }, {
-                name: "Frenzied_Charge",
-                baseDamage: 21278,
-                damage: 21278,
-                type: "physical",
-                aoe: true,
-                description: "Charges towards a random enemy, inflicting 21,278 Physical damage to all players caught in the path. Victims are stunned for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_mount_triceratopsmount.jpg"
-            }, {
-                name: "Wild_Thrash",
-                baseDamage: 8007,
-                damage: 8007,
-                type: "physical",
-                aoe: true,
-                description: "Monzumi thrashes wildly inflicting 8,007 Physical damage to all enemies within 8 yards every 0.8 sec for 1.5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
             }
         ]
     }, {
         name: "Freehold",
         bossAbilities: [
             {
-                name: "Charrrrrge",
-                baseDamage: 48387,
-                damage: 48387,
-                type: "nature",
-                aoe: true,
-                description: "Charrrrrges towards a random enemy, inflicting 48,388 Nature damage and knocking back all players within 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_parrotmount_green.jpg"
-            }, {
                 name: "Pistol_Shot",
                 baseDamage: 28556,
                 damage: 28556,
@@ -443,6 +390,14 @@ var dungeons = [
                 aoe: true,
                 description: "Inflicts 52,604 Fire damage to all enemies in a cone 30 yds. long in front of the caster.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/inv_musket_02.jpg"
+            }, {
+                name: "Dive_Bomb",
+                baseDamage: 45089,
+                damage: 45089,
+                type: "nature",
+                aoe: true,
+                description: "Sharkbait charges across the battlefield, inflicting 45089 Nature damage and knocking back all players in the way.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_flying_charge.jpg"
             }, {
                 name: "Powder_Shot",
                 baseDamage: 60118,
@@ -460,30 +415,6 @@ var dungeons = [
                 description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 38,710 Fire damage in a cone.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_rifle_kultirasquest_b_01.jpg"
             }, {
-                name: "Barrel_Smash",
-                baseDamage: 22544,
-                damage: 22544,
-                type: "physical",
-                aoe: true,
-                description: "Raoul lifts his emptied barrel of grog and slams it to the ground repeatedly for 4 sec. All enemies within 10 yards suffer 22,544 Physical damage and are knocked back every second.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_cask_03.jpg"
-            }, {
-                name: "Whirlpool_of_Blades",
-                baseDamage: 55273,
-                damage: 55273,
-                type: "nature",
-                aoe: true,
-                description: "Captain Jolly unleashes a whirling saber empowered by the seas that inflicts 55,273 Nature damage every second to all nearby enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_legion_gooamberblue_pool.jpg"
-            }, {
-                name: "Cutting_Surge",
-                baseDamage: 22122,
-                damage: 22122,
-                type: "physical",
-                aoe: true,
-                description: "Dashes to a player, inflicting 22,122 Physical damage to targets within 5 yds. Players struck are left bleeding for 11060 Physical damage every 2 sec for 12 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_sprint_blue.jpg"
-            }, {
                 name: "Rearm",
                 baseDamage: 38170,
                 damage: 38170,
@@ -491,14 +422,6 @@ var dungeons = [
                 aoe: true,
                 description: "Trothak charges a nearby shark, inflicting 38,170 Physical damage to anyone in the way. Upon reaching the shark, Trothak reattaches the shark to his arm.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unholystrength.jpg"
-            }, {
-                name: "Ripper_Punch",
-                baseDamage: 12904,
-                damage: 12904,
-                type: "physical",
-                aoe: false,
-                description: "Trothak punches a nearby enemy, inflicting 12,904 Physical damage and bleeding the target for 8063 every 3 sec for 12 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
             }, {
                 name: "Shark_Tornando",
                 baseDamage: 25807,
@@ -508,22 +431,6 @@ var dungeons = [
                 description: "Trothak holds his shark by the tail and spins in a circle, inflicting 25,807 Physical damage every 1 sec to all enemies within 9 yards.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/trade_archaeology_shark-jaws.jpg"
             }, {
-                name: "Shark_Toss",
-                baseDamage: 19355,
-                damage: 19355,
-                type: "nature",
-                aoe: true,
-                description: "Trothak throws a shark at a player, inflicting 19,355 Nature damage to all enemies 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_landshark.jpg"
-            }, {
-                name: "Flailing_Shark",
-                baseDamage: 22581,
-                damage: 22581,
-                type: "nature",
-                aoe: true,
-                description: "A loose shark leaps at the nearest enemy, inflicting 22,581 Nature damage to all enemies within 5 yards of the shark.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_sharkjaw_b_01.jpg"
-            }, {
                 name: "Swiftwind_Saber",
                 baseDamage: 33064,
                 damage: 33064,
@@ -531,22 +438,6 @@ var dungeons = [
                 aoe: true,
                 description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 33,065 Nature damage.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_sandstorm.jpg"
-            }, {
-                name: "Cannon_Barrage",
-                baseDamage: 25807,
-                damage: 25807,
-                type: "fire",
-                aoe: true,
-                description: "Every 0.8 sec the target marks their current location. After 1.5 sec, the marked location explodes inflicting 25,807 Fire damage to all players within 5 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_siegeenginecannon.jpg"
-            }, {
-                name: "Black_Powder_Bomb",
-                baseDamage: 45162,
-                damage: 45162,
-                type: "fire",
-                aoe: true,
-                description: "Irontide Grenadiers detonate when they reach their target, inflicting 45,162 Fire damage to all enemies within 5 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_blackironbomb.jpg"
             }
         ],
         trashAbilities: [
@@ -583,22 +474,6 @@ var dungeons = [
                 description: "Inflicts 25,802 Frost damage to all enemies in a cone 30 yds. long in front of the caster.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_chillingblast.jpg"
             }, {
-                name: "Water_Bolt",
-                baseDamage: 12021,
-                damage: 12021,
-                type: "frost",
-                aoe: false,
-                description: "Fires a bolt of water at the target, inflicting 12,021 Frost damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
-            }, {
-                name: "Goin'_Bananas",
-                baseDamage: 16229,
-                damage: 16229,
-                type: "physical",
-                aoe: false,
-                description: "In a whirlwind of banana knive the caster attack all enemies within 5 yards, inflicting 16,229 Physical damage every 1 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_bladestorm.jpg"
-            }, {
                 name: "Dragging_Harpoon",
                 baseDamage: 18031,
                 damage: 18031,
@@ -614,270 +489,870 @@ var dungeons = [
                 aoe: true,
                 description: "Throws a shell that bounces around the arena, inflicting 34,057 Nature damage to anyone hit.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/ability_thunderking_spinningshell.jpg"
-            }, {
-                name: "Boulder_Throw",
-                baseDamage: 66365,
-                damage: 66365,
-                type: "physical",
-                aoe: true,
-                description: "Inflicts 66,365 Physical damage to all enemies within 5 yards and knocks them down for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_stone_13.jpg"
-            }, {
-                name: "Ground_Shatter",
-                baseDamage: 51604,
-                damage: 51604,
-                type: "physical",
-                aoe: true,
-                description: "A powerful stomp dealing 51,604 Physical damage and knocking back all enemies within 9 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_earthquake.jpg"
-            }, {
-                name: "Thundering_Squall",
-                baseDamage: 19534,
-                damage: 19534,
-                type: "nature",
-                aoe: true,
-                description: "Channels a thundering storm, inflicting 19,534 Nature damage to enemies within 10 yds every 2 sec for 12 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_stormreach.jpg"
-            }, {
-                name: "Lightning_Bolt",
-                baseDamage: 9676,
-                damage: 9676,
-                type: "nature",
-                aoe: false,
-                description: "Blasts an enemy with lightning, inflicting 9,676 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
             }
         ]
     }, {
         name: "Kings'_Rest",
         bossAbilities: [
             {
-                name: "Charrrrrge",
-                baseDamage: 48387,
-                damage: 48387,
-                type: "nature",
-                aoe: true,
-                description: "Charrrrrges towards a random enemy, inflicting 48,388 Nature damage and knocking back all players within 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_parrotmount_green.jpg"
-            }, {
-                name: "Pistol Shot",
-                baseDamage: 28556,
-                damage: 28556,
+                name: "Spit_Gold",
+                baseDamage: 36071,
+                damage: 36071,
                 type: "fire",
                 aoe: false,
-                description: "The caster draws a concealed pistol and fires a quick shot at an enemy, dealing 28,556 Fire damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_pistolshot.jpg"
+                description: "Spits molten gold at a player, inflicting 36,071 Fire damage every 3 sec. for 9 sec, and creating a pool of Molten Gold at the player's location afterwards.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_amber_01.jpg"
             }, {
-                name: "Azerite Powder Shot",
-                baseDamage: 52604,
-                damage: 52604,
+                name: "Drain_Fluids",
+                baseDamage: 24438,
+                damage: 24438,
+                type: "fire",
+                aoe: false,
+                description: "Prepares the target for mummification by draining their fluids, inflicting 24,438 Nature damage every 2 sec. for 8 sec. If the effect lasts the full duration, it applies Dessication to the target.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
+            }, {
+                name: "Burning_Ground",
+                baseDamage: 54968,
+                damage: 54968,
                 type: "fire",
                 aoe: true,
-                description: "Inflicts 52,604 Fire damage to all enemies in a cone 30 yds. long in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_musket_02.jpg"
+                description: "Inflicts 54,968 Fire damage every 2 sec. to any players inside a patch of Burning Ground.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_siege_engineer_purification_beam.jpg"
             }, {
-                name: "Powder Shot",
-                baseDamage: 60118,
-                damage: 60118,
+                name: "Severing_Axe",
+                baseDamage: 24047,
+                damage: 24047,
                 type: "physical",
                 aoe: false,
-                description: "Eudora fires a heavy powder shot at a random enemy, inflicting 60,118 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_rifle_draenorcrafted_d_01_a_alliance.jpg"
+                description: "Inflicts 24,047 Physical damage every 2 sec. for 20 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_swiftstrike.jpg"
             }, {
-                name: "Grapeshot",
-                baseDamage: 38710,
-                damage: 38710,
-                type: "fire",
-                aoe: true,
-                description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 38,710 Fire damage in a cone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_rifle_kultirasquest_b_01.jpg"
-            }, {
-                name: "Barrel Smash",
-                baseDamage: 22544,
-                damage: 22544,
+                name: "Whirling_Axes",
+                baseDamage: 24047,
+                damage: 24047,
                 type: "physical",
                 aoe: true,
-                description: "Raoul lifts his emptied barrel of grog and slams it to the ground repeatedly for 4 sec. All enemies within 10 yards suffer 22,544 Physical damage and are knocked back every second.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_cask_03.jpg"
+                description: "Unleashes a whirling attack that inflicts 52,603 Physical damage to players within 10 yards, knocking them back. ",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_butcher_whirl.jpg"
             }, {
-                name: "Whirlpool of Blades",
-                baseDamage: 55273,
-                damage: 55273,
-                type: "nature",
-                aoe: true,
-                description: "Captain Jolly unleashes a whirling saber empowered by the seas that inflicts 55,273 Nature damage every second to all nearby enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_legion_gooamberblue_pool.jpg"
-            }, {
-                name: "Cutting Surge",
-                baseDamage: 22122,
-                damage: 22122,
+                name: "Quaking_Leap",
+                baseDamage: 61096,
+                damage: 61096,
                 type: "physical",
                 aoe: true,
-                description: "Dashes to a player, inflicting 22,122 Physical damage to targets within 5 yds. Players struck are left bleeding for 11060 Physical damage every 2 sec for 12 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_sprint_blue.jpg"
-            }, {
-                name: "Rearm",
-                baseDamage: 38170,
-                damage: 38170,
-                type: "physical",
-                aoe: true,
-                description: "Trothak charges a nearby shark, inflicting 38,170 Physical damage to anyone in the way. Upon reaching the shark, Trothak reattaches the shark to his arm.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unholystrength.jpg"
-            }, {
-                name: "Ripper Punch",
-                baseDamage: 12904,
-                damage: 12904,
-                type: "physical",
-                aoe: false,
-                description: "Trothak punches a nearby enemy, inflicting 12,904 Physical damage and bleeding the target for 8063 every 3 sec for 12 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
-            }, {
-                name: "Shark Tornando",
-                baseDamage: 25807,
-                damage: 25807,
-                type: "physical",
-                aoe: true,
-                description: "Trothak holds his shark by the tail and spins in a circle, inflicting 25,807 Physical damage every 1 sec to all enemies within 9 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/trade_archaeology_shark-jaws.jpg"
-            }, {
-                name: "Shark Toss",
-                baseDamage: 19355,
-                damage: 19355,
-                type: "nature",
-                aoe: true,
-                description: "Trothak throws a shark at a player, inflicting 19,355 Nature damage to all enemies 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_landshark.jpg"
-            }, {
-                name: "Flailing Shark",
-                baseDamage: 22581,
-                damage: 22581,
-                type: "nature",
-                aoe: true,
-                description: "A loose shark leaps at the nearest enemy, inflicting 22,581 Nature damage to all enemies within 5 yards of the shark.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_shoulder_cloth_sharkjaw_b_01.jpg"
-            }, {
-                name: "Swiftwind Saber",
-                baseDamage: 33064,
-                damage: 33064,
-                type: "nature",
-                aoe: true,
-                description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 33,065 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_sandstorm.jpg"
-            }, {
-                name: "Cannon Barrage",
-                baseDamage: 25807,
-                damage: 25807,
-                type: "fire",
-                aoe: true,
-                description: "Every 0.8 sec the target marks their current location. After 1.5 sec, the marked location explodes inflicting 25,807 Fire damage to all players within 5 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_siegeenginecannon.jpg"
-            }, {
-                name: "Black Powder Bomb",
-                baseDamage: 45162,
-                damage: 45162,
-                type: "fire",
-                aoe: true,
-                description: "Irontide Grenadiers detonate when they reach their target, inflicting 45,162 Fire damage to all enemies within 5 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_blackironbomb.jpg"
+                description: "Dazar leaps at the targeted player, inflicting up to 61,096 Physical damage to all players. This damage is reduced the further players are from the targeted location.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_karoz_leap.jpg"
             }
         ],
         trashAbilities: [
             {
-                name: "Crippling Bite",
-                baseDamage: 18409,
-                damage: 18409,
-                type: "physical",
-                aoe: false,
-                description: "Inflicts 18,409 Physical damage and reduces enemy movement speed by 50% for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_druid_primaltenacity.jpg"
+                name: "Suppression_Slam",
+                baseDamage: 79795,
+                damage: 79795,
+                type: "nature",
+                aoe: true,
+                description: "Disperses electric energy in a cone, inflicting 79,795 Nature damage to all affected players and stunning them for 2.5 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_golemthunderclap.jpg"
             }, {
-                name: "Brutal Backhand",
-                baseDamage: 54230,
-                damage: 54230,
+                name: "Deathly_Chill",
+                baseDamage: 30690,
+                damage: 30690,
+                type: "shadowfrost",
+                aoe: false,
+                description: "Inflicts 30,690 Shadowfrost damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_staff_15.jpg"
+            }, {
+                name: "Axe_Barrage",
+                baseDamage: 12275,
+                damage: 12275,
                 type: "physical",
                 aoe: true,
-                description: "Swings a backhand, inflicting 54,230 Physical damage and knocking back all nearby enemies in a cone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_kidneyshot.jpg"
+                description: "Throws a whirl of axes at players, inflicting 12,275 Physical damage every 2 sec. for 6 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/warrior_talent_icon_mastercleaver.jpg"
             }, {
-                name: "Rat Traps",
-                baseDamage: 13387,
-                damage: 13387,
+                name: "Bladestorm",
+                baseDamage: 30690,
+                damage: 30690,
                 type: "physical",
-                aoe: false,
-                description: "The caster hurls steel traps at nearby targets. When triggered, the traps root the target and inflict 13,387 Physical damage every 1 sec for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_steeltrap.jpg"
-            }, {
-                name: "Frost Blast",
-                baseDamage: 25802,
-                damage: 25802,
-                type: "frost",
                 aoe: true,
-                description: "Inflicts 25,802 Frost damage to all enemies in a cone 30 yds. long in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_chillingblast.jpg"
-            }, {
-                name: "Water Bolt",
-                baseDamage: 12021,
-                damage: 12021,
-                type: "frost",
-                aoe: false,
-                description: "Fires a bolt of water at the target, inflicting 12,021 Frost damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
-            }, {
-                name: "Goin' Bananas",
-                baseDamage: 16229,
-                damage: 16229,
-                type: "physical",
-                aoe: false,
-                description: "In a whirlwind of banana knive the caster attack all enemies within 5 yards, inflicting 16,229 Physical damage every 1 sec.",
+                description: "Moves towards a targeted player in a whirl of blades, inflicting 30,690 Physical damage every 0.5 sec. to nearby players.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_bladestorm.jpg"
             }, {
-                name: "Dragging Harpoon",
-                baseDamage: 18031,
-                damage: 18031,
+                name: "Spectral_Bolt",
+                baseDamage: 14110,
+                damage: 14110,
+                type: "shadow",
+                aoe: false,
+                description: "Inflicts 24,551 Shadow damadge to an enemy.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowbolt.jpg"
+            }, {
+                name: "Severing_Blade",
+                baseDamage: 17365,
+                damage: 17365,
                 type: "physical",
                 aoe: false,
-                description: "Throws a harpoon at an enemy, inflicting 12 Physical damage and pulling the enemy to the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_harpoon.jpg"
+                description: "Slashes the target, inflicting 17,365 Physical damage every 2 sec. for 10 sec. This effect stacks.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
             }, {
-                name: "Shell Bounce",
-                baseDamage: 34057,
-                damage: 34057,
+                name: "Frost_Shock",
+                baseDamage: 24551,
+                damage: 24551,
+                type: "frost",
+                aoe: false,
+                description: "Freezes the target, inflicting 24,551 Frost damage and reducing their movement speed by 50% for 15 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostshock.jpg"
+            }, {
+                name: "Frost_Shock",
+                baseDamage: 22649,
+                damage: 22649,
+                type: "shadow",
+                aoe: false,
+                description: "Inflicts 13,017 Shadow damage to an enemy. Inflicts 15,099 Shadow damage to an enemy every 2 sec for 8 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_mindspike.jpg"
+            }
+        ]
+    }, {
+        name: "Shrine_of_the_Storm",
+        bossAbilities: [
+            {
+                name: "Undertow",
+                baseDamage: 12166,
+                damage: 12166,
+                type: "frost",
+                aoe: false,
+                description: "Channels dark waters into a player, inflicting 12166 Frost damage every 1 sec for 6 sec, pushing them back.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shawaterelemental_split.jpg"
+            }, {
+                name: "Slicing_Blast",
+                baseDamage: 17043,
+                damage: 17043,
                 type: "nature",
                 aoe: true,
-                description: "Throws a shell that bounces around the arena, inflicting 34,057 Nature damage to anyone hit.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_thunderking_spinningshell.jpg"
+                description: "Inflicts 17,043 Nature damage to all enemies and increases Nature damage taken by 15% for 30 sec. This effect stacks.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_four_wind.jpg"
             }, {
-                name: "Boulder Throw",
-                baseDamage: 66365,
-                damage: 66365,
+                name: "Blowback",
+                baseDamage: 43798,
+                damage: 43798,
+                type: "nature",
+                aoe: false,
+                description: "Interrupts while affected by Blessing of the Tempest create a Blowback at a nearby location which inflicts 43,793 Nature damage and kocks back enemies that come in contact with it.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_windwalkon.jpg"
+            }, {
+                name: "Hindering_Cleave",
+                baseDamage: 72141,
+                damage: 72141,
                 type: "physical",
                 aoe: true,
-                description: "Inflicts 66,365 Physical damage to all enemies within 5 yards and knocks them down for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_stone_13.jpg"
+                description: "Inflicts 72,141 Physical damage to enemies in front of the caster and reduces movement speed by 70% for 10 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/warrior_talent_icon_mastercleaver.jpg"
             }, {
-                name: "Ground Shatter",
-                baseDamage: 51604,
-                damage: 51604,
+                name: "Mind_Rend",
+                baseDamage: 27053,
+                damage: 27053,
+                type: "shadow",
+                aoe: false,
+                description: "The Mind Rend inflicts 27053 Shadow damage and an additional 6083 Shadow damage every 2 sec and reduces speed by 50% for 10 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_brainwash.jpg"
+            }, {
+                name: "Consume_Essence",
+                baseDamage: 32422,
+                damage: 32422,
+                type: "shadow",
+                aoe: true,
+                description: "The Forgotten Denizen tears a fragment from the minds of all players, inflicting 32,422 Shadow damage to them and restoring health to the caster.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_mindflay.jpg"
+            }, {
+                name: "Abyssal_Eruption",
+                baseDamage: 4810,
+                damage: 4810,
+                type: "shadow",
+                aoe: true,
+                description: "Manifestations of the Deep explode upon death, inflicting 4,810 Shadow damage to all players. This effect grants Vol'zith the Whisperer energy if the manifestation reaches it.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_05.jpg"
+            }, {
+                name: "Tentacle_Slam",
+                baseDamage: 74473,
+                damage: 74473,
+                type: "shadow",
+                aoe: true,
+                description: "A shadowy tentacle rises from the deep, slamming the ground and inflicting 74,473 Shadow damage to targets struck.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidtendrils.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Water_Blast",
+                baseDamage: 27779,
+                damage: 27779,
+                type: "frost",
+                aoe: false,
+                description: "Inflicts 27,779 Frost damage to an enemy.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_elemental_mote_water01.jpg"
+            }, {
+                name: "Gale_Shear",
+                baseDamage: 11826,
+                damage: 11826,
+                type: "nature",
+                aoe: false,
+                description: "Disrupts the target's concentration with a gale of wind, knocking the target back and inflicting 11,826 Nature damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_cyclone.jpg"
+            }, {
+                name: "Gale_Winds",
+                baseDamage: 10675,
+                damage: 10675,
+                type: "nature",
+                aoe: true,
+                description: "Channels the fierce power of the winds, inflicting 10,675 Nature damage to all players every 1 sec for 4 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_cyclone.jpg"
+            }, {
+                name: "Whirling_Slam",
+                baseDamage: 61009,
+                damage: 61009,
                 type: "physical",
                 aoe: true,
-                description: "A powerful stomp dealing 51,604 Physical damage and knocking back all enemies within 9 yards.",
+                description: "Inflicts 61,009 Physical damage to enemies within 8 yards.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_shockwave.jpg"
+            }, {
+                name: "Unending_Darkness",
+                baseDamage: 19124,
+                damage: 19124,
+                type: "shadow",
+                aoe: true,
+                description: "Unending Darkness engulfs players, inflicting 19,124 Shadow damage and increasing Shadow damage taken by 25% for 20 sec. This effect stacks.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowbolt.jpg"
+            }, {
+                name: "Void_Seed",
+                baseDamage: 33667,
+                damage: 33667,
+                type: "shadow",
+                aoe: true,
+                description: "Inflicts 33,667 Shadow damage to enemies within 6 yards when the Void Seed expires.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_void-blast.jpg"
+            }, {
+                name: "Void_Bolt",
+                baseDamage: 41566,
+                damage: 41566,
+                type: "shadow",
+                aoe: false,
+                description: "Deals 41,566 Shadow damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_enchant_voidsphere.jpg"
+            }, {
+                name: "Deep_Smash",
+                baseDamage: 37039,
+                damage: 37039,
+                type: "frost",
+                aoe: false,
+                description: "Inflicts 37039 Frost damage to an enemy. Globules of water erupt from the target, additionally inflicting 32,924 Frost damage to targets they land upon.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shawaterelemental_swirl.jpg"
+            }
+        ]
+    }, {
+        name: "Siege_of_Boralus",
+        bossAbilities: [
+            {
+                name: "Steel_Tempest",
+                baseDamage: 75147,
+                damage: 75147,
+                type: "physical",
+                aoe: true,
+                description: "Smashes the ground, inflicting 75,147 Physical damage and knocking back enemies within 10 yards and 24332 Physical damage to everyone.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shockwave.jpg"
+            }, {
+                name: "Clear_The_Deck",
+                baseDamage: 60830,
+                damage: 60830,
+                type: "physical",
+                aoe: true,
+                description: "Sends the targets in a cone in front of the caster flying, inflicting 60,830 Physical damage on impact and knocking them back.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_slicedice.jpg"
+            }, {
+                name: "Gut_Shot",
+                baseDamage: 24332,
+                damage: 24332,
+                type: "nature",
+                aoe: false,
+                description: "When not being melee attacked, shoots at random enemies inflicting 24,332 Physical damage on impact and an additional 22,305 Physical damage every 2 sec for 8 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedshot.jpg"
+            }, {
+                name: "Break_Water",
+                baseDamage: 48664,
+                damage: 48664,
+                type: "frost",
+                aoe: true,
+                description: "Roiling water erupts under random enemy destinations, inflicting 48,664 Frost damage to enemies within 5 yards and knocks them into the air as well as inflicting 9,919 Frost damage to everyone.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg"
+            }, {
+                name: "Putrid_Waters",
+                baseDamage: 22544,
+                damage: 22544,
+                type: "frost",
+                aoe: false,
+                description: "Spits putrid water at random enemies that inflicts 22,544 Frost damage on impact and 11,273 Frost damage every 2 sec for 30 sec. If dispelled, water erupts and inflicts 38157 Frost damage to nearby allies and knocks them back.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
+            }, {
+                name: "Call_of_the_Deep",
+                baseDamage: 81106,
+                damage: 81106,
+                type: "frost",
+                aoe: true,
+                description: "Belches a torrent of water that inflicts 81,106 Frost damage on impact to nearby enemies.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_164_fish_seadog.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Brackish_Bolt",
+                baseDamage: 24692,
+                damage: 24692,
+                type: "nature",
+                aoe: false,
+                description: "Fires a bolt of foul water at the target that inflicts 24,692 Nature damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/sha_inv_misc_slime_01.jpg"
+            }, {
+                name: "Molten_Slug",
+                baseDamage: 18592,
+                damage: 18592,
+                type: "fire",
+                aoe: false,
+                description: "Shoots at a random enemy, inflicting 18320 Fire damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_fireball02.jpg"
+            }, {
+                name: "Trample",
+                baseDamage: 28807,
+                damage: 28807,
+                type: "shadow",
+                aoe: true,
+                description: "Charges towards a random enemy, inflicting 28,807 Shadow damage to all players caught in the path.  Victims are stunned for 2 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_nightblade.jpg"
+            }, {
+                name: "Broadside",
+                baseDamage: 54105,
+                damage: 54105,
+                type: "arcane",
+                aoe: true,
+                description: "Fires a cannon that inflicts 54,105 Arcane damage to all enemies caught in the path.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_siegeenginecannon.jpg"
+            }, {
+                name: "Banana_Rampage",
+                baseDamage: 17633,
+                damage: 17633,
+                type: "physical",
+                aoe: true,
+                description: "Enters a rampage, inflicting 17,633 Physical damage to all nearby enemies. Also, launches bananas at random enemy targets that inflict 17,633 to nearby enemies and leaves bananas on the ground that stun enemies that move over them for 2 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_24.jpg"
+            }, {
+                name: "Viscous_Slobber",
+                baseDamage: 24692,
+                damage: 24692,
+                type: "nature",
+                aoe: true,
+                description: "Hurls slobber in a frontal cone that inflicts 16 Nature damage to enemies and reduces their movement speed by 65% for 6 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+            }, {
+                name: "Ricochet",
+                baseDamage: 19827,
+                damage: 19827,
+                type: "physical",
+                aoe: false,
+                description: "Fires at an enemy, inflicting 19,827 Physical damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_04.jpg"
+            }, {
+                name: "Shoot",
+                baseDamage: 15252,
+                damage: 15252,
+                type: "physical",
+                aoe: false,
+                description: "Shoots an enemy, inflicting 15,252 Physical damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg"
+            }
+        ]
+    }, {
+        name: "Temple_of_Sethraliss",
+        bossAbilities: [
+            {
+                name: "Conduction",
+                baseDamage: 45088,
+                damage: 45088,
+                type: "nature",
+                aoe: true,
+                description: "Aspix charges the air around the victim, causing them to release a sudden burst of 45,088 Nature damage after 5 sec. Any allies within 8 yards of the victim will take Nature damage when this effect expires.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningoverload.jpg"
+            }, {
+                name: "Static_Shock",
+                baseDamage: 33816,
+                damage: 33816,
+                type: "physical",
+                aoe: true,
+                description: "Aspix unleashes a burst of electricity that inflicts 33,816 Nature damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_staticshock.jpg"
+            }, {
+                name: "Jolt",
+                baseDamage: 22544,
+                damage: 22544,
+                type: "nature",
+                aoe: false,
+                description: "Aspix jolts the target for 22,544 Nature damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_electrocharge.jpg"
+            }, {
+                name: "Burrow",
+                baseDamage: 45088,
+                damage: 45088,
+                type: "physical",
+                aoe: true,
+                description: "Merektha burrows through floor, inflicting 45088 Physical damage to any players caught in her path. Victims are knocked back.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_earthquake.jpg"
-            }, {
-                name: "Thundering Squall",
-                baseDamage: 19534,
-                damage: 19534,
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Power_Shot",
+                baseDamage: 32924,
+                damage: 32924,
                 type: "nature",
                 aoe: true,
-                description: "Channels a thundering storm, inflicting 19,534 Nature damage to enemies within 10 yds every 2 sec for 12 sec.",
+                description: "The caster fires an bolt of lightning through the target, inflicting 32,924 Nature damage to all enemies caught in its path.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_stormreach.jpg"
             }, {
-                name: "Lightning Bolt",
-                baseDamage: 9676,
-                damage: 9676,
+                name: "Lightning_Bolt",
+                baseDamage: 33554,
+                damage: 33544,
                 type: "nature",
                 aoe: false,
-                description: "Blasts an enemy with lightning, inflicting 9,676 Nature damage.",
+                description: "Shocks the target with a bolt of lightning, inflicting 33,554 Nature damage.",
                 image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
+            }, {
+                name: "Venomous_Spit",
+                baseDamage: 12347,
+                damage: 12347,
+                type: "nature",
+                aoe: false,
+                description: "The caster spits venom at the target, poisoning them for 12,347 Nature damage every 3 sec for 9 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_corrosivebreath.jpg"
+            }, {
+                name: "Lightning_in_a_Bottle",
+                baseDamage: 12347,
+                damage: 12347,
+                type: "nature",
+                aoe: true,
+                description: "The caster hurls a vial that unleashes an electric field on the ground.  Players who stand in the field suffer 12,347 Nature damage every 3 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_11.jpg"
+            }, {
+                name: "Release_Charge",
+                baseDamage: 12345,
+                damage: 12345,
+                type: "nature",
+                aoe: true,
+                description: "Releases all stored charge, inflicting 12,345 Nature damage to all enemies within 40 yards. Consumes all applications of Accumulate Charge.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_chargenegative.jpg"
+            }, {
+                name: "Spark",
+                baseDamage: 16460,
+                damage: 16460,
+                type: "nature",
+                aoe: true,
+                description: "Leaps to a target location, inflicting 16,460 Nature damage to all targets within 5 yards of the impact.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_electrocharge.jpg"
+            }, {
+                name: "Electrocute",
+                baseDamage: 8232,
+                damage: 8232,
+                type: "nature",
+                aoe: false,
+                description: "Electrocutes a random enemy for 8,232 Nature damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
+            }, {
+                name: "Lava_Burst",
+                baseDamage: 30504,
+                damage: 30504,
+                type: "fire",
+                aoe: false,
+                description: "Hurls molten lava at an enemy, inflicting 30,504 Fire damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_lavaburst.jpg"
+            },
+        ]
+    }, {
+        name: "The_Motherlode",
+        bossAbilities: [
+            {
+                name: "Static_Pulse",
+                baseDamage: 27053,
+                damage: 27053,
+                type: "nature",
+                aoe: true,
+                description: "Emits a pulse of electricity, inflicting 27,053 Nature damage instantly and 4,509 Nature damage every 2 sec for 6 sec. Also knocks back all enemies.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningoverload.jpg"
+            }, {
+                name: "Chemical_Burn",
+                baseDamage: 18249,
+                damage: 18249,
+                type: "nature",
+                aoe: false,
+                description: "Sprays up to 2 players with a nasty chemical, inflicting 18,249 Nature damage every 2 sec for 10 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_03.jpg"
+            }, {
+                name: "Gatling_Gun",
+                baseDamage: 16774,
+                damage: 16774,
+                type: "physical",
+                aoe: true,
+                description: "Spins in place and fires a hail of bullets, inflicting 16,774 Physical damage every 0.3 sec to all players in front of Mogul Razdunk.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_07.jpg"
+            }, {
+                name: "Homing_Missile",
+                baseDamage: 48664,
+                damage: 48664,
+                type: "fire",
+                aoe: true,
+                description: "Fires a homing missile that chases a player. On impact, or after 10 sec, the missile explodes, inflicting 48,664 Fire damage immediately and 9,217 Fire damage every 2 sec for 6 sec to all players within 20 yards of the missile. The missile's speed increases as it travels.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_racial_rocketbarrage.jpg"
+            }, {
+                name: "Micro_Missiles",
+                baseDamage: 49597,
+                damage: 49597,
+                type: "fire",
+                aoe: true,
+                description: "A B.O.O.M.B.A. drone launches a salvo of Micro Missiles, inflicting 49,597 Fire damage to players within 6 yards of each missile's impact.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_missilelarge_red.jpg"
+            }, {
+                name: "Drill_Smash",
+                baseDamage: 40553,
+                damage: 40553,
+                type: "physical",
+                aoe: true,
+                description: "Flies through the air and impacts a player's location, inflicting 81,107 Physical damage to targets within 8 yards, and 40,553 Physical damage to all targets beyond 8 yards.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_siege_engineer_sockwave_missile.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Grease_Gun",
+                baseDamage: 25007,
+                damage: 25007,
+                type: "physical",
+                aoe: false,
+                description: "Shoot the current threat target for 25,007 Physical damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_musket_02.jpg"
+            }, {
+                name: "Clothesline",
+                baseDamage: 22734,
+                damage: 22734,
+                type: "physical",
+                aoe: false,
+                description: "Charges a random player, inflicting 22,734 Physical damage and stunning them for 2 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_charge.jpg"
+            }, {
+                name: "Iced_Spritzer",
+                baseDamage: 9472,
+                damage: 9472,
+                type: "frost",
+                aoe: false,
+                description: "Blasts an enemy with a jet of icy cold spritzer, inflicting 9,472 Frost damage every 1 sec and reducing movement speed by 15% for 6 sec. The final tick of Iced Spritzer will trigger Brain Freeze.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_mage_waterjet.jpg"
+            }, {
+                name: "Hail_of_Flechettes",
+                baseDamage: 9095,
+                damage: 9095,
+                type: "physical",
+                aoe: true,
+                description: "Hurls flechettes at enemies within 45 yards, inflicting 9,095 Physical damage. If the caster has Toxic Blades, affected targets will also be poisoned by the Widomaker Toxin.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_throwingknife_03.jpg"
+            }, {
+                name: "Throw_Wrench",
+                baseDamage: 43058,
+                damage: 43058,
+                type: "physical",
+                aoe: false,
+                description: "Throws a heavy wrench at a random enemy's head, inflicting 43,058 Physical damage. Ouch!",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_wrench_01.jpg"
+            }, {
+                name: "Charged_Claw",
+                baseDamage: 17222,
+                damage: 17222,
+                type: "nature",
+                aoe: true,
+                description: "Strikes a player with a lightning bolt that inflicts 17,222 Nature damage. The lightning chains to up to 3 targets.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_chainlightning.jpg"
+            }, {
+                name: "Throw_Rock",
+                baseDamage: 25833,
+                damage: 25833,
+                type: "physical",
+                aoe: false,
+                description: "Throws a rock at a player, inflicting 25,833 Physical damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_stone_sharpeningstone_01.jpg"
+            }, {
+                name: "Rock_Lance",
+                baseDamage: 28417,
+                damage: 28417,
+                type: "nature",
+                aoe: false,
+                description: "Blasts a player with a magical stone lance, inflicting 28,417 Nature damage instantly and 11,233 Nature damage every 2 sec for 6 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_elemental_crystal_earth.jpg"
+            },
+        ]
+    }, {
+        name: "The_Underrot",
+        bossAbilities: [
+            {
+                name: "Blood_Bolt",
+                baseDamage: 30059,
+                damage: 30059,
+                type: "shadow",
+                aoe: false,
+                description: "Elder Leaxa blasts a player, inflicting 30,059 Shadow damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_deathwing_bloodcorruption_earth.jpg"
+            }, {
+                name: "Tantrum",
+                baseDamage: 18138,
+                damage: 18138,
+                type: "physical",
+                aoe: true,
+                description: "Throws a tantrum upon reaching 100 energy, periodically inflicts 18,138 Physical damage to all enemies.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_bloodtrollbeast_mount_pale.jpg"
+            }, {
+                name: "Festering_Harvest",
+                baseDamage: 30058,
+                damage: 30058,
+                type: "plague",
+                aoe: true,
+                description: "Upon reaching 100 energy, Zancha forces all remaining spore pods to burst. Inflicts 30,058 Plague damage to all players and applies Decaying Spores to all players for each active spore pod.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_explode_ghoul.jpg"
+            }, {
+                name: "Rotting_Spore",
+                baseDamage: 75147,
+                damage: 75147,
+                type: "shadow",
+                aoe: false,
+                description: "Pools of Vile Expulsion periodically coalesce into Rotting Spores that move towards players. Each spore inflicts 75,147 Shadow damage to any player it comes into contact with, instantly killing the spore.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_plaguecloud.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Blood_Burst",
+                baseDamage: 8425,
+                damage: 8425,
+                type: "shadow",
+                aoe: true,
+                description: "Explodes on death, inflicting 8,245 Shadow damage to all enemies.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_deathwing_bloodcorruption_earth.jpg"
+            }, {
+                name: "Blood_Harvest",
+                baseDamage: 34102,
+                damage: 34102,
+                type: "physical",
+                aoe: false,
+                description: "Charges to a random enemy, inflicting 34,102 Physical damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_bloodsplatter.jpg"
+            }, {
+                name: "Barbed_Spear",
+                baseDamage: 21064,
+                damage: 21064,
+                type: "nature",
+                aoe: false,
+                description: "The caster spits venom at the target, poisoning them for 12,347 Nature damage every 3 sec for 9 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_corrosivebreath.jpg"
+            }, {
+                name: "Hooked_Snare",
+                baseDamage: 13262,
+                damage: 13262,
+                type: "nature",
+                aoe: true,
+                description: "Inflicts 13,262 Physical damage to an enemy every 2 sec for 4 sec. Immobilizes an enemy for up to 4 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_net_01.jpg"
+            }, {
+                name: "Wicked_Assault",
+                baseDamage: 13130,
+                damage: 13130,
+                type: "shadow",
+                aoe: false,
+                description: "Inflicts 13,130 Shadow damage to an enemy every 1 sec for 10 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warlock_eradication.jpg"
+            }, {
+                name: "Abyssal_Reach",
+                baseDamage: 46341,
+                damage: 46341,
+                type: "shadow",
+                aoe: true,
+                description: "Summons tendrils from the void that inflict 46,341 Shadow damage to all enemies in front of them.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidtendrils.jpg"
+            }
+        ]
+    }, {
+        name: "Tol_Dagor",
+        bossAbilities: [
+            {
+                name: "Upheaval",
+                baseDamage: 58615,
+                damage: 58615,
+                type: "nature",
+                aoe: true,
+                description: "Disappears beneath the sand, exploding up underneath a player. This eruption inflicts 58,615 Nature damage and knocks all targets upwards.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_earthquake.jpg"
+            }, {
+                name: "Sand_Trap",
+                baseDamage: 37145,
+                damage: 37145,
+                type: "physical",
+                aoe: true,
+                description: "Calls forth sand traps beneath all players for 4 sec. Coming into contact with a sand trap inflicts 37,145 Nature damage, knocking the target into the air and stunning them for 4 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_quicksand.jpg"
+            }, {
+                name: "Deadeye",
+                baseDamage: 33359,
+                damage: 33359,
+                type: "physical",
+                aoe: false,
+                description: "Aims at a player, firing a precise round after 4 sec and striking the first player in the line. This shot inflicts 33,359 Physical damage and increases damage taken from Deadeye by 500% for 1.3 min.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_03.jpg"
+            }, {
+                name: "Explosive_Burst",
+                baseDamage: 42082,
+                damage: 42082,
+                type: "fire",
+                aoe: true,
+                description: "Marks player for Explosive Burst. After 4 sec, shots ring out and inflict 42,082 Fire damage to all players within 5 yds.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hisek_aim.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Salt_Blast",
+                baseDamage: 33334,
+                damage: 33334,
+                type: "nature",
+                aoe: false,
+                description: "Inflicts 33,334 Nature damage to an enemy.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_wind.jpg"
+            }, {
+                name: "Blaze",
+                baseDamage: 56730,
+                damage: 56730,
+                type: "fire",
+                aoe: false,
+                description: "Inflicts 56,730 Fire damage to an enemy.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_flamebolt.jpg"
+            }
+        ]
+    }, {
+        name: "Waycrest_Manor",
+        bossAbilities: [
+            {
+                name: "Unstable_Runic_Mark",
+                baseDamage: 26452,
+                damage: 26452,
+                type: "shadow",
+                aoe: true,
+                description: "Marks all nearby enemies with cursed runes, inflicting 3,757 Shadow damage every 1 sec for 6 sec. Upon expiration, or if the mark is dispelled, the rune explodes, inflicting an additional 26,452 Shadow damage to all allies within 6 yards.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_priest_surgeofdarkness.jpg"
+            }, {
+                name: "Dire_Ritual",
+                baseDamage: 61170,
+                damage: 61170,
+                type: "shadow",
+                aoe: true,
+                description: "Releases a bust of dark energy, inflicting 61,170 Shadow damage to all enemies.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_antishadow.jpg"
+            }, {
+                name: "Rotten_Expulsion",
+                baseDamage: 28932,
+                damage: 28932,
+                type: "nature",
+                aoe: true,
+                description: "Raal the Gluttonous expels a wave of rancid food, inflicting 28,932 Nature damage at each impact. Each expulsion remains at the impact point, inflicting 14884 Nature damage every 1 sec and reducing movement speed by 60%.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_01.jpg"
+            }, {
+                name: "Virulent_Pathogen",
+                baseDamage: 7517,
+                damage: 7517,
+                type: "nature",
+                aoe: false,
+                description: "Infects the target with a highly infectious plague, inflicting 7,517 Nature damage every 1 sec and reducing movement speed by 50% for 5 sec. Upon expiration or being dispelled, the target explodes, infecting nearby allies with Virulent Pathogen.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+            }, {
+                name: "Wasting_Strike",
+                baseDamage: 33065,
+                damage: 33065,
+                type: "nature",
+                aoe: false,
+                description: "Claws at the enemy with rotten claws, inflicting 33,065 Nature damage and additional 8,266 Nature damage every 1 sec for 5 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_03.jpg"
+            }, {
+                name: "Dread_Essence",
+                baseDamage: 24799,
+                damage: 24799,
+                type: "shadow",
+                aoe: true,
+                description: "At 100 energy, the caster releases a torrent of dark energy, inflicting 24,799 Shadow damage to all enemies. Additionally, all Deathtouched Slavers are resurrected, brought back to their maximum health, and any crowd control effects on them are dispelled.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_argus_soulburst.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Shadow_Cleave",
+                baseDamage: 18456,
+                damage: 18456,
+                type: "shadow",
+                aoe: true,
+                description: "Strikes in a wide arc with a rune-inscribed weapon, inflicting 18,456 Shadow damage to all enemies in a cone in front of the caster.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/inv_axe_112.jpg"
+            }, {
+                name: "Infected_Thorn",
+                baseDamage: 14261,
+                damage: 14261,
+                type: "nature",
+                aoe: false,
+                description: "Hurls a plagued thorn at the enemy, inflicting 14,261 Nature damage and an additional 4,132 Nature damage every 1 sec for 8 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_nullifypoison_02.jpg"
+            }, {
+                name: "Spit",
+                baseDamage: 7551,
+                damage: 7551,
+                type: "nature",
+                aoe: false,
+                description: "Spits a caustic fluid at an enemy, inflicting 7,551 Nature damage and additional 1 Nature damage every 1 sec for 10 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+            }, {
+                name: "Ravaging_Leap",
+                baseDamage: 10065,
+                damage: 10065,
+                type: "physical",
+                aoe: true,
+                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_lifedrain.jpg"
+            }, {
+                name: "Retch",
+                baseDamage: 16836,
+                damage: 16836,
+                type: "nature",
+                aoe: false,
+                description: "The caster retches forth acidic bile, inflicting 16,836 Nature damage to all enemies in a cone in front of the caster.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_plaguecloud.jpg"
+            }, {
+                name: "Soul_Bolt",
+                baseDamage: 22651,
+                damage: 22651,
+                type: "shadow",
+                aoe: false,
+                description: "Fires a bolt of crippling energy, inflicting 22,651 Shadow damage to the target. Holding the focusing iris increases the damage done by Soul Bolt.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/ability_priest_cascade_shadow.jpg"
+            }, {
+                name: "Soul_Volley",
+                baseDamage: 12583,
+                damage: 12583,
+                type: "shadow",
+                aoe: true,
+                description: "Expels twisted souls at each enemy, inflicting 12,583 Shadow damage.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_painspike.jpg"
+            }, {
+                name: "Dark_Leap",
+                baseDamage: 10065,
+                damage: 10065,
+                type: "physical",
+                aoe: true,
+                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
+                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_gathershadows.jpg"
             }
         ]
     }
@@ -2104,6 +2579,18 @@ var externals = [
         selected: false,
         description: "Use: Increases the target's Stamina by 7% for 30 min.",
         image: "https://wow.zamimg.com/images/wow/icons/large/inv_inscription_80_warscroll_fortitude.jpg"
+    }, {
+        name: "Infusion:_Fortitude",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Infuses the target with vitality, increasing their Stamina by 10% for until cancelled.",
+        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_wordfortitude.da6141705dfd22fec7aaa097b2a63c7131ec5c3e.jpg"
     }
 ];
 
@@ -2122,6 +2609,39 @@ var versTrinkets = [
         image: "https://wow.zamimg.com/images/wow/icons/large/spell_arcane_rune.jpg"
     }
 ];
+
+$.ajax({
+    type: "GET",
+    url: "https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en"
+  }).then(function (result) {
+    result.affix_details.forEach(affix => {
+        if (affix.name === "Tyrannical") {
+            if (tyrannical) {
+                tyrannical = false;
+                fortified = true;
+                $("#tyrannical").removeClass("selected");
+                $("#fortified").addClass("selected");
+            } else {
+                tyrannical = true;
+                fortified = false;
+                $("#tyrannical").addClass("selected");
+                $("#fortified").removeClass("selected");
+            }
+        } else if (affix.name === "Fortified") {
+            if (fortified) {
+                fortified = false;
+                tyrannical = true;
+                $("#fortified").removeClass("selected");
+                $("#tyrannical").addClass("selected");
+            } else {
+                fortified = true;
+                tyrannical = false;
+                $("#fortified").addClass("selected");
+                $("#tyrannical").removeClass("selected");
+            }
+        }
+    });
+  });
 
 $(document).on("click", ".classImage", function (event) {
     event.preventDefault();
@@ -2244,6 +2764,7 @@ $(document).on("click", "#changeClass", function (event) {
 
 $(document).on("click", "#changeDungeon", function (event) {
     event.preventDefault();
+    dungeon = "";
     $("#dungeonInput").empty();
     $(".slidecontainer").addClass("hide");
     $(".affix").addClass("hide");
@@ -2269,7 +2790,7 @@ $(document).on("click", "#changeDungeon", function (event) {
     </div>
 </div>
 <div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Kings' Rest">
+    <div class="imgContainer col-md-6" data-dungeon="Kings'_Rest">
         <img class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
         <div class="overlay">
             <div class="text">Kings' Rest</div>
@@ -2278,8 +2799,8 @@ $(document).on("click", "#changeDungeon", function (event) {
             <div class="text">Kings' Rest</div>
         </div>
     </div>
-    <div class="imgContainer col-md-6" data-dungeon="Shrine of the Storm">
-        <img class="dungeonImage" data-dungeon="Shrine of the Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
+    <div class="imgContainer col-md-6" data-dungeon="Shrine_of_the_Storm">
+        <img class="dungeonImage" data-dungeon="Shrine_of_the_Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
         <div class="overlay">
             <div class="text">Shrine of the Storm</div>
         </div>
@@ -2289,8 +2810,8 @@ $(document).on("click", "#changeDungeon", function (event) {
     </div>
 </div>
 <div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Siege of Boralus">
-        <img class="dungeonImage" data-dungeon="Siege of Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
+    <div class="imgContainer col-md-6" data-dungeon="Siege_of_Boralus">
+        <img class="dungeonImage" data-dungeon="Siege_of_Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
         <div class="overlay">
             <div class="text">Siege of Boralus</div>
         </div>
@@ -2298,8 +2819,8 @@ $(document).on("click", "#changeDungeon", function (event) {
             <div class="text">Siege of Boralus</div>
         </div>
     </div>
-    <div class="imgContainer col-md-6" data-dungeon="Temple of Sethraliss">
-        <img class="dungeonImage" data-dungeon="Temple of Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
+    <div class="imgContainer col-md-6" data-dungeon="Temple_of_Sethraliss">
+        <img class="dungeonImage" data-dungeon="Temple_of_Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
         <div class="overlay">
             <div class="text">Temple of Sethraliss</div>
         </div>
@@ -2309,8 +2830,8 @@ $(document).on("click", "#changeDungeon", function (event) {
     </div>
 </div>
 <div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="The Motherlode">
-        <img class="dungeonImage" data-dungeon="The Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
+    <div class="imgContainer col-md-6" data-dungeon="The_Motherlode">
+        <img class="dungeonImage" data-dungeon="The_Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
         <div class="overlay">
             <div class="text">The Motherlode</div>
         </div>
@@ -2318,8 +2839,8 @@ $(document).on("click", "#changeDungeon", function (event) {
             <div class="text">The Motherlode</div>
         </div>
     </div>
-    <div class="imgContainer col-md-6" data-dungeon="The Underrot">
-        <img class="dungeonImage" data-dungeon="The Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
+    <div class="imgContainer col-md-6" data-dungeon="The_Underrot">
+        <img class="dungeonImage" data-dungeon="The_Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
         <div class="overlay">
             <div class="text">The Underrot</div>
         </div>
@@ -2329,8 +2850,8 @@ $(document).on("click", "#changeDungeon", function (event) {
     </div>
 </div>
 <div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Waycrest Manor">
-        <img class="dungeonImage" data-dungeon="Waycrest Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
+    <div class="imgContainer col-md-6" data-dungeon="Waycrest_Manor">
+        <img class="dungeonImage" data-dungeon="Waycrest_Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
         <div class="overlay">
             <div class="text">Waycrest Manor</div>
         </div>
@@ -2338,8 +2859,8 @@ $(document).on("click", "#changeDungeon", function (event) {
             <div class="text">Waycrest Manor</div>
         </div>
     </div>
-    <div class="imgContainer col-md-6" data-dungeon="Tol Dagor">
-        <img class="dungeonImage" data-dungeon="Tol Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+    <div class="imgContainer col-md-6" data-dungeon="Tol_Dagor">
+        <img class="dungeonImage" data-dungeon="Tol_Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
         <div class="overlay">
             <div class="text">Tol Dagor</div>
         </div>
@@ -2615,7 +3136,7 @@ $(document).on("click", ".specImage", function (event) {
         if (playerSpec === "Vengeance" || (playerClass === "Paladin" && playerSpec === "Protection")) {
             $("#classInput").append(`
             <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
             <p class="playerInput">Mastery (no buffs):</p>
             </div>
             <div class="col-md-5">
@@ -2623,6 +3144,23 @@ $(document).on("click", ".specImage", function (event) {
                 <input type="text" class="form-control" data-name="mastery" placeholder="Amount" aria-label="Mastery Amount" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary masteryOkay" data-name="mastery" type="button">OK</button>
+                </div>
+            </div>
+            </div>
+        </div>
+            `);
+        }
+        if (playerSpec === "Brewmaster") {
+            $("#classInput").append(`
+            <div class="row">
+            <div class="col-md-6">
+            <p class="playerInput">Stagger (with buffs):</p>
+            </div>
+            <div class="col-md-5">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" data-name="stagger" placeholder="Amount" aria-label="Stagger Amount" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary staggerOkay" data-name="stagger" type="button">OK</button>
                 </div>
             </div>
             </div>
@@ -2712,60 +3250,61 @@ $(document).on("click", ".versatilityOkay", function (event) {
     calcDamage();
 });
 
-$(document).on("click", "input", function(event) {
+$(document).on("click", "input", function (event) {
     event.preventDefault();
     recentInput = $(this).attr("data-name");
 })
 
-$(document).keypress(function(keyPressed) {
+$(document).keypress(function (keyPressed) {
     if (keyPressed.which === 13) {
         var amount = Number($(`input[type=text][data-name=${recentInput}]`).val());
-        if (amount > 0) {
-            if (recentInput === "stamina") {
-                playerStamina = amount;
-            } else if (recentInput === "vers") {
-                playerVers = amount;
-            } else if (recentInput === "armor") {
-                playerArmor = amount;
-            } else if (recentInput === "avoidance") {
-                avoidance = amount;
-            } else if (recentInput === "mainStat") {
-                playerMainStat = amount;
-            } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
-                for (i = 0; i < versTrinkets.length; i++) {
-                    if (versTrinkets[i].name === trinketName) {
-                        versTrinkets[i].amount = amount;
-                        if (versTrinkets[i].selected && amount === 0) {
-                            versTrinkets[i].selected = false;
-                            $(`img[data-name=${recentInput}]`).removeClass("selected");
-                        } else if (amount > 0) {
-                            versTrinkets[i].selected = true;
-                            $(`img[data-name=${recentInput}]`).addClass("selected");
-                        }
+        if (amount === "") {
+            amount = 0;
+        }
+        if (recentInput === "stamina") {
+            playerStamina = amount;
+        } else if (recentInput === "vers") {
+            playerVers = amount;
+        } else if (recentInput === "armor") {
+            playerArmor = amount;
+        } else if (recentInput === "avoidance") {
+            avoidance = amount;
+        } else if (recentInput === "mainStat") {
+            playerMainStat = amount;
+        } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
+            for (i = 0; i < versTrinkets.length; i++) {
+                if (versTrinkets[i].name === trinketName) {
+                    versTrinkets[i].amount = amount;
+                    if (versTrinkets[i].selected && amount === 0) {
+                        versTrinkets[i].selected = false;
+                        $(`img[data-name=${recentInput}]`).removeClass("selected");
+                    } else if (amount > 0) {
+                        versTrinkets[i].selected = true;
+                        $(`img[data-name=${recentInput}]`).addClass("selected");
                     }
-                }
-                if (amount === 0) {
-                    $(`img[data-name=${recentInput}]`).removeClass("selected");
-                }
-            } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
-                for (i = 0; i < absorbs.length; i++) {
-                    if (absorbs[i].name === recentInput) {
-                        absorbs[i].amount = amount;
-                        if (absorbs[i].selected && amount === 0) {
-                            $(`img[data-name=${recentInput}]`).removeClass("selected");
-                            absorbs[i].selected = false;
-                        } else if (amount > 0) {
-                            absorbs[i].selected = true;
-                            $(`img[data-name=${recentInput}]`).addClass("selected");
-                        }
-                    }
-                }
-                if (amount === 0) {
-                    $(`img[data-name=${recentInput}]`).removeClass("selected");
                 }
             }
-            calcDamage();
+            if (amount === 0) {
+                $(`img[data-name=${recentInput}]`).removeClass("selected");
+            }
+        } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
+            for (i = 0; i < absorbs.length; i++) {
+                if (absorbs[i].name === recentInput) {
+                    absorbs[i].amount = amount;
+                    if (absorbs[i].selected && amount === 0) {
+                        $(`img[data-name=${recentInput}]`).removeClass("selected");
+                        absorbs[i].selected = false;
+                    } else if (amount > 0) {
+                        absorbs[i].selected = true;
+                        $(`img[data-name=${recentInput}]`).addClass("selected");
+                    }
+                }
+            }
+            if (amount === 0) {
+                $(`img[data-name=${recentInput}]`).removeClass("selected");
+            }
         }
+        calcDamage();
     }
 });
 
@@ -2806,6 +3345,21 @@ $(document).on("click", ".masteryOkay", function (event) {
         masteryAmount = 0;
     }
     playerMastery = masteryAmount;
+    calcDamage();
+});
+
+$(document).on("click", ".staggerOkay", function (event) {
+    event.preventDefault();
+    var staggerAmount = Number($(`input[type=text][data-name=${$(this).attr("data-name")}]`).val());
+    if (staggerAmount === "") {
+        staggerAmount = 0;
+    }
+    for (i = 0; i < personals.length; i++) {
+        if (personals[i].name === "Stagger") {
+            personals[i].physicalDR = staggerAmount / 100;
+            personals[i].physicalDR = staggerAmount / 100 / 35;
+        }
+    }
     calcDamage();
 });
 
@@ -2937,16 +3491,80 @@ $(document).on("click", ".externalImage", function (event) {
             }
         }
     }
-    for (i = 0; i < externals.length; i++) {
-        if (externals[i].name === externalName) {
-            if (externals[i].selected) {
+    if (externalName === "Spiced_Snapper") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Seasoned_Steak_and_Potatoes" && externals[i].selected) {
                 externals[i].selected = false;
-                $(this).removeClass("selected");
-            } else {
-                externals[i].selected = true;
-                $(this).addClass("selected");
+                $(`img[data-name=Seasoned_Steak_and_Potatoes]`).removeClass("selected");
             }
         }
     }
-    calcDamage();
+    if (externalName === "Seasoned_Steak_and_Potatoes") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Spiced_Snapper" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=Spiced_Snapper]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName === "Steelskin_Potion") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Battle_Potion_of_Stamina" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=Battle_Potion_of_Stamina]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName === "Battle_Potion_of_Stamina") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Steelskin_Potion" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=Steelskin_Potion]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName === "Devotion_Aura") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Aura_of_Sacrifice" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=Aura_of_Sacrifice]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName === "Aura_of_Sacrifice") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === "Devotion_Aura" && externals[i].selected) {
+                externals[i].selected = false;
+                $(`img[data-name=Devotion_Aura]`).removeClass("selected");
+            }
+        }
+    }
+    if (externalName !== "Infusion:_Fortitude") {
+        console.log(externalName)
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === externalName) {
+                if (externals[i].selected) {
+                    externals[i].selected = false;
+                    $(this).removeClass("selected");
+                } else {
+                    externals[i].selected = true;
+                    $(this).addClass("selected");
+                }
+            }
+        }
+        calcDamage();
+    } else if (externalName === "Infusion:_Fortitude" && dungeon === "Tol_Dagor") {
+        for (i = 0; i < externals.length; i++) {
+            if (externals[i].name === externalName) {
+                if (externals[i].selected) {
+                    externals[i].selected = false;
+                    $(this).removeClass("selected");
+                } else {
+                    externals[i].selected = true;
+                    $(this).addClass("selected");
+                }
+            }
+        }
+        calcDamage();
+    }
 });
