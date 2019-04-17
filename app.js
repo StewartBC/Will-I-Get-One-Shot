@@ -2699,7 +2699,7 @@ function displaySpecs() {
     } else if (playerClass === "Paladin") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Protection" src="images/Protection.png" alt="Protection">
+            <img class="specImage" data-spec="Protection" src="images/Protection Paladin.png" alt="Protection">
             <img class="specImage" data-spec="Retribution" src="images/Retribution.png" alt="Retribution">
             <img class="specImage" data-spec="Holy" src="images/Holy.png" alt="Holy">
         </div>    
