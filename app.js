@@ -156,6 +156,9 @@ function calcDamage() {
             if (personals[i].name === "Fortifying_Brew") {
                 health = health * 1.2;
             }
+            if (personals[i].name === "Demonic_Wards" && playerSpec === "Vengeance") {
+                health = health * 1.65;
+            }
             if (personals[i].name === "Bear_Form" && playerSpec !== "Guardian") {
                 health = health * 1.25;
             }
@@ -293,7 +296,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Creates a pool of noxious fumes at random locations, that inflict 30,146 Nature damage every 2 sec to players standing within the pool.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg"
+                image: "images/Toxic_Pool.jpg"
             }, {
                 name: "Echoes_of_Shadra",
                 baseDamage: 60123,
@@ -301,7 +304,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Summons forth several shadowy spider images. Touching an Echo of Shadra causes it to burst inflicting 60,123 Shadow damage to players within 3 yards, creating a pool of Shadowy Remains at the location.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_monsterspidercarapace_01.jpg"
+                image: "images/Echoes_of_Shadra.jpg"
             }, {
                 name: "Shadowy_Remains",
                 baseDamage: 38804,
@@ -309,7 +312,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Inflicts 38,804 Shadow damage every 2 sec and reduces the target's movement speed by 30% while within the effect.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_gathershadows.jpg"
+                image: "images/Shadowy_Remains.jpg"
             }, {
                 name: "Soulrend",
                 baseDamage: 27444,
@@ -317,7 +320,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Upon reaching 100 Energy, Yazma inflicts 27,444 Shadow damage to all players. The impact rips a piece of the target's soul free, creating a Soulspawn at the target's location.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_demonhunter_soulcleave2.jpg"
+                image: "images/Soulrend.jpg"
             }
         ],
         trashAbilities: [
@@ -328,7 +331,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Charges to an area, inflicting 38,130 Physical damage to all enemies within 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_butcher_whirl.jpg"
+                image: "images/Merciless_Assault.jpg"
             }, {
                 name: "Wildfire",
                 baseDamage: 17770,
@@ -336,7 +339,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Launches a bolt of fire at a random target inflicting 17,770 Fire damage and an additional 7,295 Fire damage every 2 sec for 8 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_flamebolt.jpg"
+                image: "images/Wildfire.jpg"
             }, {
                 name: "Fervent_Strike",
                 baseDamage: 61009,
@@ -344,7 +347,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "The caster slashes out, inflicting 61,009 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_sword_1h_zandalari_c_02red.jpg"
+                image: "images/Fervent_Strike.jpg"
             }, {
                 name: "Leaping_Thrash",
                 baseDamage: 7245,
@@ -352,7 +355,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Leap to the target area, inflicting 7,245 Physical damage to all enemies and causing them to bleed.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
+                image: "images/Leaping_Thrash.jpg"
             }, {
                 name: "Venom_Blast",
                 baseDamage: 26691,
@@ -360,7 +363,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Toxic vapors assault the target inflicting 26,691 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_poisoncleansingtotem.jpg"
+                image: "images/Venom_Blast.jpg"
             }, {
                 name: "Rending_Maul",
                 baseDamage: 45756,
@@ -368,7 +371,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Inflicts 45,756 Physical damage and additional 4,023 Physical damage every 2 sec for 20 sec. This effect stacks.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_druid_ravage.jpg"
+                image: "images/Rending_Maul.jpg"
             }
         ]
     }, {
@@ -381,7 +384,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "The caster draws a concealed pistol and fires a quick shot at an enemy, dealing 28,556 Fire damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_pistolshot.jpg"
+                image: "images/Pistol_Shot.jpg"
             }, {
                 name: "Azerite_Powder_Shot",
                 baseDamage: 52604,
@@ -389,7 +392,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "Inflicts 52,604 Fire damage to all enemies in a cone 30 yds. long in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_musket_02.jpg"
+                image: "images/Azerite_Powder_Shot.jpg"
             }, {
                 name: "Dive_Bomb",
                 baseDamage: 45089,
@@ -397,7 +400,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Sharkbait charges across the battlefield, inflicting 45089 Nature damage and knocking back all players in the way.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_flying_charge.jpg"
+                image: "images/Dive_Bomb.jpg"
             }, {
                 name: "Powder_Shot",
                 baseDamage: 60118,
@@ -405,7 +408,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Eudora fires a heavy powder shot at a random enemy, inflicting 60,118 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_rifle_draenorcrafted_d_01_a_alliance.jpg"
+                image: "images/Powder_Shot.jpg"
             }, {
                 name: "Grapeshot",
                 baseDamage: 38710,
@@ -413,7 +416,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 38,710 Fire damage in a cone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_firearm_2h_rifle_kultirasquest_b_01.jpg"
+                image: "images/Grapeshot.jpg"
             }, {
                 name: "Rearm",
                 baseDamage: 38170,
@@ -421,15 +424,15 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Trothak charges a nearby shark, inflicting 38,170 Physical damage to anyone in the way. Upon reaching the shark, Trothak reattaches the shark to his arm.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_unholystrength.jpg"
+                image: "images/Rearm.jpg"
             }, {
-                name: "Shark_Tornando",
+                name: "Shark_Tornado",
                 baseDamage: 25807,
                 damage: 25807,
                 type: "physical",
                 aoe: true,
                 description: "Trothak holds his shark by the tail and spins in a circle, inflicting 25,807 Physical damage every 1 sec to all enemies within 9 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/trade_archaeology_shark-jaws.jpg"
+                image: "images/Shark_Tornado.jpg"
             }, {
                 name: "Swiftwind_Saber",
                 baseDamage: 33064,
@@ -437,7 +440,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 33,065 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_sandstorm.jpg"
+                image: "images/Swiftwind_Saber.jpg"
             }
         ],
         trashAbilities: [
@@ -448,7 +451,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Inflicts 18,409 Physical damage and reduces enemy movement speed by 50% for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_druid_primaltenacity.jpg"
+                image: "images/Crippling_Bite.jpg"
             }, {
                 name: "Brutal_Backhand",
                 baseDamage: 54230,
@@ -456,7 +459,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Swings a backhand, inflicting 54,230 Physical damage and knocking back all nearby enemies in a cone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_kidneyshot.jpg"
+                image: "images/Brutal_Backhand.jpg"
             }, {
                 name: "Rat_Traps",
                 baseDamage: 13387,
@@ -464,7 +467,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "The caster hurls steel traps at nearby targets. When triggered, the traps root the target and inflict 13,387 Physical damage every 1 sec for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_steeltrap.jpg"
+                image: "images/Rat_Traps.jpg"
             }, {
                 name: "Frost_Blast",
                 baseDamage: 25802,
@@ -472,7 +475,7 @@ var dungeons = [
                 type: "frost",
                 aoe: true,
                 description: "Inflicts 25,802 Frost damage to all enemies in a cone 30 yds. long in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_chillingblast.jpg"
+                image: "images/Frost_Blast.jpg"
             }, {
                 name: "Dragging_Harpoon",
                 baseDamage: 18031,
@@ -480,7 +483,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Throws a harpoon at an enemy, inflicting 12 Physical damage and pulling the enemy to the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_harpoon.jpg"
+                image: "images/Dragging_Harpoon.jpg"
             }, {
                 name: "Shell_Bounce",
                 baseDamage: 34057,
@@ -488,7 +491,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Throws a shell that bounces around the arena, inflicting 34,057 Nature damage to anyone hit.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_thunderking_spinningshell.jpg"
+                image: "images/Shell_Bounce.jpg"
             }
         ]
     }, {
@@ -501,7 +504,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Spits molten gold at a player, inflicting 36,071 Fire damage every 3 sec. for 9 sec, and creating a pool of Molten Gold at the player's location afterwards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_amber_01.jpg"
+                image: "images/Spit_Gold.jpg"
             }, {
                 name: "Drain_Fluids",
                 baseDamage: 24438,
@@ -509,7 +512,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Prepares the target for mummification by draining their fluids, inflicting 24,438 Nature damage every 2 sec. for 8 sec. If the effect lasts the full duration, it applies Dessication to the target.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
+                image: "images/Drain_Fluids.jpg"
             }, {
                 name: "Burning_Ground",
                 baseDamage: 54968,
@@ -517,7 +520,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "Inflicts 54,968 Fire damage every 2 sec. to any players inside a patch of Burning Ground.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_siege_engineer_purification_beam.jpg"
+                image: "images/Burning_Ground.jpg"
             }, {
                 name: "Severing_Axe",
                 baseDamage: 24047,
@@ -525,7 +528,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Inflicts 24,047 Physical damage every 2 sec. for 20 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_swiftstrike.jpg"
+                image: "images/Severing_Axe.jpg"
             }, {
                 name: "Whirling_Axes",
                 baseDamage: 24047,
@@ -533,7 +536,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Unleashes a whirling attack that inflicts 52,603 Physical damage to players within 10 yards, knocking them back. ",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_butcher_whirl.jpg"
+                image: "images/Whirling_Axes.jpg"
             }, {
                 name: "Quaking_Leap",
                 baseDamage: 61096,
@@ -541,7 +544,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Dazar leaps at the targeted player, inflicting up to 61,096 Physical damage to all players. This damage is reduced the further players are from the targeted location.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_karoz_leap.jpg"
+                image: "images/Quaking_Leap.jpg"
             }
         ],
         trashAbilities: [
@@ -552,7 +555,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Disperses electric energy in a cone, inflicting 79,795 Nature damage to all affected players and stunning them for 2.5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_golemthunderclap.jpg"
+                image: "images/Suppression_Slam.jpg"
             }, {
                 name: "Deathly_Chill",
                 baseDamage: 30690,
@@ -560,7 +563,7 @@ var dungeons = [
                 type: "shadowfrost",
                 aoe: false,
                 description: "Inflicts 30,690 Shadowfrost damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_staff_15.jpg"
+                image: "images/Deathly_Chill.jpg"
             }, {
                 name: "Axe_Barrage",
                 baseDamage: 12275,
@@ -568,7 +571,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Throws a whirl of axes at players, inflicting 12,275 Physical damage every 2 sec. for 6 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/warrior_talent_icon_mastercleaver.jpg"
+                image: "images/Axe_Barrage.jpg"
             }, {
                 name: "Bladestorm",
                 baseDamage: 30690,
@@ -576,7 +579,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Moves towards a targeted player in a whirl of blades, inflicting 30,690 Physical damage every 0.5 sec. to nearby players.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_bladestorm.jpg"
+                image: "images/Bladestorm.jpg"
             }, {
                 name: "Spectral_Bolt",
                 baseDamage: 14110,
@@ -584,7 +587,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Inflicts 24,551 Shadow damadge to an enemy.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowbolt.jpg"
+                image: "images/Spectral_Bolt.jpg"
             }, {
                 name: "Severing_Blade",
                 baseDamage: 17365,
@@ -592,7 +595,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Slashes the target, inflicting 17,365 Physical damage every 2 sec. for 10 sec. This effect stacks.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_druid_bloodythrash.jpg"
+                image: "images/Severing_Blade.jpg"
             }, {
                 name: "Frost_Shock",
                 baseDamage: 24551,
@@ -600,15 +603,15 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Freezes the target, inflicting 24,551 Frost damage and reducing their movement speed by 50% for 15 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostshock.jpg"
+                image: "images/Frost_Shock.jpg"
             }, {
-                name: "Frost_Shock",
+                name: "Shadow_Barrage",
                 baseDamage: 22649,
                 damage: 22649,
                 type: "shadow",
                 aoe: false,
-                description: "Inflicts 13,017 Shadow damage to an enemy. Inflicts 15,099 Shadow damage to an enemy every 2 sec for 8 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_mindspike.jpg"
+                description: "Inflicts 22,649 Shadow damage to an enemy. Inflicts 15,099 Shadow damage to an enemy every 2 sec for 8 sec.",
+                image: "images/Shadow_Barrage.jpg"
             }
         ]
     }, {
@@ -621,7 +624,7 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Channels dark waters into a player, inflicting 12166 Frost damage every 1 sec for 6 sec, pushing them back.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shawaterelemental_split.jpg"
+                image: "images/Undertow.jpg"
             }, {
                 name: "Slicing_Blast",
                 baseDamage: 17043,
@@ -629,7 +632,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Inflicts 17,043 Nature damage to all enemies and increases Nature damage taken by 15% for 30 sec. This effect stacks.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_four_wind.jpg"
+                image: "images/Slicing_Blast.jpg"
             }, {
                 name: "Blowback",
                 baseDamage: 43798,
@@ -637,7 +640,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Interrupts while affected by Blessing of the Tempest create a Blowback at a nearby location which inflicts 43,793 Nature damage and kocks back enemies that come in contact with it.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_windwalkon.jpg"
+                image: "images/Blowback.jpg"
             }, {
                 name: "Hindering_Cleave",
                 baseDamage: 72141,
@@ -645,15 +648,15 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Inflicts 72,141 Physical damage to enemies in front of the caster and reduces movement speed by 70% for 10 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/warrior_talent_icon_mastercleaver.jpg"
+                image: "images/Hindering_Cleave.jpg"
             }, {
                 name: "Mind_Rend",
                 baseDamage: 27053,
                 damage: 27053,
                 type: "shadow",
                 aoe: false,
-                description: "The Mind Rend inflicts 27053 Shadow damage and an additional 6083 Shadow damage every 2 sec and reduces speed by 50% for 10 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_brainwash.jpg"
+                description: "The Mind Rend inflicts 27,053 Shadow damage and an additional 6,083 Shadow damage every 2 sec and reduces speed by 50% for 10 sec.",
+                image: "images/Mind_Rend.jpg"
             }, {
                 name: "Consume_Essence",
                 baseDamage: 32422,
@@ -661,7 +664,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "The Forgotten Denizen tears a fragment from the minds of all players, inflicting 32,422 Shadow damage to them and restoring health to the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_mindflay.jpg"
+                image: "images/Consume_Essence.jpg"
             }, {
                 name: "Abyssal_Eruption",
                 baseDamage: 4810,
@@ -669,7 +672,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Manifestations of the Deep explode upon death, inflicting 4,810 Shadow damage to all players. This effect grants Vol'zith the Whisperer energy if the manifestation reaches it.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_05.jpg"
+                image: "images/Abyssal_Eruption.jpg"
             }, {
                 name: "Tentacle_Slam",
                 baseDamage: 74473,
@@ -677,7 +680,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "A shadowy tentacle rises from the deep, slamming the ground and inflicting 74,473 Shadow damage to targets struck.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidtendrils.jpg"
+                image: "images/Tentacle_Slam.jpg"
             }
         ],
         trashAbilities: [
@@ -688,7 +691,7 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Inflicts 27,779 Frost damage to an enemy.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_elemental_mote_water01.jpg"
+                image: "images/Water_Blast.jpg"
             }, {
                 name: "Gale_Shear",
                 baseDamage: 11826,
@@ -696,7 +699,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Disrupts the target's concentration with a gale of wind, knocking the target back and inflicting 11,826 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_cyclone.jpg"
+                image: "images/Gale_Shear.jpg"
             }, {
                 name: "Gale_Winds",
                 baseDamage: 10675,
@@ -704,7 +707,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Channels the fierce power of the winds, inflicting 10,675 Nature damage to all players every 1 sec for 4 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_cyclone.jpg"
+                image: "images/Gale_Winds.jpg"
             }, {
                 name: "Whirling_Slam",
                 baseDamage: 61009,
@@ -712,7 +715,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Inflicts 61,009 Physical damage to enemies within 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_shockwave.jpg"
+                image: "images/Whirling_Slam.jpg"
             }, {
                 name: "Unending_Darkness",
                 baseDamage: 19124,
@@ -720,7 +723,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Unending Darkness engulfs players, inflicting 19,124 Shadow damage and increasing Shadow damage taken by 25% for 20 sec. This effect stacks.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowbolt.jpg"
+                image: "images/Unending_Darkness.jpg"
             }, {
                 name: "Void_Seed",
                 baseDamage: 33667,
@@ -728,7 +731,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Inflicts 33,667 Shadow damage to enemies within 6 yards when the Void Seed expires.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_void-blast.jpg"
+                image: "images/Void_Seed.jpg"
             }, {
                 name: "Void_Bolt",
                 baseDamage: 41566,
@@ -736,7 +739,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Deals 41,566 Shadow damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_enchant_voidsphere.jpg"
+                image: "images/Void_Bolt.jpg"
             }, {
                 name: "Deep_Smash",
                 baseDamage: 37039,
@@ -744,7 +747,7 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Inflicts 37039 Frost damage to an enemy. Globules of water erupt from the target, additionally inflicting 32,924 Frost damage to targets they land upon.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shawaterelemental_swirl.jpg"
+                image: "images/Deep_Smash.jpg"
             }
         ]
     }, {
@@ -757,7 +760,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Smashes the ground, inflicting 75,147 Physical damage and knocking back enemies within 10 yards and 24332 Physical damage to everyone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_shockwave.jpg"
+                image: "images/Steel_Tempest.jpg"
             }, {
                 name: "Clear_The_Deck",
                 baseDamage: 60830,
@@ -765,7 +768,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Sends the targets in a cone in front of the caster flying, inflicting 60,830 Physical damage on impact and knocking them back.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_slicedice.jpg"
+                image: "images/Clear_The_Deck.jpg"
             }, {
                 name: "Gut_Shot",
                 baseDamage: 24332,
@@ -773,7 +776,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "When not being melee attacked, shoots at random enemies inflicting 24,332 Physical damage on impact and an additional 22,305 Physical damage every 2 sec for 8 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_markedshot.jpg"
+                image: "images/Gut_Shot.jpg"
             }, {
                 name: "Break_Water",
                 baseDamage: 48664,
@@ -781,7 +784,7 @@ var dungeons = [
                 type: "frost",
                 aoe: true,
                 description: "Roiling water erupts under random enemy destinations, inflicting 48,664 Frost damage to enemies within 5 yards and knocks them into the air as well as inflicting 9,919 Frost damage to everyone.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_frost_summonwaterelemental.jpg"
+                image: "images/Break_Water.jpg"
             }, {
                 name: "Putrid_Waters",
                 baseDamage: 22544,
@@ -789,7 +792,7 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Spits putrid water at random enemies that inflicts 22,544 Frost damage on impact and 11,273 Frost damage every 2 sec for 30 sec. If dispelled, water erupts and inflicts 38157 Frost damage to nearby allies and knocks them back.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_volatilewater.jpg"
+                image: "images/Putrid_Waters.jpg"
             }, {
                 name: "Call_of_the_Deep",
                 baseDamage: 81106,
@@ -797,7 +800,7 @@ var dungeons = [
                 type: "frost",
                 aoe: true,
                 description: "Belches a torrent of water that inflicts 81,106 Frost damage on impact to nearby enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_164_fish_seadog.jpg"
+                image: "images/Call_of_the_Deep.jpg"
             }
         ],
         trashAbilities: [
@@ -808,7 +811,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Fires a bolt of foul water at the target that inflicts 24,692 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/sha_inv_misc_slime_01.jpg"
+                image: "images/Brackish_Bolt.jpg"
             }, {
                 name: "Molten_Slug",
                 baseDamage: 18592,
@@ -816,7 +819,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Shoots at a random enemy, inflicting 18320 Fire damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_fireball02.jpg"
+                image: "images/Molten_Slug.jpg"
             }, {
                 name: "Trample",
                 baseDamage: 28807,
@@ -824,7 +827,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Charges towards a random enemy, inflicting 28,807 Shadow damage to all players caught in the path.  Victims are stunned for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_nightblade.jpg"
+                image: "images/Trample.jpg"
             }, {
                 name: "Broadside",
                 baseDamage: 54105,
@@ -832,7 +835,7 @@ var dungeons = [
                 type: "arcane",
                 aoe: true,
                 description: "Fires a cannon that inflicts 54,105 Arcane damage to all enemies caught in the path.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_siegeenginecannon.jpg"
+                image: "images/Broadside.jpg"
             }, {
                 name: "Banana_Rampage",
                 baseDamage: 17633,
@@ -840,7 +843,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Enters a rampage, inflicting 17,633 Physical damage to all nearby enemies. Also, launches bananas at random enemy targets that inflict 17,633 to nearby enemies and leaves bananas on the ground that stun enemies that move over them for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_food_24.jpg"
+                image: "images/Banana_Rampage.jpg"
             }, {
                 name: "Viscous_Slobber",
                 baseDamage: 24692,
@@ -848,7 +851,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Hurls slobber in a frontal cone that inflicts 16 Nature damage to enemies and reduces their movement speed by 65% for 6 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+                image: "images/Viscous_Slobber.jpg"
             }, {
                 name: "Ricochet",
                 baseDamage: 19827,
@@ -856,7 +859,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Fires at an enemy, inflicting 19,827 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_04.jpg"
+                image: "images/Ricochet.jpg"
             }, {
                 name: "Shoot",
                 baseDamage: 15252,
@@ -864,7 +867,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Shoots an enemy, inflicting 15,252 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg"
+                image: "images/Shoot.jpg"
             }
         ]
     }, {
@@ -877,7 +880,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Aspix charges the air around the victim, causing them to release a sudden burst of 45,088 Nature damage after 5 sec. Any allies within 8 yards of the victim will take Nature damage when this effect expires.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningoverload.jpg"
+                image: "images/Conduction.jpg"
             }, {
                 name: "Static_Shock",
                 baseDamage: 33816,
@@ -885,7 +888,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Aspix unleashes a burst of electricity that inflicts 33,816 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_staticshock.jpg"
+                image: "images/Static_Shock.jpg"
             }, {
                 name: "Jolt",
                 baseDamage: 22544,
@@ -893,7 +896,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Aspix jolts the target for 22,544 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_electrocharge.jpg"
+                image: "images/Jolt.jpg"
             }, {
                 name: "Burrow",
                 baseDamage: 45088,
@@ -901,7 +904,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Merektha burrows through floor, inflicting 45088 Physical damage to any players caught in her path. Victims are knocked back.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_earthquake.jpg"
+                image: "images/Burrow.jpg"
             }
         ],
         trashAbilities: [
@@ -912,7 +915,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "The caster fires an bolt of lightning through the target, inflicting 32,924 Nature damage to all enemies caught in its path.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_stormreach.jpg"
+                image: "images/Power_Shot.jpg"
             }, {
                 name: "Lightning_Bolt",
                 baseDamage: 33554,
@@ -920,7 +923,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Shocks the target with a bolt of lightning, inflicting 33,554 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
+                image: "images/Lightning_Bolt.jpg"
             }, {
                 name: "Venomous_Spit",
                 baseDamage: 12347,
@@ -928,7 +931,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "The caster spits venom at the target, poisoning them for 12,347 Nature damage every 3 sec for 9 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_corrosivebreath.jpg"
+                image: "images/Venomous_Spit.jpg"
             }, {
                 name: "Lightning_in_a_Bottle",
                 baseDamage: 12347,
@@ -936,7 +939,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "The caster hurls a vial that unleashes an electric field on the ground.  Players who stand in the field suffer 12,347 Nature damage every 3 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_potion_11.jpg"
+                image: "images/Lightning_in_a_Bottle.jpg"
             }, {
                 name: "Release_Charge",
                 baseDamage: 12345,
@@ -944,7 +947,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Releases all stored charge, inflicting 12,345 Nature damage to all enemies within 40 yards. Consumes all applications of Accumulate Charge.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_chargenegative.jpg"
+                image: "images/Release_Charge.jpg"
             }, {
                 name: "Spark",
                 baseDamage: 16460,
@@ -952,7 +955,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Leaps to a target location, inflicting 16,460 Nature damage to all targets within 5 yards of the impact.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_electrocharge.jpg"
+                image: "images/Spark.jpg"
             }, {
                 name: "Electrocute",
                 baseDamage: 8232,
@@ -960,7 +963,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Electrocutes a random enemy for 8,232 Nature damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg"
+                image: "images/Electrocute.jpg"
             }, {
                 name: "Lava_Burst",
                 baseDamage: 30504,
@@ -968,7 +971,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Hurls molten lava at an enemy, inflicting 30,504 Fire damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shaman_lavaburst.jpg"
+                image: "images/Lava_Burst.jpg"
             },
         ]
     }, {
@@ -981,7 +984,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Emits a pulse of electricity, inflicting 27,053 Nature damage instantly and 4,509 Nature damage every 2 sec for 6 sec. Also knocks back all enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningoverload.jpg"
+                image: "images/Static_Pulse.jpg"
             }, {
                 name: "Chemical_Burn",
                 baseDamage: 18249,
@@ -989,7 +992,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Sprays up to 2 players with a nasty chemical, inflicting 18,249 Nature damage every 2 sec for 10 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_03.jpg"
+                image: "images/Chemical_Burn.jpg"
             }, {
                 name: "Gatling_Gun",
                 baseDamage: 16774,
@@ -997,7 +1000,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Spins in place and fires a hail of bullets, inflicting 16,774 Physical damage every 0.3 sec to all players in front of Mogul Razdunk.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_07.jpg"
+                image: "images/Gatling_Gun.jpg"
             }, {
                 name: "Homing_Missile",
                 baseDamage: 48664,
@@ -1005,7 +1008,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "Fires a homing missile that chases a player. On impact, or after 10 sec, the missile explodes, inflicting 48,664 Fire damage immediately and 9,217 Fire damage every 2 sec for 6 sec to all players within 20 yards of the missile. The missile's speed increases as it travels.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_racial_rocketbarrage.jpg"
+                image: "images/Homing_Missile.jpg"
             }, {
                 name: "Micro_Missiles",
                 baseDamage: 49597,
@@ -1013,7 +1016,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "A B.O.O.M.B.A. drone launches a salvo of Micro Missiles, inflicting 49,597 Fire damage to players within 6 yards of each missile's impact.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_missilelarge_red.jpg"
+                image: "images/Micro_Missiles.jpg"
             }, {
                 name: "Drill_Smash",
                 baseDamage: 40553,
@@ -1021,7 +1024,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Flies through the air and impacts a player's location, inflicting 81,107 Physical damage to targets within 8 yards, and 40,553 Physical damage to all targets beyond 8 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_siege_engineer_sockwave_missile.jpg"
+                image: "images/Drill_Smash.jpg"
             }
         ],
         trashAbilities: [
@@ -1032,7 +1035,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Shoot the current threat target for 25,007 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_musket_02.jpg"
+                image: "images/Grease_Gun.jpg"
             }, {
                 name: "Clothesline",
                 baseDamage: 22734,
@@ -1040,7 +1043,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Charges a random player, inflicting 22,734 Physical damage and stunning them for 2 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warrior_charge.jpg"
+                image: "images/Clothesline.jpg"
             }, {
                 name: "Iced_Spritzer",
                 baseDamage: 9472,
@@ -1048,7 +1051,7 @@ var dungeons = [
                 type: "frost",
                 aoe: false,
                 description: "Blasts an enemy with a jet of icy cold spritzer, inflicting 9,472 Frost damage every 1 sec and reducing movement speed by 15% for 6 sec. The final tick of Iced Spritzer will trigger Brain Freeze.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_mage_waterjet.jpg"
+                image: "images/Iced_Spritzer.jpg"
             }, {
                 name: "Hail_of_Flechettes",
                 baseDamage: 9095,
@@ -1056,7 +1059,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Hurls flechettes at enemies within 45 yards, inflicting 9,095 Physical damage. If the caster has Toxic Blades, affected targets will also be poisoned by the Widomaker Toxin.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_throwingknife_03.jpg"
+                image: "images/Hail_of_Flechettes.jpg"
             }, {
                 name: "Throw_Wrench",
                 baseDamage: 43058,
@@ -1064,7 +1067,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Throws a heavy wrench at a random enemy's head, inflicting 43,058 Physical damage. Ouch!",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_wrench_01.jpg"
+                image: "images/Throw_Wrench.jpg"
             }, {
                 name: "Charged_Claw",
                 baseDamage: 17222,
@@ -1072,7 +1075,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Strikes a player with a lightning bolt that inflicts 17,222 Nature damage. The lightning chains to up to 3 targets.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_chainlightning.jpg"
+                image: "images/Charged_Claw.jpg"
             }, {
                 name: "Throw_Rock",
                 baseDamage: 25833,
@@ -1080,7 +1083,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Throws a rock at a player, inflicting 25,833 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_stone_sharpeningstone_01.jpg"
+                image: "images/Throw_Rock.jpg"
             }, {
                 name: "Rock_Lance",
                 baseDamage: 28417,
@@ -1088,7 +1091,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Blasts a player with a magical stone lance, inflicting 28,417 Nature damage instantly and 11,233 Nature damage every 2 sec for 6 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_elemental_crystal_earth.jpg"
+                image: "images/Rock_Lance.jpg"
             },
         ]
     }, {
@@ -1101,7 +1104,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Elder Leaxa blasts a player, inflicting 30,059 Shadow damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_deathwing_bloodcorruption_earth.jpg"
+                image: "images/Blood_Bolt.jpg"
             }, {
                 name: "Tantrum",
                 baseDamage: 18138,
@@ -1109,7 +1112,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Throws a tantrum upon reaching 100 energy, periodically inflicts 18,138 Physical damage to all enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_bloodtrollbeast_mount_pale.jpg"
+                image: "images/Tantrum.jpg"
             }, {
                 name: "Festering_Harvest",
                 baseDamage: 30058,
@@ -1117,7 +1120,7 @@ var dungeons = [
                 type: "plague",
                 aoe: true,
                 description: "Upon reaching 100 energy, Zancha forces all remaining spore pods to burst. Inflicts 30,058 Plague damage to all players and applies Decaying Spores to all players for each active spore pod.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_deathknight_explode_ghoul.jpg"
+                image: "images/Festering_Harvest.jpg"
             }, {
                 name: "Rotting_Spore",
                 baseDamage: 75147,
@@ -1125,7 +1128,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Pools of Vile Expulsion periodically coalesce into Rotting Spores that move towards players. Each spore inflicts 75,147 Shadow damage to any player it comes into contact with, instantly killing the spore.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_plaguecloud.jpg"
+                image: "images/Rotting_Spore.jpg"
             }
         ],
         trashAbilities: [
@@ -1136,7 +1139,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Explodes on death, inflicting 8,245 Shadow damage to all enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_deathwing_bloodcorruption_earth.jpg"
+                image: "images/Blood_Burst.jpg"
             }, {
                 name: "Blood_Harvest",
                 baseDamage: 34102,
@@ -1144,15 +1147,15 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Charges to a random enemy, inflicting 34,102 Physical damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_rogue_bloodsplatter.jpg"
+                image: "images/Blood_Harvest.jpg"
             }, {
                 name: "Barbed_Spear",
                 baseDamage: 21064,
                 damage: 21064,
-                type: "nature",
+                type: "physical",
                 aoe: false,
-                description: "The caster spits venom at the target, poisoning them for 12,347 Nature damage every 3 sec for 9 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_corrosivebreath.jpg"
+                description: "Inflicts 21,064 Physical damage to an enemy.",
+                image: "images/Barbed_Spear.jpg"
             }, {
                 name: "Hooked_Snare",
                 baseDamage: 13262,
@@ -1160,7 +1163,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Inflicts 13,262 Physical damage to an enemy every 2 sec for 4 sec. Immobilizes an enemy for up to 4 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_misc_net_01.jpg"
+                image: "images/Hooked_Snare.jpg"
             }, {
                 name: "Wicked_Assault",
                 baseDamage: 13130,
@@ -1168,7 +1171,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Inflicts 13,130 Shadow damage to an enemy every 1 sec for 10 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_warlock_eradication.jpg"
+                image: "images/Wicked_Assault.jpg"
             }, {
                 name: "Abyssal_Reach",
                 baseDamage: 46341,
@@ -1176,7 +1179,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Summons tendrils from the void that inflict 46,341 Shadow damage to all enemies in front of them.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_priest_voidtendrils.jpg"
+                image: "images/Abyssal_Reach.jpg"
             }
         ]
     }, {
@@ -1189,7 +1192,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Disappears beneath the sand, exploding up underneath a player. This eruption inflicts 58,615 Nature damage and knocks all targets upwards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_earthquake.jpg"
+                image: "images/Upheaval.jpg"
             }, {
                 name: "Sand_Trap",
                 baseDamage: 37145,
@@ -1197,7 +1200,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Calls forth sand traps beneath all players for 4 sec. Coming into contact with a sand trap inflicts 37,145 Nature damage, knocking the target into the air and stunning them for 4 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_quicksand.jpg"
+                image: "images/Sand_Trap.jpg"
             }, {
                 name: "Deadeye",
                 baseDamage: 33359,
@@ -1205,7 +1208,7 @@ var dungeons = [
                 type: "physical",
                 aoe: false,
                 description: "Aims at a player, firing a precise round after 4 sec and striking the first player in the line. This shot inflicts 33,359 Physical damage and increases damage taken from Deadeye by 500% for 1.3 min.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_ammo_bullet_03.jpg"
+                image: "images/Deadeye.jpg"
             }, {
                 name: "Explosive_Burst",
                 baseDamage: 42082,
@@ -1213,7 +1216,7 @@ var dungeons = [
                 type: "fire",
                 aoe: true,
                 description: "Marks player for Explosive Burst. After 4 sec, shots ring out and inflict 42,082 Fire damage to all players within 5 yds.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_hisek_aim.jpg"
+                image: "images/Explosive_Burst.jpg"
             }
         ],
         trashAbilities: [
@@ -1224,7 +1227,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Inflicts 33,334 Nature damage to an enemy.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_skyreach_wind.jpg"
+                image: "images/Salt_Blast.jpg"
             }, {
                 name: "Blaze",
                 baseDamage: 56730,
@@ -1232,7 +1235,7 @@ var dungeons = [
                 type: "fire",
                 aoe: false,
                 description: "Inflicts 56,730 Fire damage to an enemy.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_fire_flamebolt.jpg"
+                image: "images/Blaze.jpg"
             }
         ]
     }, {
@@ -1245,7 +1248,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Marks all nearby enemies with cursed runes, inflicting 3,757 Shadow damage every 1 sec for 6 sec. Upon expiration, or if the mark is dispelled, the rune explodes, inflicting an additional 26,452 Shadow damage to all allies within 6 yards.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_priest_surgeofdarkness.jpg"
+                image: "images/Unstable_Runic_Mark.jpg"
             }, {
                 name: "Dire_Ritual",
                 baseDamage: 61170,
@@ -1253,7 +1256,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Releases a bust of dark energy, inflicting 61,170 Shadow damage to all enemies.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_antishadow.jpg"
+                image: "images/Dire_Ritual.jpg"
             }, {
                 name: "Rotten_Expulsion",
                 baseDamage: 28932,
@@ -1261,7 +1264,7 @@ var dungeons = [
                 type: "nature",
                 aoe: true,
                 description: "Raal the Gluttonous expels a wave of rancid food, inflicting 28,932 Nature damage at each impact. Each expulsion remains at the impact point, inflicting 14884 Nature damage every 1 sec and reducing movement speed by 60%.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_01.jpg"
+                image: "images/Rotten_Expulsion.jpg"
             }, {
                 name: "Virulent_Pathogen",
                 baseDamage: 7517,
@@ -1269,7 +1272,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Infects the target with a highly infectious plague, inflicting 7,517 Nature damage every 1 sec and reducing movement speed by 50% for 5 sec. Upon expiration or being dispelled, the target explodes, infecting nearby allies with Virulent Pathogen.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+                image: "images/Virulent_Pathogen.jpg"
             }, {
                 name: "Wasting_Strike",
                 baseDamage: 33065,
@@ -1277,7 +1280,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Claws at the enemy with rotten claws, inflicting 33,065 Nature damage and additional 8,266 Nature damage every 1 sec for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_disease_03.jpg"
+                image: "images/Wasting_Strike.jpg"
             }, {
                 name: "Dread_Essence",
                 baseDamage: 24799,
@@ -1285,7 +1288,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "At 100 energy, the caster releases a torrent of dark energy, inflicting 24,799 Shadow damage to all enemies. Additionally, all Deathtouched Slavers are resurrected, brought back to their maximum health, and any crowd control effects on them are dispelled.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_argus_soulburst.jpg"
+                image: "images/Dread_Essence.jpg"
             }
         ],
         trashAbilities: [
@@ -1296,7 +1299,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Strikes in a wide arc with a rune-inscribed weapon, inflicting 18,456 Shadow damage to all enemies in a cone in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/inv_axe_112.jpg"
+                image: "images/Shadow_Cleave.jpg"
             }, {
                 name: "Infected_Thorn",
                 baseDamage: 14261,
@@ -1304,15 +1307,15 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "Hurls a plagued thorn at the enemy, inflicting 14,261 Nature damage and an additional 4,132 Nature damage every 1 sec for 8 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_nature_nullifypoison_02.jpg"
+                image: "images/Infected_Thorn.jpg"
             }, {
                 name: "Spit",
                 baseDamage: 7551,
                 damage: 7551,
                 type: "nature",
                 aoe: false,
-                description: "Spits a caustic fluid at an enemy, inflicting 7,551 Nature damage and additional 1 Nature damage every 1 sec for 10 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_creature_poison_02.jpg"
+                description: "Spits a caustic fluid at an enemy, inflicting 7,551 Nature damage and additional 1,764 Nature damage every 1 sec for 10 sec.",
+                image: "images/Spit.jpg"
             }, {
                 name: "Ravaging_Leap",
                 baseDamage: 10065,
@@ -1320,7 +1323,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_lifedrain.jpg"
+                image: "images/Ravaging_Leap.jpg"
             }, {
                 name: "Retch",
                 baseDamage: 16836,
@@ -1328,7 +1331,7 @@ var dungeons = [
                 type: "nature",
                 aoe: false,
                 description: "The caster retches forth acidic bile, inflicting 16,836 Nature damage to all enemies in a cone in front of the caster.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_plaguecloud.jpg"
+                image: "images/Retch.jpg"
             }, {
                 name: "Soul_Bolt",
                 baseDamage: 22651,
@@ -1336,7 +1339,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: false,
                 description: "Fires a bolt of crippling energy, inflicting 22,651 Shadow damage to the target. Holding the focusing iris increases the damage done by Soul Bolt.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/ability_priest_cascade_shadow.jpg"
+                image: "images/Soul_Bolt.jpg"
             }, {
                 name: "Soul_Volley",
                 baseDamage: 12583,
@@ -1344,7 +1347,7 @@ var dungeons = [
                 type: "shadow",
                 aoe: true,
                 description: "Expels twisted souls at each enemy, inflicting 12,583 Shadow damage.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_painspike.jpg"
+                image: "images/Soul_Volley.jpg"
             }, {
                 name: "Dark_Leap",
                 baseDamage: 10065,
@@ -1352,7 +1355,7 @@ var dungeons = [
                 type: "physical",
                 aoe: true,
                 description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
-                image: "https://wow.zamimg.com/images/wow/icons/large/spell_shadow_gathershadows.jpg"
+                image: "images/Dark_Leap.jpg"
             }
         ]
     }
@@ -1371,7 +1374,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Your tattoos reduce magic damage taken by 10%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/inv_belt_leather_demonhunter_a_01.13c87e6784716cddba0dfe3bf5da0a33c38f1a67.jpg"
+        image: "images/Demonic_Wards.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Havoc"],
@@ -1385,7 +1388,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases your chance to dodge by 50% and reduces all damage taken by 35% for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_demonhunter_blur.a2923a147b452524dc27c8b0a1af4fab1d2f8c43.jpg"
+        image: "images/Blur.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Havoc"],
@@ -1399,7 +1402,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Blur now reduces damage taken by an additional 15%. Additionally, you automatically trigger Blur when you fall below 35% health. This effect can only occur when Blur is not on cooldown.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shadow_manafeed.d1bd39c838aea699524a25365a0905fc367480aa.jpg"
+        image: "images/Desperate_Instincts.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Vengeance"],
@@ -1412,8 +1415,8 @@ var personals = [
         healthIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Your tattoos reduce all damage taken by 20%, and increase your Stamina by 65% and your Armor by 80%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/inv_belt_leather_demonhunter_a_01.13c87e6784716cddba0dfe3bf5da0a33c38f1a67.jpg"
+        description: "Your tattoos reduce all damage taken by 10%, and increase your Stamina by 65% and your Armor by 80%.",
+        image: "images/Demonic_Wards.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Vengeance"],
@@ -1427,7 +1430,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Surge with fel power, increasing your Parry chance by 20% and reducing Physical damage taken by 10% for 6 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_demonhunter_demonspikes.165c8685d70b5e267eaffbefb02471ad7ce7b6ff.jpg"
+        image: "images/Demon_Spikes.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Vengeance"],
@@ -1441,7 +1444,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Transform to demon form for 15 sec, increasing current and maximum health by 30% and Armor by 100%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_demonhunter_metamorphasistank.655d7acdfb5daf9774b1ec91988ef7b7ff9ccbec.jpg"
+        image: "images/Metamorphosis.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Vengeance"],
@@ -1455,7 +1458,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Brand an enemy with a demonic symbol, instantly dealing (720% of attack power) Fire damage and reducing the damage they do to you by 40% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_demonhunter_fierybrand.79481bda1d4128a912293c072e26fda92d63d1b1.jpg"
+        image: "images/Fiery_Brand.jpg"
     }, {
         class: "Death Knight",
         specs: ["Blood", "Frost", "Unholy"],
@@ -1469,7 +1472,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by 30% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_deathknight_iceboundfortitude.67869c32ef85ee27a088b1e641d0bd6f0e9d3327.jpg"
+        image: "images/Icebound_Fortitude.jpg"
 
     }, {
         class: "Death Knight",
@@ -1484,7 +1487,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Surrounds you with a barrier of whirling bones, increasing Armor by (40 * Strength / 100), and your Haste by 10%. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/ability_deathknight_boneshield.jpg"
+        image: "images/Bone_Shield.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1498,7 +1501,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "A devastating blow that consumes 2 stacks of your Thrash on the target to deal [ 96.93% of Attack Power ] Physical damage, and reduces all damage you take by 9% for 20 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_druid_malfurionstenacity.0896a00f9d40f7564349c3c2edc222de65879253.jpg"
+        image: "images/Pulverize.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1512,7 +1515,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "While in Bear Form, Thrash also increases your damage dealt to the target, and reduces your damage taken from the target by 2% per application of Thrash.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_druid_swipe.fc8c7068d6179d1aeba69e136608dcd6fce3b24c.jpg"
+        image: "images/Rend_and_Tear.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1526,7 +1529,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases armor by [ 75% of Agility ] for 7 sec. Multiple uses of this ability may overlap.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_druid_ironfur.34c1f970d2268b9f47f6ffe4b2bd26389e8e7501.jpg"
+        image: "images/Ironfur.jpg"
     }, {
         class: "Druid",
         specs: ["Balance", "Restoration", "Feral"],
@@ -1540,7 +1543,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 6%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/talentspec_druid_feral_bear.e58da0101e30ae252d7894e79021f2c003bfff4c.jpg"
+        image: "images/Guardian_Affinity.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1554,7 +1557,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 6%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/inv_misc_pelt_bear_03.6a08b788bf498cda218d5c3369fed00f086c2080.jpg"
+        image: "images/Thick_Hide.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1568,7 +1571,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 50% for 6 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_druid_tigersroar.2989948f9675e44591b6f8a0218f05d234e64b92.jpg"
+        image: "images/Survival_Instincts.jpg"
     }, {
         class: "Druid",
         specs: ["Balance"],
@@ -1582,7 +1585,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Moonkin Form, increasing the damage of your spells by 10% and your armor by 125%, and granting protection from Polymorph effects.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_forceofnature.512d802f975108efb80cd39f57153d1a267e95a6.jpg"
+        image: "images/Moonkin_Form.jpg"
     }, {
         class: "Druid",
         specs: ["Balance", "Guardian", "Restoration"],
@@ -1596,7 +1599,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Your skin becomes as tough as bark, reducing all damage you take by 20% and preventing damage from delaying your spellcasts. Lasts 12 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_stoneclawtotem.c6b5377f9efb7b6b2f018932d2d324164e9ee1b9.jpg"
+        image: "images/Barkskin.jpg"
     }, {
         class: "Druid",
         specs: ["Balance", "Restoration", "Feral"],
@@ -1610,7 +1613,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 25%, granting protection from Polymorph effects, and increasing threat generation.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_racial_bearform.d4791ca13718bbc60770e850075bd3653356bc1e.jpg"
+        image: "images/Bear_Form.jpg"
     }, {
         class: "Druid",
         specs: ["Guardian"],
@@ -1624,7 +1627,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 45%, granting protection from Polymorph effects, and increasing threat generation.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_racial_bearform.d4791ca13718bbc60770e850075bd3653356bc1e.jpg"
+        image: "images/Bear_Form.jpg"
     }, {
         class: "Hunter",
         specs: ["Marksmanship", "Survival", "Beast Mastery"],
@@ -1638,7 +1641,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Deflects all attacks and reduces all damage you take by 30% for 8 sec, but you cannot attack.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_hunter_pet_turtle.a8cd9b96b7f58d43e38975afb380f5df2baeb29d.jpg"
+        image: "images/Aspect_of_the_Turtle.jpg"
     }, {
         class: "Hunter",
         specs: ["Marksmanship", "Survival", "Beast Mastery"],
@@ -1652,7 +1655,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you and your pet take by 20% for 6 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_spiritarmor.33da9d26b400fe2b225250f84d45f28186a26709.jpg"
+        image: "images/Survival_of_the_Fittest.jpg"
     }, {
         class: "Hunter",
         specs: ["Marksmanship", "Survival", "Beast Mastery"],
@@ -1666,7 +1669,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "You and your pet gain 5% increased maximum health.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/ability_hunter_huntervswild.jpg"
+        image: "images/Endurance_Training.jpg"
     }, {
         class: "Mage",
         specs: ["Frost"],
@@ -1680,7 +1683,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Ice Barrier increases your armor by 200% while active, and Ice Block applies Ice Barrier to you when it fades.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_mage_coldasice.64a2341791d7974a8bb1c4d1377130abbe13479b.jpg"
+        image: "images/Glacial_Insulation.jpg"
     }, {
         class: "Mage",
         specs: ["Arcane"],
@@ -1694,7 +1697,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage and reducing magic damage taken by 15% for 60 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_magearmor.0ba362755890ce629051ed03df36e5bc276d6e84.jpg"
+        image: "images/Prismatic_Barrier.jpg"
     }, {
         class: "Mage",
         specs: ["Frost"],
@@ -1708,7 +1711,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage and reducing magic damage taken by 15% for 60 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_magearmor.0ba362755890ce629051ed03df36e5bc276d6e84.jpg"
+        image: "images/Ice_Barrier.jpg"
     }, {
         class: "Mage",
         specs: ["Fire"],
@@ -1722,7 +1725,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shields you in flame, absorbing [ 20% of Total Health ] damage for 60 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_mage_moltenarmor.f578e6029a0591525ab75c735a56f121b65e045c.jpg"
+        image: "images/Blazing_Barrier.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1736,7 +1739,7 @@ var personals = [
         versIncrease: 1007,
         selected: false,
         description: "The Light temporarily magnifies your power, increasing your Haste, Critical Strike, Mastery, and Versatility by 1,007.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_paladin_seraphim.2b9aa3a2658b66078d958a3aa4acbc8b453f8ac0.jpg"
+        image: "images/Seraphim.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1750,7 +1753,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Each enemy within 8 yards reduces the damage that you take and increases the damage that you deal by up to 3%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_divinepurpose.1f15cbb14240ef0a5568d6fe66378e4afcf0a356.jpg"
+        image: "images/Last_Defender.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1764,7 +1767,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken while inside your Consecration by 2.8%. Increases your chance to block melee attacks by 8.0%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_holyprotection.bb12bfd915b3f57f43033418c6c8e8786ff8a5c4.jpg"
+        image: "images/Divine_Bulwark.jpg"
     }, {
         class: "Paladin",
         specs: ["Retribution"],
@@ -1778,7 +1781,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Surround yourself with a bladed bulwark, reducing Physical damage taken by 35% and dealing [ 35.3% of Attack Power ] Physical damage to any melee attackers for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_weaponmastery.9a7efcab217085d4636f346952eb84b48f3f4572.jpg"
+        image: "images/Eye_for_an_Eye.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1792,7 +1795,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Empowers you with the spirit of ancient kings, reducing all damage you take by 50% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_heroism.b98c1f5a1cbb691400a949725a8a1a5486f2bf7e.jpg"
+        image: "images/Guardian_of_Ancient_Kings.jpg"
     }, {
         class: "Paladin",
         specs: ["Retribution"],
@@ -1806,7 +1809,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "When any party or raid member within 40 yds dies, you gain 20% increased damage done and 30% reduced damage taken for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_crusade.d45378a23b3e829d87231bd0d8f479c11910f13a.jpg"
+        image: "images/Retribution.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1820,7 +1823,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% for 8 sec. While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_ardentdefender.7857d6ca6acb60d96f2cbce78fe9dd8d7e4bde3a.jpg"
+        image: "images/Ardent_Defender.jpg"
     }, {
         class: "Paladin",
         specs: ["Protection"],
@@ -1834,7 +1837,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Slams enemies in front of you with your shield, causing [ 33% of Attack Power ] Holy damage, and increasing your Armor by 150% of Strength for 4.5 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_paladin_shieldofvengeance.b087f76953d250606f09e44da67c18062df7f41d.jpg"
+        image: "images/Shield_of_the_Righteous.jpg"
     }, {
         class: "Paladin",
         specs: ["Holy"],
@@ -1848,7 +1851,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_divineprotection.7355c7438a2f3533f9884830c4d19c94e538aa97.jpg"
+        image: "images/Divine_Protection.jpg"
     }, {
         class: "Priest",
         specs: ["Discipline"],
@@ -1862,7 +1865,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "When you cast Shadow Mend on yourself, its damage over time effect heals you instead, and reduces all damage you take by 10%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shadow_misery.6dab60b60a24d5c8497c6c77df9cb8f8f4a2a2e4.jpg"
+        image: "images/Masochism.jpg"
     }, {
         class: "Priest",
         specs: ["Shadow"],
@@ -1876,7 +1879,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 sec, but you are unable to attack or cast spells.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shadow_dispersion.4dc54d711d67aa9b29b027a2fb8454538e6eb45c.jpg"
+        image: "images/Dispersion.jpg"
     }, {
         class: "Priest",
         specs: ["Shadow"],
@@ -1890,7 +1893,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases maximum health by 25% for 10 sec, and instantly heals you for that amount.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_testoffaith.d5822c859b9d5d8954b56cab09a2ccebf7a2bde9.jpg"
+        image: "images/Desperate_Prayer.jpg"
     }, {
         class: "Rogue",
         specs: ["Assassination", "Subtlety", "Outlaw"],
@@ -1904,7 +1907,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Feint also reduces all damage you take from non-area-of-effect attacks by 30% for 5 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_rogue_turnthetables.f43cc498d74f1a6314e93ff6496753eb2c822f76.jpg"
+        image: "images/Elusiveness.jpg"
     }, {
         class: "Rogue",
         specs: ["Assassination", "Subtlety", "Outlaw"],
@@ -1918,7 +1921,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Performs an evasive maneuver, reducing damage taken from area-of-effect attacks by 40% for 5 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_rogue_feint.6cec023fe3918f5512bf68b5890587b3f83d47eb.jpg"
+        image: "images/Feint.jpg"
     }, {
         class: "Shaman",
         specs: ["Enhancement", "Elemental", "Restoration"],
@@ -1932,7 +1935,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Shift partially into the elemental planes, taking 40% less damage for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_shaman_astralshift.bc92328a2bb1929fc67e2a959dc6b84f19819393.jpg"
+        image: "images/Astral_Shift.jpg"
     }, {
         class: "Shaman",
         specs: ["Enhancement", "Elemental", "Restoration"],
@@ -1946,7 +1949,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "The Primal Earth Elemental hardens its own skin and the Shaman's skin into pure granite, reducing all damage taken by 40% for 10 sec.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/ability_golemthunderclap.jpg"
+        image: "images/Harden_Skin.jpg"
     }, {
         class: "Shaman",
         specs: ["Enhancement", "Elemental", "Restoration"],
@@ -1960,7 +1963,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_hunter_lonewolf.0205c28bd77ee6c8c11b65f1f4415b41c34ba4d5.jpg"
+        image: "images/Spirit_Wolf.jpg"
     }, {
         class: "Warlock",
         specs: ["Destruction", "Affliction", "Demonology"],
@@ -1974,7 +1977,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shadow_demonictactics.37ccdc83053a6f88c60cf8f354cd96832bc99394.jpg"
+        image: "images/Unending_Resolve.jpg"
     }, {
         class: "Warlock",
         specs: ["Demonology"],
@@ -1988,7 +1991,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "20% of all damage you take is taken by your demon pet instead.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warlock_soullink.6e05a794b61f6b842d328aee74ecd620b6bdf9d3.jpg"
+        image: "images/Soul_Link.jpg"
     }, {
         class: "Warlock",
         specs: ["Destruction", "Affliction", "Demonology"],
@@ -2002,7 +2005,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Sacrifices 20% of your current health to shield you for 250% of the sacrificed health for 20 sec. Usable while suffering from control impairing effects.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/warlock_sacrificial_pact.9925b811864d3038a1a489e8c1ca5e9d5ced4a3f.jpg"
+        image: "images/Dark_Pact.jpg"
     }, {
         class: "Warlock",
         specs: ["Destruction", "Affliction", "Demonology"],
@@ -2016,7 +2019,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb 8% of the damage dealt for 15 sec, up to 10% of maximum health.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/warlock_siphonlife.720eebe118a8e01e96796dbefe527be7b87a83c8.jpg"
+        image: "images/Soul_Leech.jpg"
     }, {
         class: "Warlock",
         specs: ["Destruction", "Affliction", "Demonology"],
@@ -2030,7 +2033,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Your Soul Leech absorption now passively recharges at a rate of 0.5% of maximum health every 1 sec, and may now absorb up to 15% of maximum health.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shadow_felarmour.0c08743a5b1f8d02cd94bcd81c3cc63be35475b9.jpg"
+        image: "images/Demon_Skin.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2044,7 +2047,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Raise your shield, reflecting spells cast on you and reducing magical damage you take by 20%. Lasts 5 sec or until a spell is reflected.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_shieldreflection.7a2379a92ced9534ffc99ff0253549331130e31e.jpg"
+        image: "images/Spell_Reflection.jpg"
     }, {
         class: "Warrior",
         specs: ["Arms"],
@@ -2058,7 +2061,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "A defensive combat state that reduces all damage you take by 20%, and all damage you deal by 10%. Lasts 0 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_defensivestance.b3299f786c91a674328a0fdc9c504099670398ac.jpg"
+        image: "images/Defensive_Stance.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2072,7 +2075,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases your maximum health by 10%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_intensifyrage.d7551af2d8cade7c263a3b98b4d77c6ff718cb59.jpg"
+        image: "images/Indomitable.jpg"
     }, {
         class: "Warrior",
         specs: ["Fury"],
@@ -2086,7 +2089,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "You take 10% reduced damage while Enrage is active.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_rogue_preparation.9f0f1e3afa736818be9ca2f45b59376162911795.jpg"
+        image: "images/Warpaint.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2100,7 +2103,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 40% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_shieldwall.08bd34f6271c071556094d08b32f007ac98a1f82.jpg"
+        image: "images/Shield_Wall.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2114,7 +2117,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Demoralizes all enemies within 10 yards, reducing the damage they deal to you by 20% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_warcry.0ffaf0e48c15af39afc990fd0d8d3c290e129de5.jpg"
+        image: "images/Demoralizing_Shout.jpg"
     }, {
         class: "Warrior",
         specs: ["Arms"],
@@ -2128,7 +2131,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases your parry chance by [ 100 + 25% of Spell Power ]% and reduces all damage you take by 30% for 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_challange.0f93e334b27c919fe6c2ac309fc92d6d11253df5.jpg"
+        image: "images/Die_by_the_Sword.jpg"
     }, {
         class: "Warrior",
         specs: ["Fury"],
@@ -2142,7 +2145,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces damage taken by 30%, and Bloodthirst restores an additional 20% health. Usable while stunned. Lasts 8 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_focusedrage.621831f0a6c723405872a1d69a6f5880cc012ff8.jpg"
+        image: "images/Enraged_Regeneration.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2156,7 +2159,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Increases maximum health by 30% for 15 sec, and instantly heals you for that amount.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_ashestoashes.725a70920eb36c1d3e7e3406b95d412bf06a2a0c.jpg"
+        image: "images/Last_Stand.jpg"
     }, {
         class: "Monk",
         specs: ["Windwalker", "Brewmaster", "Mistweaver"],
@@ -2170,7 +2173,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% to 50% for 10 sec, with larger attacks being reduced by more.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_dampenharm.dbd8639ee14697635321419927009fb266b26b0f.jpg"
+        image: "images/Dampen_Harm.jpg"
     }, {
         class: "Monk",
         specs: ["Windwalker"],
@@ -2184,7 +2187,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Each Chi you spend reduces damage taken by 2% for 5 sec, stacking up to 5 times.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_domeofmist.fc74c0ae7b104ff7cbfa84698e74256388cbae7f.jpg"
+        image: "images/Inner_Strength.jpg"
     }, {
         class: "Monk",
         specs: ["Brewmaster"],
@@ -2198,7 +2201,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 60% for 8 sec. Moving, being hit by a melee attack, or taking another action will cancel this effect.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_zenmeditation.9267252dcd99c634463d20ca9cb0dde32d2a82b8.jpg"
+        image: "images/Zen_Meditation.jpg"
     }, {
         class: "Monk",
         specs: ["Windwalker", "Mistweaver"],
@@ -2212,7 +2215,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces magic damage you take by 60% for 6 sec, and transfers all currently active harmful magical effects on you back to their original caster if possible.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_monk_diffusemagic.2f77f34533eca219bf3dc75679682ff9180451a2.jpg"
+        image: "images/Diffuse_Magic.jpg"
     }, {
         class: "Monk",
         specs: ["Windwalker"],
@@ -2226,7 +2229,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Absorbs all damage taken for 10 sec, up to 50% of your maximum health, and redirects 70% of that amount to the enemy target as Nature damage over 6 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_touchofkarma.7a1a1d95334c0d65a550f01365dd76f929501586.jpg"
+        image: "images/Touch_of_Karma.jpg"
     }, {
         class: "Monk",
         specs: ["Mistweaver"],
@@ -2240,7 +2243,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Turns your skin to stone, increasing your current and maximum health by 20%, and reducing damage taken by 20% for 15 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_fortifyingelixir.0c364d00a39edb68d5240c4f75ba0c3fe1d7c357.jpg"
+        image: "images/Fortifying_Brew.jpg"
     }, {
         class: "Monk",
         specs: ["Brewmaster"],
@@ -2254,7 +2257,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Breathe fire on targets in front of you, causing [23.75% of Attack Power] Fire damage. Targets affected by Keg Smash will also burn, taking [19.66% of Attack Power] Fire damage and dealing 5% reduced damage to you for 12 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_breathoffire.c76d9b77d043c835784b41b0a2a26c910dfec75c.jpg"
+        image: "images/Breath_of_Fire.jpg"
     }, {
         class: "Monk",
         specs: ["Brewmaster"],
@@ -2268,7 +2271,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "You shrug off attacks, delaying a portion of Physical damage based on your Agility, instead taking it over 10 sec. Affects magical attacks at 35% effectiveness.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/monk_stance_drunkenox.5d1ea3070a1f6900e8ba39eff164a4bd81a45314.jpg"
+        image: "images/Stagger.jpg"
     }, {
         class: "Monk",
         specs: ["Brewmaster"],
@@ -2282,7 +2285,7 @@ var personals = [
         versIncrease: 0,
         selected: false,
         description: "Turns your skin to stone for 15 sec, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 10%, and reducing all damage you take by 20%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_monk_fortifyingale_new.81d7385c9e70edb9150581fbcccb78adbcf817e9.jpg"
+        image: "images/Fort_Brew.jpg"
     }
 ];
 
@@ -2294,7 +2297,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Permanently attaches a specialized device to your belt, which when used creates an absorb shield around the player for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/trade_engineering.699aff53c99e46d703090933b3840d102d65be0f.jpg"
+        image: "images/Miniaturized_Plasma_Shield.jpg"
     }, {
         class: "all",
         specs: "all",
@@ -2302,7 +2305,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Every 30 sec, gain an absorb shield for 30 sec.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_shellshieldgenerator_green.jpg"
+        image: "images/Resounding_Protection.jpg"
     }, {
         class: "all",
         specs: "all",
@@ -2310,7 +2313,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Reduces all damage taken by a friendly target by 40% for 8 sec. Castable while stunned.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_powerwordshield.3954a85ecb0d43eeb25250cbf2166ed339fcbe45.jpg"
+        image: "images/Power_Word_Shield.jpg"
     }, {
         class: "all",
         specs: "all",
@@ -2318,7 +2321,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Create a shield on all allies within 40 yards, absorbing damage on each of them for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_priest_burningwill.c6dea3ee591cb81de29a8bd3372362063caf3533.jpg"
+        image: "images/Luminous_Barrier.jpg"
     }, {
         class: "all",
         specs: "all",
@@ -2326,7 +2329,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Other Absorbs.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/ability_vehicle_shellshieldgenerator_green.jpg"
+        image: "images/Resounding_Protection.jpg"
     }, {
         class: "Warrior",
         specs: ["Protection"],
@@ -2334,7 +2337,7 @@ var absorbs = [
         amount: 0,
         selected: false,
         description: "Fight through the pain, ignoring 50% of damage taken, up to [ 700% of Attack Power ] total damage prevented.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_renewedvigor.a75f649937190c6ff48d6f3e84448246a491048b.jpg"
+        image: "images/Ignore_Pain.jpg"
     }
 ];
 
@@ -2350,7 +2353,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "The target's skin becomes as tough as Ironwood, reducing all damage taken by 20% for 12 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_druid_ironbark.822b1681d1a4b6ec250b9e8c72e797a09f9a7475.jpg"
+        image: "images/Ironbark.jpg"
     }, {
         name: "Aegis_of_Light",
         magicDR: .2,
@@ -2362,7 +2365,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Channels an Aegis of Light that protects you and all allies standing within 10 yards behind you for 6 sec, reducing all damage taken by 20%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_greaterblessingoflight.bb701b5630ba1b0ab06469fc4e693cc349f22399.jpg"
+        image: "images/Aegis_of_Light.jpg"
     }, {
         name: "Aura_Mastery",
         magicDR: .2,
@@ -2374,7 +2377,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Devotion Aura: all affected allies gain 20% damage reduction.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_auramastery.1e3f7247e225cec54b4cd738162f900534e2d796.jpg"
+        image: "images/Aura_Mastery.jpg"
     }, {
         name: "Aura_of_Sacrifice",
         magicDR: .1,
@@ -2386,7 +2389,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "While you are above 75% health, 10% of all damage taken by allies within 10 yds is redirected to you and reduced by half.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_deathwing_bloodcorruption_earth.c1ffe5c2e062d10e8588e7dbf055e4c506308f06.jpg"
+        image: "images/Aura_of_Sacrifice.jpg"
     }, {
         name: "Devotion_Aura",
         magicDR: 0.03,
@@ -2398,7 +2401,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Damage dealt to allies within 10 yards is reduced by up to 10%, diminishing as more allies enter the aura.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_devotionaura.e663b3d5d74bd6ef41f3c1059b0589246600654d.jpg"
+        image: "images/Devotion_Aura.jpg"
     }, {
         name: "Blessing_of_Sacrifice",
         magicDR: .3,
@@ -2410,7 +2413,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Blesses a party or raid member, reducing their damage taken by 30%, but you suffer 100% of damage prevented. Lasts 12 sec, or until transferred damage would cause you to fall below 20% health.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_sealofsacrifice.22bb121700b3e627e2efd5f0a459f172866fd4b6.jpg"
+        image: "images/Blessing_of_Sacrifice.jpg"
     }, {
         name: "Lenience",
         magicDR: .03,
@@ -2422,7 +2425,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Atonement reduces damage taken by 3%.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_priest_atonement.b1ce9042e3267c27a33895c2a211a7056ca49b9c.jpg"
+        image: "images/Lenience.jpg"
     }, {
         name: "Power_Word:_Barrier",
         magicDR: .25,
@@ -2434,7 +2437,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Summons a holy barrier to protect all allies at the target location for 10 sec, reducing all damage taken by 25% and preventing damage from delaying spellcasting.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_powerwordbarrier.72bcb91618abc681a915e7bfa9c2c90b23c1842b.jpg"
+        image: "images/Power_Word_Barrier.jpg"
     }, {
         name: "Pain_Suppression",
         magicDR: .4,
@@ -2446,7 +2449,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by a friendly target by 40% for 8 sec. Castable while stunned.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_painsupression.0dfc33c65184f8b90bed1db3da01cb9fcd44781d.jpg"
+        image: "images/Pain_Suppression.jpg"
     }, {
         name: "Spirit_Link_Totem",
         magicDR: .1,
@@ -2458,7 +2461,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Summons a totem at the target location for 6 sec, which reduces damage taken by all party and raid members within 10 yards by 10%. Every 1 sec the health of all affected players is redistributed, such that all players are at the same percentage of maximum health.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_shaman_spiritlink.f35cb0fb1725afbcfb62816e431eb91dbe06f0c8.jpg"
+        image: "images/Spirit_Link_Totem.jpg"
     }, {
         name: "Safeguard",
         magicDR: 0.3,
@@ -2470,7 +2473,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Intercepting a friendly target now also causes 30% of their damage taken to transfer to you for 6 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_safeguard.69ad28a1e07cb5d53f238ac5167c2a8dc07347aa.jpg"
+        image: "images/Safeguard.jpg"
     }, {
         name: "Steelskin_Potion",
         magicDR: 0,
@@ -2482,7 +2485,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Use: Infuses your body with resilient energy, increasing your Armor by 900 for 25 sec. (1 Min Cooldown)",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_80_elixir01green.jpg"
+        image: "images/Steelskin_Potion.jpg"
     }, {
         name: "Spiced_Snapper",
         magicDR: 0,
@@ -2494,7 +2497,7 @@ var externals = [
         versIncrease: 70,
         selected: false,
         description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 70 Versatility for 1 hour.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_cooking_80_spicedcatfish.jpg"
+        image: "images/Spiced_Snapper.jpg"
     }, {
         name: "Battle_Potion_of_Stamina",
         magicDR: 0,
@@ -2506,7 +2509,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Use: Increases your Stamina by 1100 for 25 sec. (1 Min Cooldown)",
-        image: "https://wow.zamimg.com/images/wow/icons/large/trade_alchemy_potionc3.jpg"
+        image: "images/Battle_Potion_of_Stamina.jpg"
     }, {
         name: "Flask_of_the_Vast_Horizon",
         magicDR: 0,
@@ -2518,7 +2521,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Use: Increases Stamina by 357 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_alchemy_80_flask01red.jpg"
+        image: "images/Flask_of_the_Vast_Horizon.jpg"
     }, {
         name: "Seasoned_Steak_and_Potatoes",
         magicDR: 0,
@@ -2530,7 +2533,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 150 Stamina for 1 hour.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_cooking_81_paleosteakandpotatoes.jpg"
+        image: "images/Seasoned_Steak_and_Potatoes.jpg"
     }, {
         name: "Ancestral_Protection_Totem",
         magicDR: 0,
@@ -2542,7 +2545,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Summons a totem at the target location for 30 sec. All allies within 20 yards of the totem gain 10% increased health. If an ally dies, the totem will be consumed to allow them to Reincarnate with 20% health and mana.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_nature_reincarnation.0f66f2d35a25ccdd8a71ce942372e6e51bb4f547.jpg"
+        image: "images/Ancestral_Protection_Totem.jpg"
     }, {
         name: "Rallying_Cry",
         magicDR: 0,
@@ -2554,7 +2557,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Lets loose a rallying cry, granting all party or raid members within 40 yards 15% temporary and maximum health for 10 sec.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/ability_warrior_rallyingcry.22e6f5cd68c301c9f3071839e99250cfc6c5cff2.jpg"
+        image: "images/Rallying_Cry.jpg"
     }, {
         name: "Power_Word:_Fortitude",
         magicDR: 0,
@@ -2566,7 +2569,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Infuses the target with vitality, increasing their Stamina by 10% for 60 min.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_wordfortitude.da6141705dfd22fec7aaa097b2a63c7131ec5c3e.jpg"
+        image: "images/Power_Word_Fortitude.jpg"
     }, {
         name: "War_Scroll_of_Fortitude",
         magicDR: 0,
@@ -2578,7 +2581,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Use: Increases the target's Stamina by 7% for 30 min.",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_inscription_80_warscroll_fortitude.jpg"
+        image: "images/War_Scroll_of_Fortitude.jpg"
     }, {
         name: "Infusion:_Fortitude",
         magicDR: 0,
@@ -2590,7 +2593,7 @@ var externals = [
         versIncrease: 0,
         selected: false,
         description: "Infuses the target with vitality, increasing their Stamina by 10% for until cancelled.",
-        image: "https://media-azeroth.cursecdn.com/wow/icons/large/spell_holy_wordfortitude.da6141705dfd22fec7aaa097b2a63c7131ec5c3e.jpg"
+        image: "images/Infusion_Fortitude.jpg"
     }
 ];
 
@@ -2600,20 +2603,20 @@ var versTrinkets = [
         selected: false,
         amount: 0,
         description: "Use: Increase your Versatility for 20 sec. (2 Min Cooldown)",
-        image: "https://wow.zamimg.com/images/wow/icons/large/inv_icon_feather06a.jpg"
+        image: "images/Lustruous_Golden_Plumage.jpg"
     }, {
         name: "Dread_Gladiators_Medallion",
         selected: false,
         amount: 0,
         description: "Use: Increases Versatility for 20 sec. (2 Min Cooldown)",
-        image: "https://wow.zamimg.com/images/wow/icons/large/spell_arcane_rune.jpg"
+        image: "images/Dread_Gladiators_Medallion.jpg"
     }
 ];
 
 $.ajax({
     type: "GET",
     url: "https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en"
-  }).then(function (result) {
+}).then(function (result) {
     result.affix_details.forEach(affix => {
         if (affix.name === "Tyrannical") {
             if (tyrannical) {
@@ -2641,90 +2644,116 @@ $.ajax({
             }
         }
     });
-  });
+});
+
+function displaySpecs() {
+    $("#classInput").empty();
+    if (playerClass === "Demon Hunter") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Havoc" src="images/Havoc.png" alt="Havoc">
+            <img class="specImage" data-spec="Vengeance" src="images/Vengeance.png" alt="Vengeance">
+        </div>    
+        `);
+    } else if (playerClass === "Death Knight") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Blood" src="images/Blood.png" alt="Blood">
+            <img class="specImage" data-spec="Frost" src="images/Frost.png" alt="Frost">
+            <img class="specImage" data-spec="Unholy" src="images/Unholy.png" alt="Unholy">
+        </div>    
+        `);
+    } else if (playerClass === "Druid") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Feral" src="images/Feral.png" alt="Feral">
+            <img class="specImage" data-spec="Balance" src="images/Balance.png" alt="Balance">
+            <img class="specImage" data-spec="Restoration" src="images/Restoration.png" alt="Restoration">
+            <img class="specImage" data-spec="Guardian" src="images/Guardian.png" alt="Guardian">
+        </div>    
+        `);
+    } else if (playerClass === "Hunter") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Beast Mastery" src="images/Beast Mastery.png" alt="Beast Mastery">
+            <img class="specImage" data-spec="Marksmanship" src="images/Marksmanship.png" alt="Marksmanship">
+            <img class="specImage" data-spec="Survival" src="images/Survival.png" alt="Survival">
+        </div>    
+        `);
+    } else if (playerClass === "Mage") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Frost" src="images/Frost Mage.png" alt="Frost">
+            <img class="specImage" data-spec="Fire" src="images/Fire.png" alt="Fire">
+            <img class="specImage" data-spec="Arcane" src="images/Arcane.png" alt="Arcane">
+        </div>    
+        `);
+    } else if (playerClass === "Monk") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Brewmaster" src="images/Brewmaster.png" alt="Brewmaster">
+            <img class="specImage" data-spec="Mistweaver" src="images/Mistweaver.png" alt="Mistweaver">
+            <img class="specImage" data-spec="Windwalker" src="images/Windwalker.png" alt="Windwalker">
+        </div>    
+        `);
+    } else if (playerClass === "Paladin") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Protection" src="images/Protection.png" alt="Protection">
+            <img class="specImage" data-spec="Retribution" src="images/Retribution.png" alt="Retribution">
+            <img class="specImage" data-spec="Holy" src="images/Holy.png" alt="Holy">
+        </div>    
+        `);
+    } else if (playerClass === "Priest") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Shadow" src="images/Shadow.png" alt="Shadow">
+            <img class="specImage" data-spec="Holy" src="images/Holy Priest.png" alt="Holy">
+            <img class="specImage" data-spec="Discipline" src="images/Discipline.png" alt="Discipline">
+        </div>    
+        `);
+    } else if (playerClass === "Rogue") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Assassination" src="images/Assassination.png" alt="Assassination">
+            <img class="specImage" data-spec="Outlaw" src="images/Outlaw.png" alt="Outlaw">
+            <img class="specImage" data-spec="Subtlety" src="images/Subtlety.png" alt="Subtlety">
+        </div>    
+        `);
+    } else if (playerClass === "Shaman") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Restoration" src="images/Restoration Shaman.png" alt="Restoration">
+            <img class="specImage" data-spec="Elemental" src="images/Elemental.png" alt="Elemental">
+            <img class="specImage" data-spec="Enhancement" src="images/Enhancement.png" alt="Enhancement">
+        </div>    
+        `);
+    } else if (playerClass === "Warlock") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Demonology" src="images/Demonology.png" alt="Demonology">
+            <img class="specImage" data-spec="Destruction" src="images/Destruction.png" alt="Destruction">
+            <img class="specImage" data-spec="Affliction" src="images/Affliction.png" alt="Affliction">
+        </div>    
+        `);
+    } else if (playerClass === "Warrior") {
+        $("#classInput").append(`
+        <div class="row">
+            <img class="specImage" data-spec="Protection" src="images/Protection.png" alt="Protection">
+            <img class="specImage" data-spec="Arms" src="images/Arms.png" alt="Arms">
+            <img class="specImage" data-spec="Fury" src="images/Fury.png" alt="Fury">
+        </div>    
+        `);
+    }
+    $("#classInput").append(`<button type="button" id="changeClass" class="btn btn-primary">Choose Another Class</button>`);
+}
 
 $(document).on("click", ".classImage", function (event) {
     event.preventDefault();
     playerClass = $(this).attr("data-class");
     $(".classImage").removeClass("selectedClass");
     $(this).addClass("selectedClass");
-    if (playerClass !== "") {
-        $("#classInput").empty();
-    };
-    if (playerClass === "Demon Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Havoc\" src=\"images/Havoc.png\" alt=\"Havoc\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Vengeance\" src=\"images/Vengeance.png\" alt=\"Vengeance\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Death Knight") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Blood\" src=\"images/Blood.png\" alt=\"Blood\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost.png\" alt=\"Frost\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Unholy\" src=\"images/Unholy.png\" alt=\"Unholy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Druid") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Feral\" src=\"images/Feral.png\" alt=\"Feral\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Balance\" src=\"images/Balance.png\" alt=\"Balance\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Guardian\" src=\"images/Guardian.png\" alt=\"Guardian\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Beast Mastery\" src=\"images/Beast Mastery.png\" alt=\"Beast Mastery\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Marksmanship\" src=\"images/Marksmanship.png\" alt=\"Marksmanship\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Survival\" src=\"images/Survival.png\" alt=\"Survival\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Mage") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost Mage.png\" alt=\"Frost\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fire\" src=\"images/Fire.png\" alt=\"Fire\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arcane\" src=\"images/Arcane.png\" alt=\"Arcane\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Monk") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Brewmaster\" src=\"images/Brewmaster.png\" alt=\"Brewmaster\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Mistweaver\" src=\"images/Mistweaver.png\" alt=\"Mistweaver\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Windwalker\" src=\"images/Windwalker.png\" alt=\"Windwalker\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Paladin") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection Paladin.png\" alt=\"Protection\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Retribution\" src=\"images/Retribution.png\" alt=\"Retribution\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy.png\" alt=\"Holy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Priest") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Shadow\" src=\"images/Shadow.png\" alt=\"Shadow\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy Priest.png\" alt=\"Holy\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Discipline\" src=\"images/Discipline.png\" alt=\"Discipline\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Rogue") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Assassination\" src=\"images/Assassination.png\" alt=\"Assassination\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Outlaw\" src=\"images/Outlaw.png\" alt=\"Outlaw\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Subtlety\" src=\"images/Subtlety.png\" alt=\"Subtlety\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Shaman") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration Shaman.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Elemental\" src=\"images/Elemental.png\" alt=\"Elemental\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Enhancement\" src=\"images/Enhancement.png\" alt=\"Enhancement\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warlock") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warrior") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection.png\" alt=\"Protection\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arms\" src=\"images/Arms.png\" alt=\"Arms\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fury\" src=\"images/Fury.png\" alt=\"Fury\">");
-        $("#classInput").append("</div>");
-    }
-    $("#classInput").append("<button type=\"button\" id=\"changeClass\" class=\"btn btn-primary\">Choose Another Class</button>");
+    displaySpecs();
 });
 
 $(document).on("click", "#changeClass", function (event) {
@@ -2850,6 +2879,15 @@ $(document).on("click", "#changeDungeon", function (event) {
     </div>
 </div>
 <div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Tol_Dagor">
+        <img class="dungeonImage" data-dungeon="Tol_Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+            <div class="overlay">
+                <div class="text">Tol Dagor</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Tol Dagor</div>
+            </div>
+    </div>
     <div class="imgContainer col-md-6" data-dungeon="Waycrest_Manor">
         <img class="dungeonImage" data-dungeon="Waycrest_Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
         <div class="overlay">
@@ -2859,96 +2897,13 @@ $(document).on("click", "#changeDungeon", function (event) {
             <div class="text">Waycrest Manor</div>
         </div>
     </div>
-    <div class="imgContainer col-md-6" data-dungeon="Tol_Dagor">
-        <img class="dungeonImage" data-dungeon="Tol_Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
-        <div class="overlay">
-            <div class="text">Tol Dagor</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Tol Dagor</div>
-        </div>
-    </div>
 </div>
     `);
 });
 
 $(document).on("click", "#changeSpec", function (event) {
     event.preventDefault();
-    $("#classInput").empty();
-    if (playerClass === "Demon Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Havoc\" src=\"images/Havoc.png\" alt=\"Havoc\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Vengeance\" src=\"images/Vengeance.png\" alt=\"Vengeance\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Death Knight") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Blood\" src=\"images/Blood.png\" alt=\"Blood\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost.png\" alt=\"Frost\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Unholy\" src=\"images/Unholy.png\" alt=\"Unholy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Druid") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Feral\" src=\"images/Feral.png\" alt=\"Feral\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Balance\" src=\"images/Balance.png\" alt=\"Balance\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Guardian\" src=\"images/Guardian.png\" alt=\"Guardian\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Hunter") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Beast Mastery\" src=\"images/Beast Mastery.png\" alt=\"Beast Mastery\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Marksmanship\" src=\"images/Marksmanship.png\" alt=\"Marksmanship\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Survival\" src=\"images/Survival.png\" alt=\"Survival\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Mage") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Frost\" src=\"images/Frost Mage.png\" alt=\"Frost\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fire\" src=\"images/Fire.png\" alt=\"Fire\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arcane\" src=\"images/Arcane.png\" alt=\"Arcane\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Monk") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Brewmaster\" src=\"images/Brewmaster.png\" alt=\"Brewmaster\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Mistweaver\" src=\"images/Mistweaver.png\" alt=\"Mistweaver\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Windwalker\" src=\"images/Windwalker.png\" alt=\"Windwalker\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Paladin") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection Paladin.png\" alt=\"Protection\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Retribution\" src=\"images/Retribution.png\" alt=\"Retribution\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy.png\" alt=\"Holy\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Priest") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Shadow\" src=\"images/Shadow.png\" alt=\"Shadow\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Holy\" src=\"images/Holy Priest.png\" alt=\"Holy\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Discipline\" src=\"images/Discipline.png\" alt=\"Discipline\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Rogue") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Assassination\" src=\"images/Assassination.png\" alt=\"Assassination\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Outlaw\" src=\"images/Outlaw.png\" alt=\"Outlaw\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Subtlety\" src=\"images/Subtlety.png\" alt=\"Subtlety\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Shaman") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Restoration\" src=\"images/Restoration Shaman.png\" alt=\"Restoration\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Elemental\" src=\"images/Elemental.png\" alt=\"Elemental\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Enhancement\" src=\"images/Enhancement.png\" alt=\"Enhancement\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warlock") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Demonology\" src=\"images/Demonology.png\" alt=\"Demonology\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Destruction\" src=\"images/Destruction.png\" alt=\"Destruction\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Affliction\" src=\"images/Affliction.png\" alt=\"Affliction\">");
-        $("#classInput").append("</div>");
-    } else if (playerClass === "Warrior") {
-        $("#classInput").append("<div class=\"row\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Protection\" src=\"images/Protection.png\" alt=\"Protection\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Arms\" src=\"images/Arms.png\" alt=\"Arms\">");
-        $("#classInput").append("<img class=\"specImage\" data-spec=\"Fury\" src=\"images/Fury.png\" alt=\"Fury\">");
-        $("#classInput").append("</div>");
-    }
-    $("#classInput").append("<button type=\"button\" id=\"changeClass\" class=\"btn btn-primary\">Choose Another Class</button>");
+    displaySpecs();
     for (i = 0; i < personals.length; i++) {
         if (personals[i].selected) {
             personals[i].selected = false;
@@ -3185,6 +3140,24 @@ $(document).on("click", ".specImage", function (event) {
             </div>
             `);
         }
+        if (playerSpec === "Havoc") {
+            personals.forEach(personal => {
+                if (personal.name === "Demonic_Wards" && personal.specs.includes("Havoc")) {
+                    personal.selected = true;
+                    $(`[data-name=Demonic_Wards`).addClass("selected");
+                }
+            });
+            calcDamage();
+        }
+        if (playerSpec === "Vengeance") {
+            personals.forEach(personal => {
+                if (personal.name === "Demonic_Wards" && personal.specs.includes("Vengeance")) {
+                    personal.selected = true;
+                    $(`[data-name=Demonic_Wards`).addClass("selected");
+                }
+            });
+            calcDamage();
+        }
     };
     $("#classInput").append("<button type=\"button\" id=\"changeSpec\" class=\"btn btn-primary\">Choose Another Spec</button>");
     $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
@@ -3416,60 +3389,62 @@ $(document).on("click", ".versOkay", function (event) {
 $(document).on("click", ".personalImage", function (event) {
     event.preventDefault();
     var personalName = $(this).attr("data-name");
-    if (personalName === "Feint" && !feint) {
-        feint = true;
-    } else if (personalName === "Feint" && feint) {
-        feint = false;
-    }
-    if (personalName === "Elusiveness" && !elusiveness) {
-        elusiveness = true;
-    } else if (personalName === "Elusiveness" && elusiveness) {
-        elusiveness = false;
-    }
-    if (personalName === "Desperate_Instincts") {
+    if (personalName !== "Demonic_Wards") {
+        if (personalName === "Feint" && !feint) {
+            feint = true;
+        } else if (personalName === "Feint" && feint) {
+            feint = false;
+        }
+        if (personalName === "Elusiveness" && !elusiveness) {
+            elusiveness = true;
+        } else if (personalName === "Elusiveness" && elusiveness) {
+            elusiveness = false;
+        }
+        if (personalName === "Desperate_Instincts") {
+            for (i = 0; i < personals.length; i++) {
+                if (personals[i].name === "Blur" && personals[i].selected) {
+                    personals[i].selected = false;
+                    $(`img[data-name=Blur]`).removeClass("selected");
+                }
+            }
+        }
+        if (personalName === "Blur") {
+            for (i = 0; i < personals.length; i++) {
+                if (personals[i].name === "Desperate_Instincts" && personals[i].selected) {
+                    personals[i].selected = false;
+                    $(`img[data-name=Desperate_Instincts]`).removeClass("selected");
+                }
+            }
+        }
+        if (personalName === "Bear_Form") {
+            for (i = 0; i < personals.length; i++) {
+                if (personals[i].name === "Moonkin_Form" && personals[i].selected) {
+                    personals[i].selected = false;
+                    $(`img[data-name=Moonkin_Form]`).removeClass("selected");
+                }
+            }
+        }
+        if (personalName === "Moonkin_Form") {
+            for (i = 0; i < personals.length; i++) {
+                if (personals[i].name === "Bear_Form" && personals[i].selected) {
+                    personals[i].selected = false;
+                    $(`img[data-name=Bear_Form]`).removeClass("selected");
+                }
+            }
+        }
         for (i = 0; i < personals.length; i++) {
-            if (personals[i].name === "Blur" && personals[i].selected) {
-                personals[i].selected = false;
-                $(`img[data-name=Blur]`).removeClass("selected");
+            if (personals[i].name === personalName && personals[i].class === playerClass && personals[i].specs.includes(playerSpec)) {
+                if (personals[i].selected) {
+                    personals[i].selected = false;
+                    $(this).removeClass("selected");
+                } else {
+                    personals[i].selected = true;
+                    $(this).addClass("selected");
+                }
             }
         }
+        calcDamage();
     }
-    if (personalName === "Blur") {
-        for (i = 0; i < personals.length; i++) {
-            if (personals[i].name === "Desperate_Instincts" && personals[i].selected) {
-                personals[i].selected = false;
-                $(`img[data-name=Desperate_Instincts]`).removeClass("selected");
-            }
-        }
-    }
-    if (personalName === "Bear_Form") {
-        for (i = 0; i < personals.length; i++) {
-            if (personals[i].name === "Moonkin_Form" && personals[i].selected) {
-                personals[i].selected = false;
-                $(`img[data-name=Moonkin_Form]`).removeClass("selected");
-            }
-        }
-    }
-    if (personalName === "Moonkin_Form") {
-        for (i = 0; i < personals.length; i++) {
-            if (personals[i].name === "Bear_Form" && personals[i].selected) {
-                personals[i].selected = false;
-                $(`img[data-name=Bear_Form]`).removeClass("selected");
-            }
-        }
-    }
-    for (i = 0; i < personals.length; i++) {
-        if (personals[i].name === personalName && personals[i].class === playerClass && personals[i].specs.includes(playerSpec)) {
-            if (personals[i].selected) {
-                personals[i].selected = false;
-                $(this).removeClass("selected");
-            } else {
-                personals[i].selected = true;
-                $(this).addClass("selected");
-            }
-        }
-    }
-    calcDamage();
 });
 
 $(document).on("click", ".externalImage", function (event) {
