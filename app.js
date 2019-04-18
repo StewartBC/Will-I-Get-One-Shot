@@ -13,7 +13,6 @@ var playerMastery = 0;
 var playerStamina = 0;
 var playerHealth = 0;
 var playerAbsorb = 0;
-var selectedDungeon = "";
 var level = 2;
 var recentInput = "";
 var scaling = [1, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59, 1.71, 1.85, 2, 2.16, 2.33, 2.52, 2.72, 2.94, 3.17, 3.43, 3.70, 4, 4.32, 4.66, 5.04, 5.44, 5.87];
@@ -3299,47 +3298,49 @@ $(document).keypress(function (keyPressed) {
         if (amount === "") {
             amount = 0;
         }
-        if (recentInput === "stamina") {
-            playerStamina = amount;
-        } else if (recentInput === "vers") {
-            playerVers = amount;
-        } else if (recentInput === "armor") {
-            playerArmor = amount;
-        } else if (recentInput === "avoidance") {
-            avoidance = amount;
-        } else if (recentInput === "mainStat") {
-            playerMainStat = amount;
-        } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
-            versTrinkets.forEach(trinket => {
-                if (trinket.name === trinketName) {
-                    trinket.amount = amount;
-                    if (trinket.selected && amount === 0) {
-                        trinket.selected = false;
-                        $(`img[data-name=${recentInput}]`).removeClass("selected");
-                    } else if (amount > 0) {
-                        trinket.selected = true;
-                        $(`img[data-name=${recentInput}]`).addClass("selected");
+        if (Number.isInteger(amount)) {
+            if (recentInput === "stamina") {
+                playerStamina = amount;
+            } else if (recentInput === "vers") {
+                playerVers = amount;
+            } else if (recentInput === "armor") {
+                playerArmor = amount;
+            } else if (recentInput === "avoidance") {
+                avoidance = amount;
+            } else if (recentInput === "mainStat") {
+                playerMainStat = amount;
+            } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
+                versTrinkets.forEach(trinket => {
+                    if (trinket.name === trinketName) {
+                        trinket.amount = amount;
+                        if (trinket.selected && amount === 0) {
+                            trinket.selected = false;
+                            $(`img[data-name=${recentInput}]`).removeClass("selected");
+                        } else if (amount > 0) {
+                            trinket.selected = true;
+                            $(`img[data-name=${recentInput}]`).addClass("selected");
+                        }
                     }
+                });
+                if (amount === 0) {
+                    $(`img[data-name=${recentInput}]`).removeClass("selected");
                 }
-            });
-            if (amount === 0) {
-                $(`img[data-name=${recentInput}]`).removeClass("selected");
-            }
-        } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
-            absorbs.forEach(absorb => {
-                if (absorb.name === recentInput) {
-                    absorb.amount = amount;
-                    if (absorb.selected && amount === 0) {
-                        $(`img[data-name=${recentInput}]`).removeClass("selected");
-                        absorb.selected = false;
-                    } else if (amount > 0) {
-                        absorb.selected = true;
-                        $(`img[data-name=${recentInput}]`).addClass("selected");
+            } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
+                absorbs.forEach(absorb => {
+                    if (absorb.name === recentInput) {
+                        absorb.amount = amount;
+                        if (absorb.selected && amount === 0) {
+                            $(`img[data-name=${recentInput}]`).removeClass("selected");
+                            absorb.selected = false;
+                        } else if (amount > 0) {
+                            absorb.selected = true;
+                            $(`img[data-name=${recentInput}]`).addClass("selected");
+                        }
                     }
+                });
+                if (amount === 0) {
+                    $(`img[data-name=${recentInput}]`).removeClass("selected");
                 }
-            });
-            if (amount === 0) {
-                $(`img[data-name=${recentInput}]`).removeClass("selected");
             }
         }
         calcDamage();
@@ -3420,20 +3421,22 @@ $(document).on("click", ".shieldOkay", function (event) {
     if (shieldAmount === "") {
         shieldAmount = 0;
     }
-    absorbs.forEach(absorb => {
-        if (absorb.name === shieldName) {
-            absorb.amount = shieldAmount;
-            if (absorb.selected && shieldAmount === 0) {
-                $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
-                absorb.selected = false;
-            } else if (shieldAmount > 0) {
-                absorb.selected = true;
-                $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
+    if (Number.isInteger(shieldAmount)) {
+        absorbs.forEach(absorb => {
+            if (absorb.name === shieldName) {
+                absorb.amount = shieldAmount;
+                if (absorb.selected && shieldAmount === 0) {
+                    $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
+                    absorb.selected = false;
+                } else if (shieldAmount > 0) {
+                    absorb.selected = true;
+                    $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
+                }
             }
+        });
+        if (shieldAmount === 0) {
+            $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
         }
-    });
-    if (shieldAmount === 0) {
-        $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
     }
     calcDamage();
 });
@@ -3445,20 +3448,22 @@ $(document).on("click", ".versOkay", function (event) {
     if (versAmount === "") {
         versAmount = 0;
     }
-    versTrinkets.forEach(trinket => {
-        if (trinket.name === trinketName) {
-            trinket.amount = versAmount;
-            if (trinket.selected && versAmount === 0) {
-                trinket.selected = false;
-                $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
-            } else if (versAmount > 0) {
-                trinket.selected = true;
-                $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
+    if (Number.isInteger(versAmount)) {
+        versTrinkets.forEach(trinket => {
+            if (trinket.name === trinketName) {
+                trinket.amount = versAmount;
+                if (trinket.selected && versAmount === 0) {
+                    trinket.selected = false;
+                    $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
+                } else if (versAmount > 0) {
+                    trinket.selected = true;
+                    $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
+                }
             }
+        });
+        if (versAmount === 0) {
+            $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
         }
-    });
-    if (versAmount === 0) {
-        $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
     }
     calcDamage();
 });
@@ -3592,7 +3597,6 @@ $(document).on("click", ".externalImage", function (event) {
         });
     }
     if (externalName !== "Infusion:_Fortitude") {
-        console.log(externalName)
         externals.forEach(external => {
             if (external.name === externalName) {
                 if (external.selected) {
