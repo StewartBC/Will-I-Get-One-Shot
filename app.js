@@ -22,11 +22,11 @@ var output = document.getElementById("keyLevel");
 slider.oninput = function () {
     level = this.value;
     output.innerHTML = "Key Level: " + this.value;
-    for (i = 0; i < dungeons.length; i++) {
-        for (k = 0; k < dungeons[i].bossAbilities.length; k++) {
-            dungeons[i].bossAbilities[k].damage = Math.round(dungeons[i].bossAbilities[k].baseDamage * scaling[level - 2]);
-        }
-    }
+    dungeons.forEach(dung => {
+        dung.bossAbilities.forEach(ability => {
+            ability.damage = Math.round(ability.baseDamage * scaling[level - 2]);
+        });
+    });
     calcDamage();
 }
 function displayDungeons() {
@@ -121,165 +121,131 @@ function calcDamage() {
     var armor = playerArmor;
     var absorbAmount = 0;
     var absorbsArray = [];
-    for (i = 0; i < personals.length; i++) {
-        if (personals[i].selected) {
-            if (personals[i].magicDR > 0) {
-                magic.push(personals[i].magicDR);
+    var healthArray = [];
+    personals.forEach(personal => {
+        if (personal.selected) {
+            if (personal.magicDR > 0) {
+                magic.push(personal.magicDR);
             }
-            if (personals[i].physicalDR > 0) {
-                physical.push(personals[i].physicalDR);
+            if (personal.physicalDR > 0) {
+                physical.push(personal.physicalDR);
             }
-            armor = armor + personals[i].armorIncrease;
-            if (personals[i].armorPercentIncrease > 0) {
-                armorPercent.push(personals[i].armorPercentIncrease);
+            armor = armor + personal.armorIncrease;
+            if (personal.armorPercentIncrease > 0) {
+                armorPercent.push(personal.armorPercentIncrease);
             }
-            if (personals[i].absorb > 0) {
-                absorbsArray.push(personals[i].absorb);
+            if (personal.absorb > 0) {
+                absorbsArray.push(personal.absorb);
             }
-            health = health + personals[i].healthIncrease;
-            vers = vers + personals[i].versIncrease;
-            if (personals[i].name === "Endurance_Training") {
-                health = health * 1.05;
+            if (personal.healthPercentIncrease > 0) {
+                healthArray.push(personal.healthPercentIncrease);
             }
-            if (personals[i].name === "Metamorphosis") {
-                health = health * 1.3;
+            health = health + personal.healthIncrease;
+            vers = vers + personal.versIncrease;
+        }
+    });
+    externals.forEach(external => {
+        if (external.selected) {
+            if (external.magicDR > 0) {
+                magic.push(external.magicDR);
             }
-            if (personals[i].name === "Desperate_Prayer") {
-                health = health * 1.25;
+            if (external.physicalDR > 0) {
+                physical.push(external.physicalDR);
             }
-            if (personals[i].name === "Indomitable") {
-                health = health * 1.1;
+            armor = armor + external.armorIncrease;
+            if (external.armorPercentIncrease > 0) {
+                armorPercent.push(external.armorPercentIncrease);
             }
-            if (personals[i].name === "Last_Stand") {
-                health = health * 1.3;
+            if (external.absorb > 0) {
+                absorbsArray.push(external.absorb);
             }
-            if (personals[i].name === "Fortifying_Brew") {
-                health = health * 1.2;
-            }
-            if (personals[i].name === "Demonic_Wards" && playerSpec === "Vengeance") {
-                health = health * 1.65;
-            }
-            if (personals[i].name === "Bear_Form" && playerSpec !== "Guardian") {
-                health = health * 1.25;
-            }
-            if (personals[i].name === "Bear_Form" && playerSpec === "Guardian") {
-                health = health * 1.45;
+            health = health + external.healthIncrease;
+            vers = vers + external.versIncrease;
+            if (external.healthPercentIncrease > 0) {
+                healthArray.push(external.healthPercentIncrease);
             }
         }
-    }
-    for (i = 0; i < externals.length; i++) {
-        if (externals[i].selected) {
-            if (externals[i].magicDR > 0) {
-                magic.push(externals[i].magicDR);
-            }
-            if (externals[i].physicalDR > 0) {
-                physical.push(externals[i].physicalDR);
-            }
-            armor = armor + externals[i].armorIncrease;
-            if (externals[i].armorPercentIncrease > 0) {
-                armorPercent.push(externals[i].armorPercentIncrease);
-            }
-            if (externals[i].absorb > 0) {
-                absorbsArray.push(externals[i].absorb);
-            }
-            health = health + externals[i].healthIncrease;
-            vers = vers + externals[i].versIncrease;
-            if (externals[i].name === "Power_Word:_Fortitude") {
-                health = health * 1.1;
-            }
-            if (externals[i].name === "Infusion:_Fortitude") {
-                health = health * 1.1;
-            }
-            if (externals[i].name === "War_Scroll_of_Fortitude") {
-                health = health * 1.07;
-            }
-            if (externals[i].name === "Rallying_Cry") {
-                health = health * 1.15;
-            }
-            if (externals[i].name === "Rallying_Cry") {
-                health = health * 1.15;
-            }
-            if (externals[i].name === "Ancestral_Protection_Totem") {
-                health = health * 1.1;
-            }
+    });
+    absorbs.forEach(item => {
+        if (item.selected) {
+            absorbAmount = absorbAmount + item.amount;
         }
-    }
-    for (i = 0; i < absorbs.length; i++) {
-        if (absorbs[i].selected) {
-            absorbAmount = absorbAmount + absorbs[i].amount;
+    });
+    versTrinkets.forEach(trinket => {
+        if (trinket.selected) {
+            vers = vers + trinket.amount;
         }
-    }
-    for (i = 0; i < versTrinkets.length; i++) {
-        if (versTrinkets[i].selected) {
-            vers = vers + versTrinkets[i].amount;
-        }
-    }
-    for (i = 0; i < absorbsArray.length; i++) {
-        absorbAmount = absorbAmount + absorbsArray[i] * health;
-    }
-    for (i = 0; i < armorPercent.length; i++) {
-        armor = armor * armorPercent[i];
-    }
-    for (i = 0; i < dungeons.length; i++) {
-        for (k = 0; k < dungeons[i].bossAbilities.length; k++) {
-            var damage = dungeons[i].bossAbilities[k].baseDamage;
+    });
+    absorbsArray.forEach(item => {
+        absorbAmount = absorbAmount + item * health;
+    });
+    armorPercent.forEach(item => {
+        armor = armor * item;
+    });
+    healthArray.forEach(hp => {
+        health *= 1 + hp;
+    });
+    dungeons.forEach(dung => {
+        dung.bossAbilities.forEach(ability => {
+            var damage = ability.baseDamage;
             damage = damage * scaling[level - 2];
             if (tyrannical) {
                 damage = damage * 1.15;
             }
             damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
-            if (dungeons[i].bossAbilities[k].type === "physical") {
-                for (m = 0; m < physical.length; m++) {
-                    damage = damage - damage * physical[m];
-                }
+            if (ability.type === "physical") {
+                physical.forEach(item => {
+                    damage = damage - damage * item;
+                });
                 damage = damage - (damage * 0.01 * ((armor / (armor + 8467)) * 100));
             } else {
-                for (m = 0; m < magic.length; m++) {
-                    damage = damage - damage * magic[m];
-                }
+                magic.forEach(item => {
+                    damage = damage - damage * item;
+                });
             }
-            if (dungeons[i].bossAbilities[k].aoe) {
+            if (ability.aoe) {
                 damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
             }
-            if (dungeons[i].bossAbilities[k].aoe && feint) {
+            if (ability.aoe && feint) {
                 damage = damage - (damage * .4);
             }
-            if (!dungeons[i].bossAbilities[k].aoe && elusiveness) {
+            if (!ability.aoe && elusiveness) {
                 damage = damage - (damage * .3);
             }
-            dungeons[i].bossAbilities[k].damage = Math.round(damage);
-        }
-    }
-    for (i = 0; i < dungeons.length; i++) {
-        for (k = 0; k < dungeons[i].trashAbilities.length; k++) {
-            var damage = dungeons[i].trashAbilities[k].baseDamage;
+            ability.damage = Math.round(damage);
+        });
+
+    });
+    dungeons.forEach(dung => {
+        dung.trashAbilities.forEach(ability => {
+            var damage = ability.baseDamage;
             damage = damage * scaling[level - 2];
             if (fortified) {
                 damage = damage * 1.15;
             }
             damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
-            if (dungeons[i].trashAbilities[k].type === "physical") {
-                for (m = 0; m < physical.length; m++) {
-                    damage = damage - damage * physical[m];
-                }
+            if (ability.type === "physical") {
+                physical.forEach(item => {
+                    damage = damage - damage * item;
+                });
                 damage = damage - (damage * 0.01 * ((armor / (armor + 8467)) * 100));
             } else {
-                for (m = 0; m < magic.length; m++) {
-                    damage = damage - damage * magic[m];
-                }
+                magic.forEach(item => {
+                    damage = damage - damage * item;
+                });
             }
-            if (dungeons[i].trashAbilities[k].aoe) {
+            if (ability.aoe) {
                 damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
             }
-            if (dungeons[i].trashAbilities[k].aoe && feint) {
+            if (ability.aoe && feint) {
                 damage = damage - (damage * .4);
             }
-            if (!dungeons[i].trashAbilities[k].aoe && elusiveness) {
+            if (!ability.aoe && elusiveness) {
                 damage = damage - (damage * .3);
             }
-            dungeons[i].trashAbilities[k].damage = Math.round(damage);
-        }
-    }
+            ability.damage = Math.round(damage);
+        });
+    });
     $(".totalHealth").html(`<span style="font-size: 23px">Total Health: ${Math.round(health)}</span>`);
     $(".totalAbsorb").html(`<span style="font-size: 23px">Total Absorb: ${Math.round(absorbAmount)}</span>`);
     $(".effectiveHealth").html(`<span style="font-size: 23px">Effective Health: ${Math.round(health + absorbAmount)}</span>`);
@@ -1371,6 +1337,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Your tattoos reduce magic damage taken by 10%.",
@@ -1385,6 +1352,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Increases your chance to dodge by 50% and reduces all damage taken by 35% for 10 sec.",
@@ -1399,6 +1367,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Blur now reduces damage taken by an additional 15%. Additionally, you automatically trigger Blur when you fall below 35% health. This effect can only occur when Blur is not on cooldown.",
@@ -1413,6 +1382,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Your tattoos reduce all damage taken by 10%, and increase your Stamina by 65% and your Armor by 80%.",
@@ -1427,6 +1397,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Surge with fel power, increasing your Parry chance by 20% and reducing Physical damage taken by 10% for 6 sec.",
@@ -1441,6 +1412,7 @@ var personals = [
         armorPercentIncrease: 1,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .3,
         versIncrease: 0,
         selected: false,
         description: "Transform to demon form for 15 sec, increasing current and maximum health by 30% and Armor by 100%.",
@@ -1455,6 +1427,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Brand an enemy with a demonic symbol, instantly dealing (720% of attack power) Fire damage and reducing the damage they do to you by 40% for 8 sec.",
@@ -1469,6 +1442,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Your blood freezes, granting immunity to Stun effects and reducing all damage you take by 30% for 8 sec.",
@@ -1484,6 +1458,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Surrounds you with a barrier of whirling bones, increasing Armor by (40 * Strength / 100), and your Haste by 10%. Each melee attack against you consumes a charge. Lasts 30 sec or until all charges are consumed.",
@@ -1498,6 +1473,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "A devastating blow that consumes 2 stacks of your Thrash on the target to deal [ 96.93% of Attack Power ] Physical damage, and reduces all damage you take by 9% for 20 sec.",
@@ -1512,6 +1488,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "While in Bear Form, Thrash also increases your damage dealt to the target, and reduces your damage taken from the target by 2% per application of Thrash.",
@@ -1526,6 +1503,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Increases armor by [ 75% of Agility ] for 7 sec. Multiple uses of this ability may overlap.",
@@ -1540,6 +1518,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 6%.",
@@ -1554,6 +1533,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 6%.",
@@ -1568,6 +1548,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 50% for 6 sec.",
@@ -1582,6 +1563,7 @@ var personals = [
         armorPercentIncrease: 1.25,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Moonkin Form, increasing the damage of your spells by 10% and your armor by 125%, and granting protection from Polymorph effects.",
@@ -1596,6 +1578,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Your skin becomes as tough as bark, reducing all damage you take by 20% and preventing damage from delaying your spellcasts. Lasts 12 sec.",
@@ -1610,6 +1593,7 @@ var personals = [
         armorPercentIncrease: 2.2,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .25,
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 25%, granting protection from Polymorph effects, and increasing threat generation.",
@@ -1624,6 +1608,7 @@ var personals = [
         armorPercentIncrease: 2.2,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .45,
         versIncrease: 0,
         selected: false,
         description: "Shapeshift into Bear Form, increasing armor by 220% and Stamina by 45%, granting protection from Polymorph effects, and increasing threat generation.",
@@ -1638,6 +1623,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Deflects all attacks and reduces all damage you take by 30% for 8 sec, but you cannot attack.",
@@ -1652,6 +1638,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you and your pet take by 20% for 6 sec.",
@@ -1666,6 +1653,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .05,
         versIncrease: 0,
         selected: false,
         description: "You and your pet gain 5% increased maximum health.",
@@ -1680,6 +1668,7 @@ var personals = [
         armorPercentIncrease: 2,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Ice Barrier increases your armor by 200% while active, and Ice Block applies Ice Barrier to you when it fades.",
@@ -1694,6 +1683,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .2,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage and reducing magic damage taken by 15% for 60 sec.",
@@ -1708,6 +1698,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .2,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage and reducing magic damage taken by 15% for 60 sec.",
@@ -1722,6 +1713,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .2,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Shields you in flame, absorbing [ 20% of Total Health ] damage for 60 sec.",
@@ -1736,6 +1728,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 1007,
         selected: false,
         description: "The Light temporarily magnifies your power, increasing your Haste, Critical Strike, Mastery, and Versatility by 1,007.",
@@ -1750,6 +1743,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Each enemy within 8 yards reduces the damage that you take and increases the damage that you deal by up to 3%.",
@@ -1764,6 +1758,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken while inside your Consecration by 2.8%. Increases your chance to block melee attacks by 8.0%.",
@@ -1778,6 +1773,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Surround yourself with a bladed bulwark, reducing Physical damage taken by 35% and dealing [ 35.3% of Attack Power ] Physical damage to any melee attackers for 10 sec.",
@@ -1792,6 +1788,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Empowers you with the spirit of ancient kings, reducing all damage you take by 50% for 8 sec.",
@@ -1806,6 +1803,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "When any party or raid member within 40 yds dies, you gain 20% increased damage done and 30% reduced damage taken for 10 sec.",
@@ -1820,6 +1818,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% for 8 sec. While Ardent Defender is active, the next attack that would otherwise kill you will instead bring you to 20% of your maximum health.",
@@ -1834,6 +1833,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Slams enemies in front of you with your shield, causing [ 33% of Attack Power ] Holy damage, and increasing your Armor by 150% of Strength for 4.5 sec.",
@@ -1848,6 +1848,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% for 8 sec.",
@@ -1862,6 +1863,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "When you cast Shadow Mend on yourself, its damage over time effect heals you instead, and reduces all damage you take by 10%.",
@@ -1876,6 +1878,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Disperse into pure shadow energy, reducing all damage taken by 75% for 6 sec, but you are unable to attack or cast spells.",
@@ -1890,6 +1893,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .25,
         versIncrease: 0,
         selected: false,
         description: "Increases maximum health by 25% for 10 sec, and instantly heals you for that amount.",
@@ -1904,6 +1908,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Feint also reduces all damage you take from non-area-of-effect attacks by 30% for 5 sec.",
@@ -1918,6 +1923,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Performs an evasive maneuver, reducing damage taken from area-of-effect attacks by 40% for 5 sec.",
@@ -1932,6 +1938,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Shift partially into the elemental planes, taking 40% less damage for 8 sec.",
@@ -1946,6 +1953,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "The Primal Earth Elemental hardens its own skin and the Shaman's skin into pure granite, reducing all damage taken by 40% for 10 sec.",
@@ -1960,6 +1968,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
@@ -1974,6 +1983,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "While transformed into a Ghost Wolf, you gain 5% increased movement speed and 5% damage reduction every 1 sec, stacking up to 4 times.",
@@ -1988,6 +1998,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "20% of all damage you take is taken by your demon pet instead.",
@@ -2000,8 +2011,9 @@ var personals = [
         physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
-        absorb: .2 * 2.5,
+        absorb: .5,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Sacrifices 20% of your current health to shield you for 250% of the sacrificed health for 20 sec. Usable while suffering from control impairing effects.",
@@ -2016,6 +2028,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .1,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "All single-target damage done by you and your minions grants you and your pet shadowy shields that absorb 8% of the damage dealt for 15 sec, up to 10% of maximum health.",
@@ -2030,6 +2043,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .15,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Your Soul Leech absorption now passively recharges at a rate of 0.5% of maximum health every 1 sec, and may now absorb up to 15% of maximum health.",
@@ -2044,6 +2058,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Raise your shield, reflecting spells cast on you and reducing magical damage you take by 20%. Lasts 5 sec or until a spell is reflected.",
@@ -2058,6 +2073,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "A defensive combat state that reduces all damage you take by 20%, and all damage you deal by 10%. Lasts 0 sec.",
@@ -2072,6 +2088,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .1,
         versIncrease: 0,
         selected: false,
         description: "Increases your maximum health by 10%.",
@@ -2086,6 +2103,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "You take 10% reduced damage while Enrage is active.",
@@ -2100,6 +2118,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 40% for 8 sec.",
@@ -2114,6 +2133,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Demoralizes all enemies within 10 yards, reducing the damage they deal to you by 20% for 8 sec.",
@@ -2128,6 +2148,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Increases your parry chance by [ 100 + 25% of Spell Power ]% and reduces all damage you take by 30% for 8 sec.",
@@ -2142,6 +2163,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces damage taken by 30%, and Bloodthirst restores an additional 20% health. Usable while stunned. Lasts 8 sec.",
@@ -2156,6 +2178,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .3,
         versIncrease: 0,
         selected: false,
         description: "Increases maximum health by 30% for 15 sec, and instantly heals you for that amount.",
@@ -2170,6 +2193,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage you take by 20% to 50% for 10 sec, with larger attacks being reduced by more.",
@@ -2184,6 +2208,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Each Chi you spend reduces damage taken by 2% for 5 sec, stacking up to 5 times.",
@@ -2198,6 +2223,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by 60% for 8 sec. Moving, being hit by a melee attack, or taking another action will cancel this effect.",
@@ -2212,6 +2238,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces magic damage you take by 60% for 6 sec, and transfers all currently active harmful magical effects on you back to their original caster if possible.",
@@ -2226,6 +2253,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: .5,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Absorbs all damage taken for 10 sec, up to 50% of your maximum health, and redirects 70% of that amount to the enemy target as Nature damage over 6 sec.",
@@ -2240,6 +2268,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .2,
         versIncrease: 0,
         selected: false,
         description: "Turns your skin to stone, increasing your current and maximum health by 20%, and reducing damage taken by 20% for 15 sec.",
@@ -2254,6 +2283,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Breathe fire on targets in front of you, causing [23.75% of Attack Power] Fire damage. Targets affected by Keg Smash will also burn, taking [19.66% of Attack Power] Fire damage and dealing 5% reduced damage to you for 12 sec.",
@@ -2268,6 +2298,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "You shrug off attacks, delaying a portion of Physical damage based on your Agility, instead taking it over 10 sec. Affects magical attacks at 35% effectiveness.",
@@ -2282,13 +2313,13 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .2,
         versIncrease: 0,
         selected: false,
         description: "Turns your skin to stone for 15 sec, increasing your current and maximum health by 20%, increasing the effectiveness of Stagger by 10%, and reducing all damage you take by 20%.",
         image: "images/Fort_Brew.jpg"
     }
 ];
-
 var absorbs = [
     {
         class: "all",
@@ -2340,7 +2371,6 @@ var absorbs = [
         image: "images/Ignore_Pain.jpg"
     }
 ];
-
 var externals = [
     {
         name: "Ironbark",
@@ -2350,6 +2380,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "The target's skin becomes as tough as Ironwood, reducing all damage taken by 20% for 12 sec.",
@@ -2362,6 +2393,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Channels an Aegis of Light that protects you and all allies standing within 10 yards behind you for 6 sec, reducing all damage taken by 20%.",
@@ -2374,6 +2406,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Devotion Aura: all affected allies gain 20% damage reduction.",
@@ -2386,6 +2419,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "While you are above 75% health, 10% of all damage taken by allies within 10 yds is redirected to you and reduced by half.",
@@ -2398,6 +2432,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Damage dealt to allies within 10 yards is reduced by up to 10%, diminishing as more allies enter the aura.",
@@ -2410,6 +2445,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Blesses a party or raid member, reducing their damage taken by 30%, but you suffer 100% of damage prevented. Lasts 12 sec, or until transferred damage would cause you to fall below 20% health.",
@@ -2422,6 +2458,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Atonement reduces damage taken by 3%.",
@@ -2434,6 +2471,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Summons a holy barrier to protect all allies at the target location for 10 sec, reducing all damage taken by 25% and preventing damage from delaying spellcasting.",
@@ -2446,6 +2484,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Reduces all damage taken by a friendly target by 40% for 8 sec. Castable while stunned.",
@@ -2458,6 +2497,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Summons a totem at the target location for 6 sec, which reduces damage taken by all party and raid members within 10 yards by 10%. Every 1 sec the health of all affected players is redistributed, such that all players are at the same percentage of maximum health.",
@@ -2470,6 +2510,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Intercepting a friendly target now also causes 30% of their damage taken to transfer to you for 6 sec.",
@@ -2482,6 +2523,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Use: Infuses your body with resilient energy, increasing your Armor by 900 for 25 sec. (1 Min Cooldown)",
@@ -2494,6 +2536,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: 0,
         versIncrease: 70,
         selected: false,
         description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 70 Versatility for 1 hour.",
@@ -2506,6 +2549,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 22000,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Use: Increases your Stamina by 1100 for 25 sec. (1 Min Cooldown)",
@@ -2518,6 +2562,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 7140,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Use: Increases Stamina by 357 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
@@ -2530,6 +2575,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 3000,
+        healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
         description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 150 Stamina for 1 hour.",
@@ -2542,6 +2588,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .1,
         versIncrease: 0,
         selected: false,
         description: "Summons a totem at the target location for 30 sec. All allies within 20 yards of the totem gain 10% increased health. If an ally dies, the totem will be consumed to allow them to Reincarnate with 20% health and mana.",
@@ -2554,6 +2601,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .15,
         versIncrease: 0,
         selected: false,
         description: "Lets loose a rallying cry, granting all party or raid members within 40 yards 15% temporary and maximum health for 10 sec.",
@@ -2566,6 +2614,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .1,
         versIncrease: 0,
         selected: false,
         description: "Infuses the target with vitality, increasing their Stamina by 10% for 60 min.",
@@ -2578,6 +2627,7 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .07,
         versIncrease: 0,
         selected: false,
         description: "Use: Increases the target's Stamina by 7% for 30 min.",
@@ -2590,13 +2640,13 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
+        healthPercentIncrease: .1,
         versIncrease: 0,
         selected: false,
         description: "Infuses the target with vitality, increasing their Stamina by 10% for until cancelled.",
         image: "images/Infusion_Fortitude.jpg"
     }
 ];
-
 var versTrinkets = [
     {
         name: "Lustruous_Golden_Plumage",
@@ -2612,7 +2662,6 @@ var versTrinkets = [
         image: "images/Dread_Gladiators_Medallion.jpg"
     }
 ];
-
 $.ajax({
     type: "GET",
     url: "https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en"
@@ -2651,8 +2700,8 @@ function displaySpecs() {
     if (playerClass === "Demon Hunter") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Havoc" src="images/Havoc.png" alt="Havoc">
-            <img class="specImage" data-spec="Vengeance" src="images/Vengeance.png" alt="Vengeance">
+            <img class="specImage" data-spec="Havoc" src="images/Havoc.jpg" alt="Havoc">
+            <img class="specImage" data-spec="Vengeance" src="images/Vengeance.jpg" alt="Vengeance">
         </div>    
         `);
     } else if (playerClass === "Death Knight") {
@@ -2760,34 +2809,34 @@ $(document).on("click", "#changeClass", function (event) {
     event.preventDefault();
     $("#classInput").empty();
     $("#classInput").append(`
+        <div class="row">
+        <img class="classImage" data-class="Death Knight" src="images/deathKnight.svg"
+            alt="Death Knight">
+        <img class="classImage" data-class="Demon Hunter" src="images/demonHunter.svg"
+            alt="Demon Hunter">
+        <img class="classImage" data-class="Druid" src="images/druid.svg"
+            alt="Druid">
+        <img class="classImage" data-class="Hunter" src="images/hunter.svg"
+            alt="Hunter">
+    </div>
     <div class="row">
-    <img class="classImage" data-class="Death Knight" src="images/deathKnight.svg"
-        alt="Death Knight">
-    <img class="classImage" data-class="Demon Hunter" src="images/demonHunter.svg"
-        alt="Demon Hunter">
-    <img class="classImage" data-class="Druid" src="images/druid.svg"
-        alt="Druid">
-    <img class="classImage" data-class="Hunter" src="images/hunter.svg"
-        alt="Hunter">
-</div>
-<div class="row">
-    <img class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
-    <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
-    <img class="classImage" data-class="Paladin" src="images/paladin.svg"
-        alt="Paladin">
-    <img class="classImage" data-class="Priest" src="images/priest.svg"
-        alt="Priest">
-</div>
-<div class="row">
-    <img class="classImage" data-class="Rogue" src="images/rogue.svg"
-        alt="Rogue">
-    <img class="classImage" data-class="Shaman" src="images/shaman.svg"
-        alt="Shaman">
-    <img class="classImage" data-class="Warlock" src="images/warlock.svg"
-        alt="Warlock">
-    <img class="classImage" data-class="Warrior" src="images/warrior.svg"
-        alt="Warrior">
-</div>
+        <img class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
+        <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
+        <img class="classImage" data-class="Paladin" src="images/paladin.svg"
+            alt="Paladin">
+        <img class="classImage" data-class="Priest" src="images/priest.svg"
+            alt="Priest">
+    </div>
+    <div class="row">
+        <img class="classImage" data-class="Rogue" src="images/rogue.svg"
+            alt="Rogue">
+        <img class="classImage" data-class="Shaman" src="images/shaman.svg"
+            alt="Shaman">
+        <img class="classImage" data-class="Warlock" src="images/warlock.svg"
+            alt="Warlock">
+        <img class="classImage" data-class="Warrior" src="images/warrior.svg"
+            alt="Warrior">
+    </div>
     `);
 });
 
@@ -2798,127 +2847,121 @@ $(document).on("click", "#changeDungeon", function (event) {
     $(".slidecontainer").addClass("hide");
     $(".affix").addClass("hide");
     $("#dungeonInput").append(`
-    <div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Atal'Dazar">
-        <img class="dungeonImage" data-dungeon="Atal'Dazar" src="images/Atal'Dazar.jpeg" alt="Atal'Dazar">
-        <div class="overlay">
-            <div class="text">Atal'Dazar</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Atal'Dazar</div>
-        </div>
-    </div>
-    <div class="imgContainer col-md-6" data-dungeon="Freehold">
-        <img class="dungeonImage" data-dungeon="Freehold" src="images/Freehold.jpeg" alt="Freehold">
-        <div class="overlay">
-            <div class="text">Freehold</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Freehold</div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Kings'_Rest">
-        <img class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
-        <div class="overlay">
-            <div class="text">Kings' Rest</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Kings' Rest</div>
-        </div>
-    </div>
-    <div class="imgContainer col-md-6" data-dungeon="Shrine_of_the_Storm">
-        <img class="dungeonImage" data-dungeon="Shrine_of_the_Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
-        <div class="overlay">
-            <div class="text">Shrine of the Storm</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Shrine of the Storm</div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Siege_of_Boralus">
-        <img class="dungeonImage" data-dungeon="Siege_of_Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
-        <div class="overlay">
-            <div class="text">Siege of Boralus</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Siege of Boralus</div>
-        </div>
-    </div>
-    <div class="imgContainer col-md-6" data-dungeon="Temple_of_Sethraliss">
-        <img class="dungeonImage" data-dungeon="Temple_of_Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
-        <div class="overlay">
-            <div class="text">Temple of Sethraliss</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">Temple of Sethraliss</div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="The_Motherlode">
-        <img class="dungeonImage" data-dungeon="The_Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
-        <div class="overlay">
-            <div class="text">The Motherlode</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">The Motherlode</div>
-        </div>
-    </div>
-    <div class="imgContainer col-md-6" data-dungeon="The_Underrot">
-        <img class="dungeonImage" data-dungeon="The_Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
-        <div class="overlay">
-            <div class="text">The Underrot</div>
-        </div>
-        <div class="hide imgText">
-            <div class="text">The Underrot</div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="imgContainer col-md-6" data-dungeon="Tol_Dagor">
-        <img class="dungeonImage" data-dungeon="Tol_Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+        <div class="row">
+        <div class="imgContainer col-md-6" data-dungeon="Atal'Dazar">
+            <img class="dungeonImage" data-dungeon="Atal'Dazar" src="images/Atal'Dazar.jpeg" alt="Atal'Dazar">
             <div class="overlay">
-                <div class="text">Tol Dagor</div>
+                <div class="text">Atal'Dazar</div>
             </div>
             <div class="hide imgText">
-                <div class="text">Tol Dagor</div>
+                <div class="text">Atal'Dazar</div>
             </div>
-    </div>
-    <div class="imgContainer col-md-6" data-dungeon="Waycrest_Manor">
-        <img class="dungeonImage" data-dungeon="Waycrest_Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
-        <div class="overlay">
-            <div class="text">Waycrest Manor</div>
         </div>
-        <div class="hide imgText">
-            <div class="text">Waycrest Manor</div>
+        <div class="imgContainer col-md-6" data-dungeon="Freehold">
+            <img class="dungeonImage" data-dungeon="Freehold" src="images/Freehold.jpeg" alt="Freehold">
+            <div class="overlay">
+                <div class="text">Freehold</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Freehold</div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="imgContainer col-md-6" data-dungeon="Kings'_Rest">
+            <img class="dungeonImage" data-dungeon="Kings' Rest" src="images/Kings' Rest.jpeg" alt="Kings' Rest">
+            <div class="overlay">
+                <div class="text">Kings' Rest</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Kings' Rest</div>
+            </div>
+        </div>
+        <div class="imgContainer col-md-6" data-dungeon="Shrine_of_the_Storm">
+            <img class="dungeonImage" data-dungeon="Shrine_of_the_Storm" src="images/Shrine of the Storm.jpeg" alt="Shrine of the Storm">
+            <div class="overlay">
+                <div class="text">Shrine of the Storm</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Shrine of the Storm</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="imgContainer col-md-6" data-dungeon="Siege_of_Boralus">
+            <img class="dungeonImage" data-dungeon="Siege_of_Boralus" src="images/Siege of Boralus.jpeg" alt="Siege of Boralus">
+            <div class="overlay">
+                <div class="text">Siege of Boralus</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Siege of Boralus</div>
+            </div>
+        </div>
+        <div class="imgContainer col-md-6" data-dungeon="Temple_of_Sethraliss">
+            <img class="dungeonImage" data-dungeon="Temple_of_Sethraliss" src="images/Temple of Sethraliss.jpeg" alt="Temple of Sethraliss">
+            <div class="overlay">
+                <div class="text">Temple of Sethraliss</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Temple of Sethraliss</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="imgContainer col-md-6" data-dungeon="The_Motherlode">
+            <img class="dungeonImage" data-dungeon="The_Motherlode" src="images/The Motherlode.jpeg" alt="The Motherlode">
+            <div class="overlay">
+                <div class="text">The Motherlode</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">The Motherlode</div>
+            </div>
+        </div>
+        <div class="imgContainer col-md-6" data-dungeon="The_Underrot">
+            <img class="dungeonImage" data-dungeon="The_Underrot" src="images/The Underrot.jpeg" alt="The Underrot">
+            <div class="overlay">
+                <div class="text">The Underrot</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">The Underrot</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="imgContainer col-md-6" data-dungeon="Tol_Dagor">
+            <img class="dungeonImage" data-dungeon="Tol_Dagor" src="images/Tol Dagor.jpeg" alt="Tol Dagor">
+                <div class="overlay">
+                    <div class="text">Tol Dagor</div>
+                </div>
+                <div class="hide imgText">
+                    <div class="text">Tol Dagor</div>
+                </div>
+        </div>
+        <div class="imgContainer col-md-6" data-dungeon="Waycrest_Manor">
+            <img class="dungeonImage" data-dungeon="Waycrest_Manor" src="images/Waycrest Manor.jpeg" alt="Waycrest Manor">
+            <div class="overlay">
+                <div class="text">Waycrest Manor</div>
+            </div>
+            <div class="hide imgText">
+                <div class="text">Waycrest Manor</div>
+            </div>
+        </div>
+    </div>
     `);
 });
 
 $(document).on("click", "#changeSpec", function (event) {
     event.preventDefault();
     displaySpecs();
-    for (i = 0; i < personals.length; i++) {
-        if (personals[i].selected) {
-            personals[i].selected = false;
-        }
-    }
-    for (i = 0; i < absorbs.length; i++) {
-        if (absorbs[i].selected) {
-            absorbs[i].selected = false;
-        }
-    }
-    for (i = 0; i < externals.length; i++) {
-        if (externals[i].selected) {
-            externals[i].selected = false;
-        }
-    }
+    personals.forEach(personal => {
+        personal.selected = false;
+    });
+    absorbs.forEach(absorb => {
+        absorb.selected = false;
+    });
+    externals.forEach(external => {
+        external.selected = false;
+    });
     feint = false;
     elusiveness = false;
     playerMainStat = 0;
@@ -2948,20 +2991,20 @@ $(document).on("click", ".specImage", function (event) {
             </div>
         </div>    
         `);
-        for (i = 0; i < personals.length; i++) {
-            if (personals[i].class === playerClass && personals[i].specs.includes(playerSpec)) {
-                $(".personalCol").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${personals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${personals[i].description}" class="personalImage" data-name=${personals[i].name} src=${personals[i].image} alt=${personals[i].name}>`);
+        personals.forEach(personal => {
+            if (personal.class === playerClass && personal.specs.includes(playerSpec)) {
+                $(".personalCol").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${personal.name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${personal.description}" class="personalImage" data-name=${personal.name} src=${personal.image} alt=${personal.name}>`);
             }
-        }
+        });
         $("#classInput").append(`
         <button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#externals" aria-expanded="false" aria-controls="externals">
         Externals Show/Hide
         </button></br>
         <div class="collapse" id="externals">
         `);
-        for (i = 0; i < externals.length; i++) {
-            $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${externals[i].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${externals[i].description}"class="externalImage" data-name=${externals[i].name} src=${externals[i].image} alt=${externals[i].name}>`);
-        }
+        externals.forEach(external => {
+            $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${external.name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${external.description}"class="externalImage" data-name=${external.name} src=${external.image} alt=${external.name}>`);
+        });
         $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#absorbs" aria-expanded="false" aria-controls="absorbs">
         Absorbs Show/Hide
         </button></br>
@@ -3016,6 +3059,27 @@ $(document).on("click", ".specImage", function (event) {
             </div>
             `);
         $("#classInput").append(`</div>`);
+        $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#versCollapse" aria-expanded="false" aria-controls="versCollapse">
+        Vers Trinkets Show/Hide
+        </button></br>
+        <div class="collapse" id="versCollapse">`);
+        versTrinkets.forEach(trinket => {
+            $("#versCollapse").append(`
+            <div class="row absorbRow">
+                <div class="col-md-6">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${trinket.name.replace("_", " ").replace("_", " ")}</h6>${trinket.description}"class="absorbImage" data-name=${trinket.name} src=${trinket.image} alt=${trinket.name}>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group mb-3" style="margin-top: 9px">
+                        <input type="text" class="form-control" data-name=${trinket.name} placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary versOkay" data-name=${trinket.name} type="button">OK</button>
+                        </div>
+                    </div>
+                </div
+            </div>
+            `);
+        });
         $("#classInput").append(`
         <h2>Stats:</h2>
         <div class="row">
@@ -3121,30 +3185,19 @@ $(document).on("click", ".specImage", function (event) {
             </div>
         </div>
             `);
-        }
-        $("#classInput").append(`<h2>Versatility Trinkets:</h2>`);
-        for (i = 0; i < versTrinkets.length; i++) {
-            $("#classInput").append(`
-            <div class="row absorbRow">
-                <div class="col-md-6">
-                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${versTrinkets[i].name.replace("_", " ").replace("_", " ")}</h6>${versTrinkets[i].description}"class="absorbImage" data-name=${versTrinkets[i].name} src=${versTrinkets[i].image} alt=${versTrinkets[i].name}>
-                </div>
-                <div class="col-md-5">
-                    <div class="input-group mb-3" style="margin-top: 9px">
-                        <input type="text" class="form-control" data-name=${versTrinkets[i].name} placeholder="Amount" aria-label="Vers Amount" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary versOkay" data-name=${versTrinkets[i].name} type="button">OK</button>
-                        </div>
-                    </div>
-                </div
-            </div>
-            `);
+            personals.forEach(personal => {
+                if (personal.name === "Stagger") {
+                    personal.selected = true;
+                    $(`[data-name="Stagger"`).addClass("selected");
+                }
+            });
+            calcDamage();
         }
         if (playerSpec === "Havoc") {
             personals.forEach(personal => {
                 if (personal.name === "Demonic_Wards" && personal.specs.includes("Havoc")) {
                     personal.selected = true;
-                    $(`[data-name=Demonic_Wards`).addClass("selected");
+                    $(`[data-name="Demonic_Wards"`).addClass("selected");
                 }
             });
             calcDamage();
@@ -3153,7 +3206,7 @@ $(document).on("click", ".specImage", function (event) {
             personals.forEach(personal => {
                 if (personal.name === "Demonic_Wards" && personal.specs.includes("Vengeance")) {
                     personal.selected = true;
-                    $(`[data-name=Demonic_Wards`).addClass("selected");
+                    $(`[data-name="Demonic_Wards"`).addClass("selected");
                 }
             });
             calcDamage();
@@ -3168,6 +3221,14 @@ $(document).on("click", ".imgContainer", function (event) {
     dungeon = $(this).attr("data-dungeon");
     $(".dungeonImage").removeClass("selected");
     $(this).addClass("selected");
+    if (dungeon !== "Tol_Dagor") {
+        externals.forEach(external => {
+            if (external.name === "Infusion:_Fortitude" && external.selected) {
+                external.selected = false;
+                $(`[data-name="Infusion:_Fortitude"`).removeClass("selected");
+            }
+        });
+    }
     calcDamage();
 });
 
@@ -3209,8 +3270,10 @@ $(document).on("click", ".stamOkay", function (event) {
     if (stamAmount === "") {
         stamAmount = 0;
     }
-    playerStamina = stamAmount;
-    calcDamage();
+    if (Number.isInteger(stamAmount)) {
+        playerStamina = stamAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", ".versatilityOkay", function (event) {
@@ -3219,8 +3282,10 @@ $(document).on("click", ".versatilityOkay", function (event) {
     if (versAmount === "") {
         versAmount = 0;
     }
-    playerVers = versAmount;
-    calcDamage();
+    if (Number.isInteger(versAmount)) {
+        playerVers = versAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", "input", function (event) {
@@ -3245,34 +3310,34 @@ $(document).keypress(function (keyPressed) {
         } else if (recentInput === "mainStat") {
             playerMainStat = amount;
         } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
-            for (i = 0; i < versTrinkets.length; i++) {
-                if (versTrinkets[i].name === trinketName) {
-                    versTrinkets[i].amount = amount;
-                    if (versTrinkets[i].selected && amount === 0) {
-                        versTrinkets[i].selected = false;
+            versTrinkets.forEach(trinket => {
+                if (trinket.name === trinketName) {
+                    trinket.amount = amount;
+                    if (trinket.selected && amount === 0) {
+                        trinket.selected = false;
                         $(`img[data-name=${recentInput}]`).removeClass("selected");
                     } else if (amount > 0) {
-                        versTrinkets[i].selected = true;
+                        trinket.selected = true;
                         $(`img[data-name=${recentInput}]`).addClass("selected");
                     }
                 }
-            }
+            });
             if (amount === 0) {
                 $(`img[data-name=${recentInput}]`).removeClass("selected");
             }
         } else if (recentInput === "Miniaturized_Plasma_Shield" || recentInput === "Resounding_Protection" || recentInput === "Power_Word-_Shield" || recentInput === "Luminous_Barrier" || recentInput === "Ignore_Pain" || recentInput === "otherAbsorb") {
-            for (i = 0; i < absorbs.length; i++) {
-                if (absorbs[i].name === recentInput) {
-                    absorbs[i].amount = amount;
-                    if (absorbs[i].selected && amount === 0) {
+            absorbs.forEach(absorb => {
+                if (absorb.name === recentInput) {
+                    absorb.amount = amount;
+                    if (absorb.selected && amount === 0) {
                         $(`img[data-name=${recentInput}]`).removeClass("selected");
-                        absorbs[i].selected = false;
+                        absorb.selected = false;
                     } else if (amount > 0) {
-                        absorbs[i].selected = true;
+                        absorb.selected = true;
                         $(`img[data-name=${recentInput}]`).addClass("selected");
                     }
                 }
-            }
+            });
             if (amount === 0) {
                 $(`img[data-name=${recentInput}]`).removeClass("selected");
             }
@@ -3287,8 +3352,10 @@ $(document).on("click", ".avoidanceOkay", function (event) {
     if (avoidanceAmount === "") {
         avoidanceAmount = 0;
     }
-    avoidance = avoidanceAmount;
-    calcDamage();
+    if (Number.isInteger(avoidanceAmount)) {
+        avoidance = avoidanceAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", ".armorOkay", function (event) {
@@ -3297,8 +3364,10 @@ $(document).on("click", ".armorOkay", function (event) {
     if (armorAmount === "") {
         armorAmount = 0;
     }
-    playerArmor = armorAmount;
-    calcDamage();
+    if (Number.isInteger(armorAmount)) {
+        playerArmor = armorAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", ".mainStatOkay", function (event) {
@@ -3307,8 +3376,10 @@ $(document).on("click", ".mainStatOkay", function (event) {
     if (mainStatAmount === "") {
         mainStatAmount = 0;
     }
-    playerMainStat = mainStatAmount;
-    calcDamage();
+    if (Number.isInteger(mainStatAmount)) {
+        playerMainStat = mainStatAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", ".masteryOkay", function (event) {
@@ -3317,8 +3388,10 @@ $(document).on("click", ".masteryOkay", function (event) {
     if (masteryAmount === "") {
         masteryAmount = 0;
     }
-    playerMastery = masteryAmount;
-    calcDamage();
+    if (Number.isInteger(masteryAmount)) {
+        playerMastery = masteryAmount;
+        calcDamage();
+    }
 });
 
 $(document).on("click", ".staggerOkay", function (event) {
@@ -3326,14 +3399,18 @@ $(document).on("click", ".staggerOkay", function (event) {
     var staggerAmount = Number($(`input[type=text][data-name=${$(this).attr("data-name")}]`).val());
     if (staggerAmount === "") {
         staggerAmount = 0;
+    } else if (staggerAmount > 100) {
+        staggerAmount = 100;
     }
-    for (i = 0; i < personals.length; i++) {
-        if (personals[i].name === "Stagger") {
-            personals[i].physicalDR = staggerAmount / 100;
-            personals[i].physicalDR = staggerAmount / 100 / 35;
-        }
+    if (Number.isInteger(staggerAmount)) {
+        personals.forEach(personal => {
+            if (personal.name === "Stagger") {
+                personal.physicalDR = staggerAmount / 100;
+                personal.magicDR = (staggerAmount / 100) * .35;
+            }
+        });
+        calcDamage();
     }
-    calcDamage();
 });
 
 $(document).on("click", ".shieldOkay", function (event) {
@@ -3343,18 +3420,18 @@ $(document).on("click", ".shieldOkay", function (event) {
     if (shieldAmount === "") {
         shieldAmount = 0;
     }
-    for (i = 0; i < absorbs.length; i++) {
-        if (absorbs[i].name === shieldName) {
-            absorbs[i].amount = shieldAmount;
-            if (absorbs[i].selected && shieldAmount === 0) {
+    absorbs.forEach(absorb => {
+        if (absorb.name === shieldName) {
+            absorb.amount = shieldAmount;
+            if (absorb.selected && shieldAmount === 0) {
                 $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
-                absorbs[i].selected = false;
+                absorb.selected = false;
             } else if (shieldAmount > 0) {
-                absorbs[i].selected = true;
+                absorb.selected = true;
                 $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
             }
         }
-    }
+    });
     if (shieldAmount === 0) {
         $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
     }
@@ -3368,18 +3445,18 @@ $(document).on("click", ".versOkay", function (event) {
     if (versAmount === "") {
         versAmount = 0;
     }
-    for (i = 0; i < versTrinkets.length; i++) {
-        if (versTrinkets[i].name === trinketName) {
-            versTrinkets[i].amount = versAmount;
-            if (versTrinkets[i].selected && versAmount === 0) {
-                versTrinkets[i].selected = false;
+    versTrinkets.forEach(trinket => {
+        if (trinket.name === trinketName) {
+            trinket.amount = versAmount;
+            if (trinket.selected && versAmount === 0) {
+                trinket.selected = false;
                 $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
             } else if (versAmount > 0) {
-                versTrinkets[i].selected = true;
+                trinket.selected = true;
                 $(`img[data-name=${$(this).attr("data-name")}]`).addClass("selected");
             }
         }
-    }
+    });
     if (versAmount === 0) {
         $(`img[data-name=${$(this).attr("data-name")}]`).removeClass("selected");
     }
@@ -3389,7 +3466,7 @@ $(document).on("click", ".versOkay", function (event) {
 $(document).on("click", ".personalImage", function (event) {
     event.preventDefault();
     var personalName = $(this).attr("data-name");
-    if (personalName !== "Demonic_Wards") {
+    if (personalName !== "Demonic_Wards" && personalName !== "Stagger") {
         if (personalName === "Feint" && !feint) {
             feint = true;
         } else if (personalName === "Feint" && feint) {
@@ -3401,48 +3478,48 @@ $(document).on("click", ".personalImage", function (event) {
             elusiveness = false;
         }
         if (personalName === "Desperate_Instincts") {
-            for (i = 0; i < personals.length; i++) {
-                if (personals[i].name === "Blur" && personals[i].selected) {
-                    personals[i].selected = false;
+            personals.forEach(personal => {
+                if (personal.name === "Blur" && personal.selected) {
+                    personal.selected = false;
                     $(`img[data-name=Blur]`).removeClass("selected");
                 }
-            }
+            });
         }
         if (personalName === "Blur") {
-            for (i = 0; i < personals.length; i++) {
-                if (personals[i].name === "Desperate_Instincts" && personals[i].selected) {
-                    personals[i].selected = false;
+            personals.forEach(personal => {
+                if (personal.name === "Desperate_Instincts" && personal.selected) {
+                    personal.selected = false;
                     $(`img[data-name=Desperate_Instincts]`).removeClass("selected");
                 }
-            }
+            });
         }
         if (personalName === "Bear_Form") {
-            for (i = 0; i < personals.length; i++) {
-                if (personals[i].name === "Moonkin_Form" && personals[i].selected) {
-                    personals[i].selected = false;
+            personals.forEach(personal => {
+                if (personal.name === "Moonkin_Form" && personal.selected) {
+                    personal.selected = false;
                     $(`img[data-name=Moonkin_Form]`).removeClass("selected");
                 }
-            }
+            });
         }
         if (personalName === "Moonkin_Form") {
-            for (i = 0; i < personals.length; i++) {
-                if (personals[i].name === "Bear_Form" && personals[i].selected) {
-                    personals[i].selected = false;
+            personals.forEach(personal => {
+                if (personal.name === "Bear_Form" && personal.selected) {
+                    personal.selected = false;
                     $(`img[data-name=Bear_Form]`).removeClass("selected");
                 }
-            }
+            });
         }
-        for (i = 0; i < personals.length; i++) {
-            if (personals[i].name === personalName && personals[i].class === playerClass && personals[i].specs.includes(playerSpec)) {
-                if (personals[i].selected) {
-                    personals[i].selected = false;
+        personals.forEach(personal => {
+            if (personal.name === personalName && personal.class === playerClass && personal.specs.includes(playerSpec)) {
+                if (personal.selected) {
+                    personal.selected = false;
                     $(this).removeClass("selected");
                 } else {
-                    personals[i].selected = true;
+                    personal.selected = true;
                     $(this).addClass("selected");
                 }
             }
-        }
+        });
         calcDamage();
     }
 });
@@ -3451,95 +3528,95 @@ $(document).on("click", ".externalImage", function (event) {
     event.preventDefault();
     var externalName = $(this).attr("data-name");
     if (externalName === "War_Scroll_of_Fortitude") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Power_Word:_Fortitude" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Power_Word:_Fortitude" && external.selected) {
+                external.selected = false;
                 $(`img[data-name="Power_Word:_Fortitude"]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Power_Word:_Fortitude") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "War_Scroll_of_Fortitude" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "War_Scroll_of_Fortitude" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=War_Scroll_of_Fortitude]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Spiced_Snapper") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Seasoned_Steak_and_Potatoes" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Seasoned_Steak_and_Potatoes" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=Seasoned_Steak_and_Potatoes]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Seasoned_Steak_and_Potatoes") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Spiced_Snapper" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Spiced_Snapper" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=Spiced_Snapper]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Steelskin_Potion") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Battle_Potion_of_Stamina" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Battle_Potion_of_Stamina" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=Battle_Potion_of_Stamina]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Battle_Potion_of_Stamina") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Steelskin_Potion" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Steelskin_Potion" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=Steelskin_Potion]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Devotion_Aura") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === "Aura_of_Sacrifice" && externals[i].selected) {
-                externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === "Aura_of_Sacrifice" && external.selected) {
+                external.selected = false;
                 $(`img[data-name=Aura_of_Sacrifice]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName === "Aura_of_Sacrifice") {
-        for (i = 0; i < externals.length; i++) {
+        externals.forEach(external => {
             if (externals[i].name === "Devotion_Aura" && externals[i].selected) {
                 externals[i].selected = false;
                 $(`img[data-name=Devotion_Aura]`).removeClass("selected");
             }
-        }
+        });
     }
     if (externalName !== "Infusion:_Fortitude") {
         console.log(externalName)
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === externalName) {
-                if (externals[i].selected) {
-                    externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === externalName) {
+                if (external.selected) {
+                    external.selected = false;
                     $(this).removeClass("selected");
                 } else {
-                    externals[i].selected = true;
+                    external.selected = true;
                     $(this).addClass("selected");
                 }
             }
-        }
+        });
         calcDamage();
     } else if (externalName === "Infusion:_Fortitude" && dungeon === "Tol_Dagor") {
-        for (i = 0; i < externals.length; i++) {
-            if (externals[i].name === externalName) {
-                if (externals[i].selected) {
-                    externals[i].selected = false;
+        externals.forEach(external => {
+            if (external.name === externalName) {
+                if (external.selected) {
+                    external.selected = false;
                     $(this).removeClass("selected");
                 } else {
-                    externals[i].selected = true;
+                    external.selected = true;
                     $(this).addClass("selected");
                 }
             }
-        }
+        });
         calcDamage();
     }
 });
