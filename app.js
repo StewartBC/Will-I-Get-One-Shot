@@ -1691,7 +1691,7 @@ var personals = [
         class: "Mage",
         specs: ["Frost"],
         name: "Ice_Barrier",
-        magicDR: .15,
+        magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
@@ -1700,7 +1700,7 @@ var personals = [
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage and reducing magic damage taken by 15% for 60 sec.",
+        description: "Shields you with an arcane force, absorbing [ 20% of Total Health ] damage.",
         image: "images/Ice_Barrier.jpg"
     }, {
         class: "Mage",
