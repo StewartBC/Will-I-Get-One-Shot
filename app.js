@@ -15,7 +15,8 @@ var playerHealth = 0;
 var playerAbsorb = 0;
 var level = 2;
 var recentInput = "";
-var scaling = [1, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59, 1.71, 1.85, 2, 2.16, 2.33, 2.52, 2.72, 2.94, 3.17, 3.43, 3.70, 4, 4.32, 4.66, 5.04, 5.44, 5.87, 6.34, 6.85];
+// var scaling = [1, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59, 1.71, 1.85, 2, 2.16, 2.33, 2.52, 2.72, 2.94, 3.17, 3.43, 3.70, 4, 4.32, 4.66, 5.04, 5.44, 5.87, 6.34, 6.85];
+var scaling = [1, 1.2, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36, 2.59, 2.85, 3.14, 3.45, 3.8, 4.18, 4.59, 5.05, 5.56, 6.12, 6.73, 7.4, 8.14, 8.95];
 var slider = document.getElementById("myRange");
 var output = document.getElementById("keyLevel");
 slider.oninput = function () {
@@ -2176,6 +2177,21 @@ var personals = [
         description: "Your Soul Leech absorption now passively recharges at a rate of 0.5% of maximum health every 1 sec, and may now absorb up to 15% of maximum health.",
         image: "images/Demon_Skin.jpg"
     }, {
+        class: "Warlock",
+        specs: ["Destruction"],
+        name: "Demon_Armor",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 1.5,
+        absorb: .0,
+        healthIncrease: 0,
+        healthPercentIncrease: .1,
+        versIncrease: 0,
+        selected: false,
+        description: "Protects the caster, increasing maximum health by 10% and increases armor by 150%.",
+        image: "images/Demon_Armor.jpg"
+    }, {
         class: "Warrior",
         specs: ["Protection"],
         name: "Spell_Reflection",
@@ -3130,7 +3146,7 @@ $(document).on("click", ".specImage", function (event) {
         <div class="collapse" id="externals">
         `);
         externals.forEach(external => {
-            $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${external.name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${external.description}"class="externalImage" data-name=${external.name} src=${external.image} alt=${external.name}>`);
+            $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${external.name.replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${external.description}"class="externalImage" data-name=${external.name} src=${external.image} alt=${external.name}>`);
         });
         $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#absorbs" aria-expanded="false" aria-controls="absorbs">
         Absorbs Show/Hide
