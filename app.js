@@ -269,6 +269,42 @@ var dungeons = [
                 description: "Creates a pool of noxious fumes at random locations, that inflict 30,146 Nature damage every 2 sec to players standing within the pool.",
                 image: "images/Toxic_Pool.jpg"
             }, {
+                name: "Corrupted_Gold",
+                baseDamage: 60118,
+                damage: 60118,
+                type: "fire",
+                bleed: false,
+                aoe: false,
+                description: "The player is splashed with corrupted gold, burning them for 60,118 Fire damage and lowering their damage dealt by 30% for 10 sec.",
+                image: "images/Corrupted_Gold.jpg"
+            }, {
+                name: "Molten_Gold",
+                baseDamage: 27053,
+                damage: 27053,
+                type: "fire",
+                bleed: false,
+                aoe: false,
+                description: "Priestess Alun'za agitates a pool of molten gold, splattering a player at random. The victim burns for 4058 Fire damage every 3 sec for 30 sec.",
+                image: "images/Molten_Gold.jpg"
+            }, {
+                name: "Tainted_Blood",
+                baseDamage: 10521,
+                damage: 10521,
+                type: "shadow",
+                bleed: false,
+                aoe: false,
+                description: "The victim's blood is tainted, inflicting 2433 Shadow damage every 3 sec.",
+                image: "images/Tainted_Blood.jpg"
+            }, {
+                name: "Toxic_Leap",
+                baseDamage: 43210,
+                damage: 43210,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Vol'kaal leaps towards a random player inflicting 43210 Nature to players within 8 yards of the impact, knocking them back.",
+                image: "images/Toxic_Leap.jpg"
+            }, {
                 name: "Echoes_of_Shadra",
                 baseDamage: 60123,
                 damage: 60123,
@@ -350,7 +386,7 @@ var dungeons = [
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 45,756 Physical damage and additional 4,023 Physical damage every 2 sec for 20 sec. This effect stacks.",
+                description: "Inflicts 45,756 Physical damage and additional 3,098 Physical damage every 2 sec for 20 sec. This effect stacks.",
                 image: "images/Rending_Maul.jpg"
             }
         ]
@@ -493,8 +529,8 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Spit_Gold",
-                baseDamage: 36071,
-                damage: 36071,
+                baseDamage: 27053,
+                damage: 27053,
                 type: "fire",
                 bleed: false,
                 aoe: false,
@@ -1163,8 +1199,8 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Blood_Bolt",
-                baseDamage: 30059,
-                damage: 30059,
+                baseDamage: 37574,
+                damage: 37574,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
