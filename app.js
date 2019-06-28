@@ -5,6 +5,7 @@ var feint = false;
 var elusiveness = false;
 var fortified = false;
 var tyrannical = false;
+var raging = false;
 var playerMainStat = 0;
 var playerArmor = 0;
 var avoidance = 0;
@@ -107,6 +108,7 @@ function displayDungeons() {
         $(".slidecontainer").removeClass("hide");
         $("#tyrannical").removeClass("hide");
         $("#fortified").removeClass("hide");
+        $("#raging").removeClass("hide");
         $("#dungeonInput").append("<button type=\"button\" id=\"changeDungeon\" class=\"btn btn-primary\">Choose Another Dungeon</button>");
         $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
     }
@@ -224,6 +226,9 @@ function calcDamage() {
             damage = damage * scaling[level - 2];
             if (fortified) {
                 damage = damage * 1.15;
+            }
+            if (raging) {
+                damage = damage * 2;
             }
             damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
             if (ability.type === "physical") {
@@ -1944,6 +1949,21 @@ var personals = [
         image: "images/Eye_for_an_Eye.jpg"
     }, {
         class: "Paladin",
+        specs: ["Retribution"],
+        name: "Shield_of_Vengeance",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: .3,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Creates a barrier of holy light that absorbs (30 / 100 * Total health) damage for 15 sec.",
+        image: "images/Shield_of_Vengeance.jpg"
+    }, {
+        class: "Paladin",
         specs: ["Protection"],
         name: "Guardian_of_Ancient_Kings",
         magicDR: .5,
@@ -2870,6 +2890,9 @@ $.ajax({
                 $("#fortified").addClass("selected");
                 $("#tyrannical").removeClass("selected");
             }
+        } else if (affix.name === "Raging") {
+            raging = true;
+            $("#raging").addClass("selected");
         }
     });
 });
@@ -3151,6 +3174,7 @@ $(document).on("click", "#changeSpec", function (event) {
     playerStamina = 0;
     playerHealth = 0;
     playerAbsorb = 0;
+    calcDamage();
 });
 
 $(document).on("click", ".specImage", function (event) {
@@ -3439,6 +3463,18 @@ $(document).on("click", "#fortified", function (event) {
         tyrannical = false;
         $("#fortified").addClass("selected");
         $("#tyrannical").removeClass("selected");
+    }
+    calcDamage();
+});
+
+$(document).on("click", "#raging", function(event) {
+    event.preventDefault();
+    if (raging) {
+        $("#raging").removeClass("selected");
+        raging = false;
+    } else {
+        $("#raging").addClass("selected");
+        raging = true;
     }
     calcDamage();
 });
