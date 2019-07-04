@@ -2921,6 +2921,7 @@ $(document).on("mouseleave", ".personalImage", function() {
      $(this).removeClass("hovering");
   });
 
+
 function displaySpecs() {
     $("#classInput").empty();
     if (playerClass === "Demon Hunter") {
