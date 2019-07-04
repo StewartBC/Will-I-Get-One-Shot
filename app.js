@@ -2897,6 +2897,30 @@ $.ajax({
     });
 });
 
+$(document).on("mouseenter", ".personalImage", function() {
+   $(this).addClass("hovering");
+});
+
+$(document).on("mouseleave", ".personalImage", function() {
+    $(this).removeClass("hovering");
+ });
+
+ $(document).on("mouseenter", ".externalImage", function() {
+    $(this).addClass("hovering");
+ });
+ 
+ $(document).on("mouseleave", ".externalImage", function() {
+     $(this).removeClass("hovering");
+  });
+
+  $(document).on("mouseenter", ".absorbImage", function() {
+    $(this).addClass("hovering");
+ });
+ 
+ $(document).on("mouseleave", ".absorbImage", function() {
+     $(this).removeClass("hovering");
+  });
+
 function displaySpecs() {
     $("#classInput").empty();
     if (playerClass === "Demon Hunter") {
