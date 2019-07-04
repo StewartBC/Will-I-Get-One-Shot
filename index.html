@@ -10,6 +10,11 @@
         crossorigin="anonymous">
     <title>Just Heal Us</title>
     <style>
+        @font-face {
+            font-family: logo;
+            src: url(font.ttf);
+        }
+
         #wrap {
             color: white
         }
@@ -107,7 +112,7 @@
         }
 
         .classImage:hover,
-        .specImage:hover{
+        .specImage:hover {
             opacity: 1;
         }
 
@@ -231,9 +236,13 @@
             width: 200px !important;
         }
 
-        a, a:hover {
+        a,
+        a:hover {
             color: #FFF;
             text-decoration: none;
+            font-family: logo;
+            font-size: 50px;
+            color: #87C5CA;
         }
     </style>
 
@@ -246,7 +255,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid mainNav">
                     <div class="navbar-header">
-                        <h1 class="navbar-brand"><a href="">Just Heal Us</a></h1>
+                        <a href="">Just Heal Us</a>
                     </div>
                     <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Tyrannical:</h6>Boss enemies have 40% more health and inflict up to 15% increased damage."
                         class="affix hide" id="tyrannical" src="images/Tyrannical.jpg">
