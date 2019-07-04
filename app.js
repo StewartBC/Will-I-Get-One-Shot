@@ -2897,29 +2897,37 @@ $.ajax({
     });
 });
 
-$(document).on("mouseenter", ".personalImage", function() {
-   $(this).addClass("hovering");
+$(document).on("mouseenter", ".personalImage", function () {
+    $(this).addClass("hovering");
 });
 
-$(document).on("mouseleave", ".personalImage", function() {
+$(document).on("mouseleave", ".personalImage", function () {
     $(this).removeClass("hovering");
- });
+});
 
- $(document).on("mouseenter", ".externalImage", function() {
+$(document).on("mouseenter", ".externalImage", function () {
     $(this).addClass("hovering");
- });
- 
- $(document).on("mouseleave", ".externalImage", function() {
-     $(this).removeClass("hovering");
-  });
+});
 
-  $(document).on("mouseenter", ".absorbImage", function() {
+$(document).on("mouseleave", ".externalImage", function () {
+    $(this).removeClass("hovering");
+});
+
+$(document).on("mouseenter", ".absorbImage", function () {
     $(this).addClass("hovering");
- });
- 
- $(document).on("mouseleave", ".absorbImage", function() {
-     $(this).removeClass("hovering");
-  });
+});
+
+$(document).on("mouseleave", ".absorbImage", function () {
+    $(this).removeClass("hovering");
+});
+
+$(document).on("mouseenter", ".imgContainer", function () {
+    $(this).children("img").addClass("hovering")
+});
+
+$(document).on("mouseleave", ".imgContainer", function () {
+    $(this).children("img").removeClass("hovering")
+});
 
 
 function displaySpecs() {
@@ -3492,7 +3500,7 @@ $(document).on("click", "#fortified", function (event) {
     calcDamage();
 });
 
-$(document).on("click", "#raging", function(event) {
+$(document).on("click", "#raging", function (event) {
     event.preventDefault();
     if (raging) {
         $("#raging").removeClass("selected");
