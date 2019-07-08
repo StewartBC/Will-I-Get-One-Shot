@@ -761,8 +761,8 @@ var dungeons = [
                 image: "images/Gale_Shear.jpg"
             }, {
                 name: "Gale_Winds",
-                baseDamage: 10675,
-                damage: 10675,
+                baseDamage: 7622,
+                damage: 7622,
                 type: "nature",
                 bleed: false,
                 aoe: true,
