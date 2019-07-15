@@ -120,7 +120,7 @@ function displayDungeons() {
 }
 function calcDamage() {
     var health = playerStamina * 20;
-    var vers = 0;
+    var vers = playerVers;
     var magic = [];
     var physical = [];
     var armorPercent = [];
