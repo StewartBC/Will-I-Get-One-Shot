@@ -2719,20 +2719,20 @@ var externals = [
         description: "Intercepting a friendly target now also causes 30% of their damage taken to transfer to you for 6 sec.",
         image: "images/Safeguard.jpg"
     }, {
-        name: "Steelskin_Potion",
+        name: "Superior_Steelskin_Potion",
         magicDR: 0,
         physicalDR: 0,
-        armorIncrease: 900,
+        armorIncrease: 1215,
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Infuses your body with resilient energy, increasing your Armor by 900 for 25 sec. (1 Min Cooldown)",
-        image: "images/Steelskin_Potion.jpg"
+        description: "Use: Infuses your body with resilient energy, increasing your Armor by 1215 for 25 sec. (1 Min Cooldown)",
+        image: "images/Superior_Steelskin_Potion.jpg"
     }, {
-        name: "Spiced_Snapper",
+        name: "Bil_Tong",
         magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
@@ -2740,49 +2740,49 @@ var externals = [
         absorb: 0,
         healthIncrease: 0,
         healthPercentIncrease: 0,
-        versIncrease: 70,
+        versIncrease: 93,
         selected: false,
-        description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 70 Versatility for 1 hour.",
-        image: "images/Spiced_Snapper.jpg"
+        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 93 Versatility for 1 hour.",
+        image: "images/Biltong.jpg"
     }, {
-        name: "Battle_Potion_of_Stamina",
+        name: "Superior_Battle_Potion_of_Stamina",
         magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 22000,
+        healthIncrease: 29700,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Increases your Stamina by 1100 for 25 sec. (1 Min Cooldown)",
-        image: "images/Battle_Potion_of_Stamina.jpg"
+        description: "Use: Increases your Stamina by 1485 for 25 sec. (1 Min Cooldown)",
+        image: "images/Superior_Battle_Potion_of_Stamina.jpg"
     }, {
-        name: "Flask_of_the_Vast_Horizon",
+        name: "Greater_Flask_of_the_Vast_Horizon",
         magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 7140,
+        healthIncrease: 10800,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Increases Stamina by 357 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
-        image: "images/Flask_of_the_Vast_Horizon.jpg"
+        description: "Use: Increases Stamina by 540 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
+        image: "images/Greater_Flask_of_the_Vast_Horizon.jpg"
     }, {
-        name: "Seasoned_Steak_and_Potatoes",
+        name: "Fragrant_Kakavia",
         magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 3000,
+        healthIncrease: 3996,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Restores 166257 health and 83129 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 150 Stamina for 1 hour.",
-        image: "images/Seasoned_Steak_and_Potatoes.jpg"
+        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 198 Stamina for 1 hour.",
+        image: "images/Fragrant_Kakavia.jpg"
     }, {
         name: "Ancestral_Protection_Totem",
         magicDR: 0,
@@ -3801,35 +3801,35 @@ $(document).on("click", ".externalImage", function (event) {
             }
         });
     }
-    if (externalName === "Spiced_Snapper") {
+    if (externalName === "Bil_Tong") {
         externals.forEach(external => {
-            if (external.name === "Seasoned_Steak_and_Potatoes" && external.selected) {
+            if (external.name === "Fragrant_Kakavia" && external.selected) {
                 external.selected = false;
-                $(`img[data-name=Seasoned_Steak_and_Potatoes]`).removeClass("selected");
+                $(`img[data-name=Fragrant_Kakavia]`).removeClass("selected");
             }
         });
     }
-    if (externalName === "Seasoned_Steak_and_Potatoes") {
+    if (externalName === "Fragrant_Kakavia") {
         externals.forEach(external => {
-            if (external.name === "Spiced_Snapper" && external.selected) {
+            if (external.name === "Bil_Tong" && external.selected) {
                 external.selected = false;
-                $(`img[data-name=Spiced_Snapper]`).removeClass("selected");
+                $(`img[data-name=Bil_Tong]`).removeClass("selected");
             }
         });
     }
-    if (externalName === "Steelskin_Potion") {
+    if (externalName === "Superior_Steelskin_Potion") {
         externals.forEach(external => {
-            if (external.name === "Battle_Potion_of_Stamina" && external.selected) {
+            if (external.name === "Superior_Battle_Potion_of_Stamina" && external.selected) {
                 external.selected = false;
-                $(`img[data-name=Battle_Potion_of_Stamina]`).removeClass("selected");
+                $(`img[data-name=Superior_Battle_Potion_of_Stamina]`).removeClass("selected");
             }
         });
     }
-    if (externalName === "Battle_Potion_of_Stamina") {
+    if (externalName === "Superior_Battle_Potion_of_Stamina") {
         externals.forEach(external => {
-            if (external.name === "Steelskin_Potion" && external.selected) {
+            if (external.name === "Superior_Steelskin_Potion" && external.selected) {
                 external.selected = false;
-                $(`img[data-name=Steelskin_Potion]`).removeClass("selected");
+                $(`img[data-name=Superior_Steelskin_Potion]`).removeClass("selected");
             }
         });
     }
