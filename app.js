@@ -33,6 +33,7 @@ slider.oninput = function () {
     });
     calcDamage();
 }
+$('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 
 function displayDungeons() {
     if (dungeon !== "") {
@@ -48,10 +49,21 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].bossAbilities[k].damage}</p>
+                        `);
+                        if (dungeons[i].bossAbilities[k].damage > playerHealth + playerAbsorb - 1) {
+                            $("#dungeonInput").append(`
+                                <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage}</p>
+                                </div>
+                                </div>
+                            `);
+                        } else {
+                            $("#dungeonInput").append(`
+                            <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage}</p>
                         </div>
                     </div>
                     `);
+                        }
+
                     } else {
                         $("#dungeonInput").append(`
                     <div class="row">
@@ -259,6 +271,8 @@ function calcDamage() {
             ability.damage = Math.round(damage);
         });
     });
+    playerAbsorb = absorbAmount;
+    playerAbsorb = health;
     $(".totalHealth").html(`<span style="font-size: 23px">Total Health: ${Math.round(health)}</span>`);
     $(".totalAbsorb").html(`<span style="font-size: 23px">Total Absorb: ${Math.round(absorbAmount)}</span>`);
     $(".effectiveHealth").html(`<span style="font-size: 23px">Effective Health: ${Math.round(health + absorbAmount)}</span>`);
@@ -2938,102 +2952,139 @@ function displaySpecs() {
     $("#classInput").empty();
     if (playerClass === "Demon Hunter") {
         $("#classInput").append(`
-        <div class="row">
-            <img class="specImage" data-spec="Havoc" src="images/Havoc.jpg" alt="Havoc">
-            <img class="specImage" data-spec="Vengeance" src="images/Vengeance.jpg" alt="Vengeance">
+        <div class="row">                            
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Havoc</h6>" class="specImage" data-spec="Havoc"
+                src="images/Havoc.jpg" alt="Havoc">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Vengeance</h6>" class="specImage" data-spec="Vengeance"
+                src="images/Vengeance.jpg" alt="Vengeance">
         </div>    
         `);
     } else if (playerClass === "Death Knight") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Blood" src="images/Blood.png" alt="Blood">
-            <img class="specImage" data-spec="Frost" src="images/Frost.png" alt="Frost">
-            <img class="specImage" data-spec="Unholy" src="images/Unholy.png" alt="Unholy">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Blood</h6>" class="specImage" data-spec="Blood"
+                src="images/Blood.png" alt="Blood">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Frost</h6>" class="specImage" data-spec="Frost"
+                src="images/Frost.png" alt="Frost">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Unholy</h6>" class="specImage" data-spec="Unholy"
+                src="images/Unholy.png" alt="Unholy">
         </div>    
         `);
     } else if (playerClass === "Druid") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Feral" src="images/Feral.png" alt="Feral">
-            <img class="specImage" data-spec="Balance" src="images/Balance.png" alt="Balance">
-            <img class="specImage" data-spec="Restoration" src="images/Restoration.png" alt="Restoration">
-            <img class="specImage" data-spec="Guardian" src="images/Guardian.png" alt="Guardian">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Feral</h6>" class="specImage" data-spec="Feral"
+                src="images/Feral.png" alt="Feral">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Balance</h6>" class="specImage" data-spec="Balance"
+                src="images/Balance.png" alt="Balance">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Restoration</h6>" class="specImage" data-spec="Restoration"
+                src="images/Restoration.png" alt="Restoration">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Guardian</h6>" class="specImage" data-spec="Guardian"
+                src="images/Guardian.png" alt="Guardian">
         </div>    
         `);
     } else if (playerClass === "Hunter") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Beast Mastery" src="images/Beast Mastery.png" alt="Beast Mastery">
-            <img class="specImage" data-spec="Marksmanship" src="images/Marksmanship.png" alt="Marksmanship">
-            <img class="specImage" data-spec="Survival" src="images/Survival.png" alt="Survival">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Beast Mastery</h6>" class="specImage" data-spec="Beast Mastery"
+                src="images/Beast Mastery.png" alt="Beast Mastery">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Marksmanship</h6>" class="specImage" data-spec="Marksmanship"
+                src="images/Marksmanship.png" alt="Marksmanship">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Survival</h6>" class="specImage" data-spec="Survival"
+                src="images/Survival.png" alt="Survival">
         </div>    
         `);
     } else if (playerClass === "Mage") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Frost" src="images/Frost Mage.png" alt="Frost">
-            <img class="specImage" data-spec="Fire" src="images/Fire.png" alt="Fire">
-            <img class="specImage" data-spec="Arcane" src="images/Arcane.png" alt="Arcane">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Frost</h6>" class="specImage" data-spec="Frost"
+                src="images/Frost Mage.png" alt="Frost">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Fire</h6>" class="specImage" data-spec="Fire"
+                src="images/Fire.png" alt="Fire">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Arcane</h6>" class="specImage" data-spec="Arcane"
+                src="images/Arcane.png" alt="Arcane">
         </div>    
         `);
     } else if (playerClass === "Monk") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Brewmaster" src="images/Brewmaster.png" alt="Brewmaster">
-            <img class="specImage" data-spec="Mistweaver" src="images/Mistweaver.png" alt="Mistweaver">
-            <img class="specImage" data-spec="Windwalker" src="images/Windwalker.png" alt="Windwalker">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Brewmaster</h6>" class="specImage" data-spec="Brewmaster"
+                src="images/Brewmaster.png" alt="Brewmaster">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Mistweaver</h6>" class="specImage" data-spec="Mistweaver"
+                src="images/Mistweaver.png" alt="Mistweaver">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Windwalker</h6>" class="specImage" data-spec="Windwalker"
+                src="images/Windwalker.png" alt="Windwalker">
         </div>    
         `);
     } else if (playerClass === "Paladin") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Protection" src="images/Protection Paladin.png" alt="Protection">
-            <img class="specImage" data-spec="Retribution" src="images/Retribution.png" alt="Retribution">
-            <img class="specImage" data-spec="Holy" src="images/Holy.png" alt="Holy">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Protection</h6>" class="specImage" data-spec="Protection"
+                src="images/Protection Paladin.png" alt="Protection">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Retribution</h6>" class="specImage" data-spec="Retribution"
+                src="images/Retribution.png" alt="Retribution">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Holy</h6>" class="specImage" data-spec="Holy"
+                src="images/Holy.png" alt="Holy">
         </div>    
         `);
     } else if (playerClass === "Priest") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Shadow" src="images/Shadow.png" alt="Shadow">
-            <img class="specImage" data-spec="Holy" src="images/Holy Priest.png" alt="Holy">
-            <img class="specImage" data-spec="Discipline" src="images/Discipline.png" alt="Discipline">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Shadow</h6>" class="specImage" data-spec="Shadow"
+                src="images/Shadow.png" alt="Shadow">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Holy</h6>" class="specImage" data-spec="Holy"
+                src="images/Holy Priest.png" alt="Holy">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Discipline</h6>" class="specImage" data-spec="Discipline"
+                src="images/Discipline.png" alt="Discipline">
         </div>    
         `);
     } else if (playerClass === "Rogue") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Assassination" src="images/Assassination.png" alt="Assassination">
-            <img class="specImage" data-spec="Outlaw" src="images/Outlaw.png" alt="Outlaw">
-            <img class="specImage" data-spec="Subtlety" src="images/Subtlety.png" alt="Subtlety">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Assassination</h6>" class="specImage" data-spec="Assassination"
+                src="images/Assassination.png" alt="Assassination">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Outlaw</h6>" class="specImage" data-spec="Outlaw"
+                src="images/Outlaw.png" alt="Outlaw">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Subtlety</h6>" class="specImage" data-spec="Subtlety"
+                src="images/Subtlety.png" alt="Subtlety">
         </div>    
         `);
     } else if (playerClass === "Shaman") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Restoration" src="images/Restoration Shaman.png" alt="Restoration">
-            <img class="specImage" data-spec="Elemental" src="images/Elemental.png" alt="Elemental">
-            <img class="specImage" data-spec="Enhancement" src="images/Enhancement.png" alt="Enhancement">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Restoration</h6>" class="specImage" data-spec="Restoration"
+                src="images/Restoration Shaman.png" alt="Restoration">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Elemental</h6>" class="specImage" data-spec="Elemental"
+                src="images/Elemental.png" alt="Elemental">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Enhancement</h6>" class="specImage" data-spec="Enhancement"
+                src="images/Enhancement.png" alt="Enhancement">
         </div>    
         `);
     } else if (playerClass === "Warlock") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Demonology" src="images/Demonology.png" alt="Demonology">
-            <img class="specImage" data-spec="Destruction" src="images/Destruction.png" alt="Destruction">
-            <img class="specImage" data-spec="Affliction" src="images/Affliction.png" alt="Affliction">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Demonology</h6>" class="specImage" data-spec="Demonology"
+                src="images/Demonology.png" alt="Demonology">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Destruction</h6>" class="specImage" data-spec="Destruction"
+                src="images/Destruction.png" alt="Destruction">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Affliction</h6>" class="specImage" data-spec="Affliction"
+                src="images/Affliction.png" alt="Affliction">
         </div>    
         `);
     } else if (playerClass === "Warrior") {
         $("#classInput").append(`
         <div class="row">
-            <img class="specImage" data-spec="Protection" src="images/Protection.png" alt="Protection">
-            <img class="specImage" data-spec="Arms" src="images/Arms.png" alt="Arms">
-            <img class="specImage" data-spec="Fury" src="images/Fury.png" alt="Fury">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Protection</h6>" class="specImage" data-spec="Protection"
+                src="images/Protection.png" alt="Protection">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Arms</h6>" class="specImage" data-spec="Arms"
+                src="images/Arms.png" alt="Arms">
+            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Fury</h6>" class="specImage" data-spec="Fury"
+                src="images/Fury.png" alt="Fury">
         </div>    
         `);
     }
     $("#classInput").append(`<button type="button" id="changeClass" class="btn btn-primary">Choose Another Class</button>`);
+    $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 }
 
 $(document).on("click", ".classImage", function (event) {
@@ -3041,6 +3092,7 @@ $(document).on("click", ".classImage", function (event) {
     playerClass = $(this).attr("data-class");
     $(".classImage").removeClass("selectedClass");
     $(this).addClass("selectedClass");
+    $('#classInput [data-toggle="tooltip"]').tooltip('dispose');
     displaySpecs();
 });
 
@@ -3217,6 +3269,7 @@ $(document).on("click", "#changeSpec", function (event) {
 $(document).on("click", ".specImage", function (event) {
     event.preventDefault();
     playerSpec = $(this).attr("data-spec");
+    $('#classInput [data-toggle="tooltip"]').tooltip('dispose');
     if (playerSpec !== "") {
         $("#classInput").empty();
         $("#classInput").append(`
