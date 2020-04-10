@@ -48,13 +48,13 @@ function displayDungeons() {
                         `);
                         if (dungeons[i].bossAbilities[k].damage > playerHealth + playerAbsorb - 1) {
                             $("#dungeonInput").append(`
-                                <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage}</p>
+                                <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage.toLocaleString()}</p>
                                 </div>
                                 </div>
                             `);
                         } else {
                             $("#dungeonInput").append(`
-                            <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage}</p>
+                            <p class="abilityDamage red">${dungeons[i].bossAbilities[k].damage.toLocaleString()}</p>
                         </div>
                     </div>
                     `);
@@ -67,7 +67,7 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k].image}" alt="${dungeons[i].bossAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].bossAbilities[k].damage}</p>
+                            <p class="abilityDamage">${dungeons[i].bossAbilities[k].damage.toLocaleString()}</p>
                         </div>
                         <div class="col-md-2">
                         </div>
@@ -75,7 +75,7 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].bossAbilities[k + 1].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].bossAbilities[k + 1].description}" class="abilityImage" src="${dungeons[i].bossAbilities[k + 1].image}" alt="${dungeons[i].bossAbilities[k + 1].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].bossAbilities[k + 1].damage}</p>
+                            <p class="abilityDamage">${dungeons[i].bossAbilities[k + 1].damage.toLocaleString()}</p>
                         </div>
                     </div>
                     `);
@@ -90,7 +90,7 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage}</p>
+                            <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage.toLocaleString()}</p>
                         </div>
                     </div>
                     `);
@@ -101,7 +101,7 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k].image}" alt="${dungeons[i].trashAbilities[k].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage}</p>
+                            <p class="abilityDamage">${dungeons[i].trashAbilities[k].damage.toLocaleString()}</p>
                         </div>
                         <div class="col-md-2">
                         </div>
@@ -109,7 +109,7 @@ function displayDungeons() {
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${dungeons[i].trashAbilities[k + 1].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${dungeons[i].trashAbilities[k + 1].description}" class="abilityImage" src="${dungeons[i].trashAbilities[k + 1].image}" alt="${dungeons[i].trashAbilities[k + 1].name}">
                         </div>
                         <div class="col-md-1">
-                            <p class="abilityDamage">${dungeons[i].trashAbilities[k + 1].damage}</p>
+                            <p class="abilityDamage">${dungeons[i].trashAbilities[k + 1].damage.toLocaleString()}</p>
                         </div>
                     </div>
                     `);
