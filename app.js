@@ -16,11 +16,7 @@ var playerHealth = 0;
 var playerAbsorb = 0;
 var level = 2;
 var recentInput = "";
-// var scaling = [1, 1.08, 1.17, 1.26, 1.36, 1.47, 1.59, 1.71, 1.85, 2, 2.16, 2.33, 2.52, 2.72, 2.94, 3.17, 3.43, 3.70, 4, 4.32, 4.66, 5.04, 5.44, 5.87, 6.34, 6.85];
 var scaling = [1, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36, 2.59, 2.85, 3.14, 3.45, 3.8, 4.18, 4.59, 5.05, 5.56, 6.12, 6.73, 7.4, 8.14, 8.95, 9.85, 10.83, 11.92, 13.11, 14.42];
-for (i = 0; i < scaling.length; i++) {
-    scaling[i] = scaling[i] * 1.3;
-}
 var slider = document.getElementById("myRange");
 var output = document.getElementById("keyLevel");
 slider.oninput = function () {
@@ -216,7 +212,7 @@ function calcDamage() {
                     damage = damage - damage * item;
                 });
                 if (!ability.bleed) {
-                    damage = damage - (damage * 0.01 * ((armor / (armor + 8467)) * 100));
+                    damage = damage - (damage * 0.01 * ((armor / (armor + 14282)) * 100));
                 }
             } else {
                 magic.forEach(item => {
@@ -278,111 +274,112 @@ function calcDamage() {
     $(".effectiveHealth").html(`<span style="font-size: 23px">Effective Health: ${Math.round(health + absorbAmount)}</span>`);
     displayDungeons();
 }
+
 var dungeons = [
     {
         name: "Atal'Dazar",
         bossAbilities: [
             {
                 name: "Toxic_Pool",
-                baseDamage: 30146,
-                damage: 30146,
+                baseDamage: 60520,
+                damage: 60520,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Creates a pool of noxious fumes at random locations, that inflict 30,146 Nature damage every 2 sec to players standing within the pool.",
+                description: "Creates a pool of noxious fumes at random locations, that inflict 60,520 Nature damage every 2 sec to players standing within the pool.",
                 image: "images/Toxic_Pool.jpg"
             }, {
                 name: "Corrupted_Gold",
-                baseDamage: 60118,
-                damage: 60118,
+                baseDamage: 120688,
+                damage: 120688,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "The player is splashed with corrupted gold, burning them for 60,118 Fire damage and lowering their damage dealt by 30% for 10 sec.",
+                description: "The player is splashed with corrupted gold, burning them for 120,688 Fire damage and lowering their damage dealt by 30% for 10 sec.",
                 image: "images/Corrupted_Gold.jpg"
             }, {
                 name: "Molten_Gold",
-                baseDamage: 27053,
-                damage: 27053,
+                baseDamage: 54310,
+                damage: 54310,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Priestess Alun'za agitates a pool of molten gold, splattering a player at random. The victim burns for 4058 Fire damage every 3 sec for 30 sec.",
+                description: "Priestess Alun'za agitates a pool of molten gold, splattering a player at random. The victim burns for 54,310 Fire damage every 3 sec for 30 sec.",
                 image: "images/Molten_Gold.jpg"
             }, {
                 name: "Tainted_Blood",
-                baseDamage: 10521,
-                damage: 10521,
+                baseDamage: 21120,
+                damage: 21120,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "The victim's blood is tainted, inflicting 2433 Shadow damage every 3 sec.",
+                description: "The victim's blood is tainted, inflicting 21,120 Shadow damage every 3 sec.",
                 image: "images/Tainted_Blood.jpg"
             }, {
                 name: "Toxic_Leap",
-                baseDamage: 43210,
-                damage: 43210,
+                baseDamage: 86745,
+                damage: 86745,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Vol'kaal leaps towards a random player inflicting 43210 Nature to players within 8 yards of the impact, knocking them back.",
+                description: "Vol'kaal leaps towards a random player inflicting 86,745 Nature to players within 8 yards of the impact, knocking them back.",
                 image: "images/Toxic_Leap.jpg"
             }, {
                 name: "Echoes_of_Shadra",
-                baseDamage: 60123,
-                damage: 60123,
+                baseDamage: 120698,
+                damage: 120698,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Summons forth several shadowy spider images. Touching an Echo of Shadra causes it to burst inflicting 60,123 Shadow damage to players within 3 yards, creating a pool of Shadowy Remains at the location.",
+                description: "Summons forth several shadowy spider images. Touching an Echo of Shadra causes it to burst inflicting 120,698 Shadow damage to players within 3 yards, creating a pool of Shadowy Remains at the location.",
                 image: "images/Echoes_of_Shadra.jpg"
             }, {
                 name: "Shadowy_Remains",
-                baseDamage: 38804,
-                damage: 38804,
+                baseDamage: 77901,
+                damage: 77901,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 38,804 Shadow damage every 2 sec and reduces the target's movement speed by 30% while within the effect.",
+                description: "Inflicts 77,901 Shadow damage every 2 sec and reduces the target's movement speed by 30% while within the effect.",
                 image: "images/Shadowy_Remains.jpg"
             }, {
                 name: "Soulrend",
-                baseDamage: 27444,
-                damage: 27444,
+                baseDamage: 55094,
+                damage: 55094,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Upon reaching 100 Energy, Yazma inflicts 27,444 Shadow damage to all players. The impact rips a piece of the target's soul free, creating a Soulspawn at the target's location.",
+                description: "Upon reaching 100 Energy, Yazma inflicts 55,094 Shadow damage to all players. The impact rips a piece of the target's soul free, creating a Soulspawn at the target's location.",
                 image: "images/Soulrend.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Merciless_Assault",
-                baseDamage: 38130,
-                damage: 38130,
+                baseDamage: 75431,
+                damage: 75431,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Charges to an area, inflicting 38,130 Physical damage to all enemies within 8 yards.",
+                description: "Charges to an area, inflicting 75,431 Physical damage to all enemies within 8 yards.",
                 image: "images/Merciless_Assault.jpg"
             }, {
                 name: "Wildfire",
-                baseDamage: 17770,
-                damage: 17770,
+                baseDamage: 35156,
+                damage: 35156,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Launches a bolt of fire at a random target inflicting 17,770 Fire damage and an additional 7,295 Fire damage every 2 sec for 8 sec.",
+                description: "Launches a bolt of fire at a random target inflicting 35,156 Fire damage and an additional 7,295 Fire damage every 2 sec for 8 sec.",
                 image: "images/Wildfire.jpg"
             }, {
                 name: "Fervent_Strike",
-                baseDamage: 61009,
-                damage: 61009,
+                baseDamage: 120689,
+                damage: 120689,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "The caster slashes out, inflicting 61,009 Physical damage.",
+                description: "The caster slashes out, inflicting 120,689 Physical damage.",
                 image: "images/Fervent_Strike.jpg"
             }, {
                 name: "Leaping_Thrash",
@@ -395,21 +392,21 @@ var dungeons = [
                 image: "images/Leaping_Thrash.jpg"
             }, {
                 name: "Venom_Blast",
-                baseDamage: 26691,
-                damage: 26691,
+                baseDamage: 52802,
+                damage: 52802,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Toxic vapors assault the target inflicting 26,691 Nature damage.",
+                description: "Toxic vapors assault the target inflicting 52,802 Nature damage.",
                 image: "images/Venom_Blast.jpg"
             }, {
                 name: "Rending_Maul",
-                baseDamage: 45756,
-                damage: 45756,
+                baseDamage: 90517,
+                damage: 90517,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 45,756 Physical damage and additional 3,098 Physical damage every 2 sec for 20 sec. This effect stacks.",
+                description: "Inflicts 90,517 Physical damage and additional 6,034 Physical damage every 2 sec for 20 sec. This effect stacks.",
                 image: "images/Rending_Maul.jpg"
             }
         ]
@@ -418,132 +415,132 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Pistol_Shot",
-                baseDamage: 28556,
-                damage: 28556,
+                baseDamage: 45258,
+                damage: 45258,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "The caster draws a concealed pistol and fires a quick shot at an enemy, dealing 28,556 Fire damage.",
+                description: "The caster draws a concealed pistol and fires a quick shot at an enemy, dealing 45,258 Fire damage.",
                 image: "images/Pistol_Shot.jpg"
             }, {
                 name: "Azerite_Powder_Shot",
-                baseDamage: 52604,
-                damage: 52604,
+                baseDamage: 90516,
+                damage: 90516,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 52,604 Fire damage to all enemies in a cone 30 yds. long in front of the caster.",
+                description: "Inflicts 90,516, Fire damage to all enemies in a cone 30 yds. long in front of the caster.",
                 image: "images/Azerite_Powder_Shot.jpg"
             }, {
                 name: "Dive_Bomb",
-                baseDamage: 45089,
-                damage: 45089,
+                baseDamage: 90516,
+                damage: 90516,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Sharkbait charges across the battlefield, inflicting 45089 Nature damage and knocking back all players in the way.",
+                description: "Sharkbait charges across the battlefield, inflicting 90,516 Nature damage and knocking back all players in the way.",
                 image: "images/Dive_Bomb.jpg"
             }, {
                 name: "Powder_Shot",
-                baseDamage: 60118,
-                damage: 60118,
+                baseDamage: 87499,
+                damage: 87499,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Eudora fires a heavy powder shot at a random enemy, inflicting 60,118 Physical damage.",
+                description: "Eudora fires a heavy powder shot at a random enemy, inflicting 87,499 Physical damage.",
                 image: "images/Powder_Shot.jpg"
             }, {
                 name: "Grapeshot",
-                baseDamage: 38710,
-                damage: 38710,
+                baseDamage: 77712,
+                damage: 77712,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 38,710 Fire damage in a cone.",
+                description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 77,712 Fire damage in a cone.",
                 image: "images/Grapeshot.jpg"
             }, {
                 name: "Rearm",
-                baseDamage: 38170,
-                damage: 38170,
+                baseDamage: 77712,
+                damage: 77712,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Trothak charges a nearby shark, inflicting 38,170 Physical damage to anyone in the way. Upon reaching the shark, Trothak reattaches the shark to his arm.",
+                description: "Trothak charges a nearby shark, inflicting 77,712 Physical damage to anyone in the way. Upon reaching the shark, Trothak reattaches the shark to his arm.",
                 image: "images/Rearm.jpg"
             }, {
                 name: "Shark_Tornado",
-                baseDamage: 25807,
-                damage: 25807,
+                baseDamage: 51808,
+                damage: 51808,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Trothak holds his shark by the tail and spins in a circle, inflicting 25,807 Physical damage every 1 sec to all enemies within 9 yards.",
+                description: "Trothak holds his shark by the tail and spins in a circle, inflicting 51,808 Physical damage every 1 sec to all enemies within 9 yards.",
                 image: "images/Shark_Tornado.jpg"
             }, {
                 name: "Swiftwind_Saber",
-                baseDamage: 33064,
-                damage: 33064,
+                baseDamage: 66378,
+                damage: 66378,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 33,065 Nature damage.",
+                description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 66,378 Nature damage.",
                 image: "images/Swiftwind_Saber.jpg"
             }
-        ],
+        ], 
         trashAbilities: [
             {
                 name: "Crippling_Bite",
-                baseDamage: 18409,
-                damage: 18409,
+                baseDamage: 36961,
+                damage: 36961,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 18,409 Physical damage and reduces enemy movement speed by 50% for 5 sec.",
+                description: "Inflicts 36,961 Physical damage and reduces enemy movement speed by 50% for 5 sec.",
                 image: "images/Crippling_Bite.jpg"
             }, {
                 name: "Brutal_Backhand",
-                baseDamage: 54230,
-                damage: 54230,
+                baseDamage: 108888,
+                damage: 108888,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Swings a backhand, inflicting 54,230 Physical damage and knocking back all nearby enemies in a cone.",
+                description: "Swings a backhand, inflicting 108,888 Physical damage and knocking back all nearby enemies in a cone.",
                 image: "images/Brutal_Backhand.jpg"
             }, {
                 name: "Rat_Traps",
-                baseDamage: 13387,
-                damage: 13387,
+                baseDamage: 30181,
+                damage: 30181,
                 type: "physical",
                 bleed: true,
                 aoe: false,
-                description: "The caster hurls steel traps at nearby targets. When triggered, the traps root the target and inflict 13,387 Physical damage every 1 sec for 5 sec.",
+                description: "The caster hurls steel traps at nearby targets. When triggered, the traps root the target and inflict 30,181 Physical damage every 1 sec for 5 sec.",
                 image: "images/Rat_Traps.jpg"
             }, {
                 name: "Frost_Blast",
-                baseDamage: 25802,
-                damage: 25802,
+                baseDamage: 51808,
+                damage: 51808,
                 type: "frost",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 25,802 Frost damage to all enemies in a cone 30 yds. long in front of the caster.",
+                description: "Inflicts 51,808 Frost damage to all enemies in a cone 30 yds. long in front of the caster.",
                 image: "images/Frost_Blast.jpg"
             }, {
                 name: "Dragging_Harpoon",
-                baseDamage: 18031,
-                damage: 18031,
+                baseDamage: 35665,
+                damage: 35665,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Throws a harpoon at an enemy, inflicting 18,031 Physical damage and pulling the enemy to the caster.",
+                description: "Throws a harpoon at an enemy, inflicting 35,665 Physical damage and pulling the enemy to the caster.",
                 image: "images/Dragging_Harpoon.jpg"
             }, {
                 name: "Shell_Bounce",
-                baseDamage: 34057,
-                damage: 34057,
+                baseDamage: 67364,
+                damage: 67364,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Throws a shell that bounces around the arena, inflicting 34,057 Nature damage to anyone hit.",
+                description: "Throws a shell that bounces around the arena, inflicting 67,364 Nature damage to anyone hit.",
                 image: "images/Shell_Bounce.jpg"
             }
         ]
@@ -552,132 +549,132 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Spit_Gold",
-                baseDamage: 27053,
-                damage: 27053,
+                baseDamage: 54310,
+                damage: 54310,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Spits molten gold at a player, inflicting 36,071 Fire damage every 3 sec. for 9 sec, and creating a pool of Molten Gold at the player's location afterwards.",
+                description: "Spits molten gold at a player, inflicting 54,310 Fire damage every 3 sec. for 9 sec, and creating a pool of Molten Gold at the player's location afterwards.",
                 image: "images/Spit_Gold.jpg"
             }, {
                 name: "Drain_Fluids",
-                baseDamage: 24438,
-                damage: 24438,
+                baseDamage: 49060,
+                damage: 49060,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Prepares the target for mummification by draining their fluids, inflicting 24,438 Nature damage every 2 sec. for 8 sec. If the effect lasts the full duration, it applies Dessication to the target.",
+                description: "Prepares the target for mummification by draining their fluids, inflicting 49,060 Nature damage every 2 sec. for 8 sec. If the effect lasts the full duration, it applies Dessication to the target.",
                 image: "images/Drain_Fluids.jpg"
             }, {
                 name: "Burning_Ground",
-                baseDamage: 54968,
-                damage: 54968,
+                baseDamage: 110350,
+                damage: 110350,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 54,968 Fire damage every 2 sec. to any players inside a patch of Burning Ground.",
+                description: "Inflicts 110,350 Fire damage every 2 sec. to any players inside a patch of Burning Ground.",
                 image: "images/Burning_Ground.jpg"
             }, {
                 name: "Severing_Axe",
-                baseDamage: 24047,
-                damage: 24047,
+                baseDamage: 43750,
+                damage: 43750,
                 type: "physical",
                 bleed: true,
                 aoe: false,
-                description: "Inflicts 24,047 Physical damage every 2 sec. for 20 sec.",
+                description: "Inflicts 43,750 Physical damage every 2 sec. for 20 sec.",
                 image: "images/Severing_Axe.jpg"
             }, {
                 name: "Whirling_Axes",
-                baseDamage: 24047,
-                damage: 24047,
+                baseDamage: 33803,
+                damage: 33803,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Unleashes a whirling attack that inflicts 52,603 Physical damage to players within 10 yards, knocking them back. ",
+                description: "Unleashes a whirling attack that inflicts 105,602 Physical damage to players within 10 yards, knocking them back. Also, she throws two whirling axes which iflict 33,803 Physical damage every 2 sec. for 6 sec to players who come into contact with them.",
                 image: "images/Whirling_Axes.jpg"
             }, {
                 name: "Quaking_Leap",
-                baseDamage: 61096,
-                damage: 61096,
+                baseDamage: 122651,
+                damage: 122651,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Dazar leaps at the targeted player, inflicting up to 61,096 Physical damage to all players. This damage is reduced the further players are from the targeted location.",
+                description: "Dazar leaps at the targeted player, inflicting up to 122,651 Physical damage to all players. This damage is reduced the further players are from the targeted location.",
                 image: "images/Quaking_Leap.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Suppression_Slam",
-                baseDamage: 79795,
-                damage: 79795,
+                baseDamage: 159446,
+                damage: 159446,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Disperses electric energy in a cone, inflicting 79,795 Nature damage to all affected players and stunning them for 2.5 sec.",
+                description: "Disperses electric energy in a cone, inflicting 159,446 Nature damage to all affected players and stunning them for 2.5 sec.",
                 image: "images/Suppression_Slam.jpg"
             }, {
                 name: "Deathly_Chill",
-                baseDamage: 30690,
-                damage: 30690,
+                baseDamage: 51293,
+                damage: 51293,
                 type: "shadowfrost",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 30,690 Shadowfrost damage.",
+                description: "Inflicts 51,293 Shadowfrost damage.",
                 image: "images/Deathly_Chill.jpg"
             }, {
                 name: "Axe_Barrage",
-                baseDamage: 12275,
-                damage: 12275,
+                baseDamage: 24530,
+                damage: 24530,
                 type: "physical",
                 bleed: true,
                 aoe: true,
-                description: "Throws a whirl of axes at players, inflicting 12,275 Physical damage every 2 sec. for 6 sec.",
+                description: "Throws a whirl of axes at players, inflicting 24,530 Physical damage every 2 sec. for 6 sec.",
                 image: "images/Axe_Barrage.jpg"
             }, {
                 name: "Bladestorm",
-                baseDamage: 30690,
-                damage: 30690,
+                baseDamage: 51293,
+                damage: 51293,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Moves towards a targeted player in a whirl of blades, inflicting 30,690 Physical damage every 0.5 sec. to nearby players.",
+                description: "Moves towards a targeted player in a whirl of blades, inflicting 51,293 Physical damage every 0.5 sec. to nearby players.",
                 image: "images/Bladestorm.jpg"
             }, {
                 name: "Spectral_Bolt",
-                baseDamage: 14110,
-                damage: 14110,
+                baseDamage: 49061,
+                damage: 49061,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 24,551 Shadow damadge to an enemy.",
+                description: "Inflicts 49,061 Shadow damadge to an enemy.",
                 image: "images/Spectral_Bolt.jpg"
             }, {
                 name: "Severing_Blade",
-                baseDamage: 17365,
-                damage: 17365,
+                baseDamage: 30172,
+                damage: 30172,
                 type: "physical",
                 bleed: true,
                 aoe: false,
-                description: "Slashes the target, inflicting 17,365 Physical damage every 2 sec. for 10 sec. This effect stacks.",
+                description: "Slashes the target, inflicting 30,172 Physical damage every 2 sec. for 10 sec. This effect stacks.",
                 image: "images/Severing_Blade.jpg"
             }, {
                 name: "Frost_Shock",
-                baseDamage: 24551,
-                damage: 24551,
+                baseDamage: 37716,
+                damage: 37716,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Freezes the target, inflicting 24,551 Frost damage and reducing their movement speed by 50% for 15 sec.",
+                description: "Freezes the target, inflicting 37,716 Frost damage and reducing their movement speed by 50% for 15 sec.",
                 image: "images/Frost_Shock.jpg"
             }, {
                 name: "Shadow_Barrage",
-                baseDamage: 22649,
-                damage: 22649,
+                baseDamage: 45258,
+                damage: 45258,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 22,649 Shadow damage to an enemy. Inflicts 15,099 Shadow damage to an enemy every 2 sec for 8 sec.",
+                description: "Inflicts 45,258 Shadow damage to an enemy. Inflicts 30,172 Shadow damage to an enemy every 2 sec for 8 sec.",
                 image: "images/Shadow_Barrage.jpg"
             }
         ]
@@ -686,150 +683,150 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Undertow",
-                baseDamage: 12166,
-                damage: 12166,
+                baseDamage: 24424,
+                damage: 24424,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Channels dark waters into a player, inflicting 12166 Frost damage every 1 sec for 6 sec, pushing them back.",
+                description: "Channels dark waters into a player, inflicting 24,424 Frost damage every 1 sec for 6 sec, pushing them back.",
                 image: "images/Undertow.jpg"
             }, {
                 name: "Slicing_Blast",
-                baseDamage: 17043,
-                damage: 17043,
+                baseDamage: 27155,
+                damage: 27155,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 17,043 Nature damage to all enemies and increases Nature damage taken by 15% for 30 sec. This effect stacks.",
+                description: "Inflicts 27,155 Nature damage to all enemies and increases Nature damage taken by 15% for 30 sec. This effect stacks.",
                 image: "images/Slicing_Blast.jpg"
             }, {
                 name: "Blowback",
-                baseDamage: 43798,
-                damage: 43798,
+                baseDamage: 69396,
+                damage: 69396,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Interrupts while affected by Blessing of the Tempest create a Blowback at a nearby location which inflicts 43,793 Nature damage and kocks back enemies that come in contact with it.",
+                description: "Interrupts while affected by Blessing of the Tempest create a Blowback at a nearby location which inflicts 69,396 Nature damage and kocks back enemies that come in contact with it.",
                 image: "images/Blowback.jpg"
             }, {
                 name: "Hindering_Cleave",
-                baseDamage: 72141,
-                damage: 72141,
+                baseDamage: 144826,
+                damage: 144826,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 72,141 Physical damage to enemies in front of the caster and reduces movement speed by 70% for 10 sec.",
+                description: "Inflicts 144,826 Physical damage to enemies in front of the caster and reduces movement speed by 70% for 10 sec.",
                 image: "images/Hindering_Cleave.jpg"
             }, {
                 name: "Mind_Rend",
-                baseDamage: 27053,
-                damage: 27053,
+                baseDamage: 54310,
+                damage: 54310,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "The Mind Rend inflicts 27,053 Shadow damage and an additional 6,083 Shadow damage every 2 sec and reduces speed by 50% for 10 sec.",
+                description: "The Mind Rend inflicts 54,310 Shadow damage and an additional 6,083 Shadow damage every 2 sec and reduces speed by 50% for 10 sec.",
                 image: "images/Mind_Rend.jpg"
             }, {
                 name: "Consume_Essence",
-                baseDamage: 32422,
-                damage: 32422,
+                baseDamage: 65088,
+                damage: 65088,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "The Forgotten Denizen tears a fragment from the minds of all players, inflicting 32,422 Shadow damage to them and restoring health to the caster.",
+                description: "The Forgotten Denizen tears a fragment from the minds of all players, inflicting 65,088 Shadow damage to them and restoring health to the caster.",
                 image: "images/Consume_Essence.jpg"
             }, {
                 name: "Abyssal_Eruption",
-                baseDamage: 4810,
-                damage: 4810,
+                baseDamage: 9655,
+                damage: 9655,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Manifestations of the Deep explode upon death, inflicting 4,810 Shadow damage to all players. This effect grants Vol'zith the Whisperer energy if the manifestation reaches it.",
+                description: "Manifestations of the Deep explode upon death, inflicting 9,655 Shadow damage to all players. This effect grants Vol'zith the Whisperer energy if the manifestation reaches it.",
                 image: "images/Abyssal_Eruption.jpg"
             }, {
                 name: "Tentacle_Slam",
-                baseDamage: 74473,
-                damage: 74473,
+                baseDamage: 149508,
+                damage: 149508,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "A shadowy tentacle rises from the deep, slamming the ground and inflicting 74,473 Shadow damage to targets struck.",
+                description: "A shadowy tentacle rises from the deep, slamming the ground and inflicting 149,508 Shadow damage to targets struck.",
                 image: "images/Tentacle_Slam.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Water_Blast",
-                baseDamage: 27779,
-                damage: 27779,
+                baseDamage: 54954,
+                damage: 54954,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 27,779 Frost damage to an enemy.",
+                description: "Inflicts 54,954 Frost damage to an enemy.",
                 image: "images/Water_Blast.jpg"
             }, {
                 name: "Gale_Shear",
-                baseDamage: 11826,
-                damage: 11826,
+                baseDamage: 40706,
+                damage: 40706,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Disrupts the target's concentration with a gale of wind, knocking the target back and inflicting 11,826 Nature damage.",
+                description: "Disrupts the target's concentration with a gale of wind, knocking the target back and inflicting 40,706 Nature damage.",
                 image: "images/Gale_Shear.jpg"
             }, {
                 name: "Gale_Winds",
-                baseDamage: 7622,
-                damage: 7622,
+                baseDamage: 15086,
+                damage: 15086,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Channels the fierce power of the winds, inflicting 10,675 Nature damage to all players every 1 sec for 4 sec.",
+                description: "Channels the fierce power of the winds, inflicting 15,086 Nature damage to all players every 1 sec for 4 sec.",
                 image: "images/Gale_Winds.jpg"
             }, {
                 name: "Whirling_Slam",
-                baseDamage: 61009,
-                damage: 61009,
+                baseDamage: 120689,
+                damage: 120689,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 61,009 Physical damage to enemies within 8 yards.",
+                description: "Inflicts 120,689 Physical damage to enemies within 8 yards.",
                 image: "images/Whirling_Slam.jpg"
             }, {
                 name: "Unending_Darkness",
-                baseDamage: 19124,
-                damage: 19124,
+                baseDamage: 54310,
+                damage: 54310,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Unending Darkness engulfs players, inflicting 19,124 Shadow damage and increasing Shadow damage taken by 25% for 20 sec. This effect stacks.",
+                description: "Unending Darkness engulfs players, inflicting 54,310 Shadow damage and increasing Shadow damage taken by 25% for 20 sec. This effect stacks.",
                 image: "images/Unending_Darkness.jpg"
             }, {
                 name: "Void_Seed",
-                baseDamage: 33667,
-                damage: 33667,
+                baseDamage: 123055,
+                damage: 123055,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Inflicts 33,667 Shadow damage to enemies within 6 yards when the Void Seed expires.",
+                description: "Inflicts 123,055 Shadow damage to enemies within 6 yards when the Void Seed expires.",
                 image: "images/Void_Seed.jpg"
             }, {
                 name: "Void_Bolt",
-                baseDamage: 41566,
-                damage: 41566,
+                baseDamage: 122119,
+                damage: 122119,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Deals 41,566 Shadow damage.",
+                description: "Deals 122,119 Shadow damage.",
                 image: "images/Void_Bolt.jpg"
             }, {
                 name: "Deep_Smash",
-                baseDamage: 37039,
-                damage: 37039,
+                baseDamage: 73272,
+                damage: 73272,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 37039 Frost damage to an enemy. Globules of water erupt from the target, additionally inflicting 32,924 Frost damage to targets they land upon.",
+                description: "Inflicts 73,272 Frost damage to an enemy. Globules of water erupt from the target, additionally inflicting 32,924 Frost damage to targets they land upon.",
                 image: "images/Deep_Smash.jpg"
             }
         ]
@@ -838,132 +835,132 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Steel_Tempest",
-                baseDamage: 75147,
-                damage: 75147,
+                baseDamage: 150861,
+                damage: 150861,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Smashes the ground, inflicting 75,147 Physical damage and knocking back enemies within 10 yards and 24332 Physical damage to everyone.",
+                description: "Smashes the ground, inflicting 150,861 Physical damage and knocking back enemies within 10 yards and 24332 Physical damage to everyone.",
                 image: "images/Steel_Tempest.jpg"
             }, {
                 name: "Clear_The_Deck",
-                baseDamage: 60830,
-                damage: 60830,
+                baseDamage: 122118,
+                damage: 122118,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Sends the targets in a cone in front of the caster flying, inflicting 60,830 Physical damage on impact and knocking them back.",
+                description: "Sends the targets in a cone in front of the caster flying, inflicting 122,118 Physical damage on impact and knocking them back.",
                 image: "images/Clear_The_Deck.jpg"
             }, {
                 name: "Gut_Shot",
-                baseDamage: 24332,
-                damage: 24332,
+                baseDamage: 48847,
+                damage: 48847,
                 type: "nature",
                 bleed: true,
                 aoe: false,
-                description: "When not being melee attacked, shoots at random enemies inflicting 24,332 Physical damage on impact and an additional 22,305 Physical damage every 2 sec for 8 sec.",
+                description: "When not being melee attacked, shoots at random enemies inflicting 48,847 Physical damage on impact and an additional 22,305 Physical damage every 2 sec for 8 sec.",
                 image: "images/Gut_Shot.jpg"
             }, {
                 name: "Break_Water",
-                baseDamage: 48664,
-                damage: 48664,
+                baseDamage: 97695,
+                damage: 97695,
                 type: "frost",
                 bleed: false,
                 aoe: true,
-                description: "Roiling water erupts under random enemy destinations, inflicting 48,664 Frost damage to enemies within 5 yards and knocks them into the air as well as inflicting 9,919 Frost damage to everyone.",
+                description: "Roiling water erupts under random enemy destinations, inflicting 97,695 Frost damage to enemies within 5 yards and knocks them into the air as well as inflicting 9,919 Frost damage to everyone.",
                 image: "images/Break_Water.jpg"
             }, {
                 name: "Putrid_Waters",
-                baseDamage: 22544,
-                damage: 22544,
+                baseDamage: 45258,
+                damage: 45258,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Spits putrid water at random enemies that inflicts 22,544 Frost damage on impact and 11,273 Frost damage every 2 sec for 30 sec. If dispelled, water erupts and inflicts 38157 Frost damage to nearby allies and knocks them back.",
+                description: "Spits putrid water at random enemies that inflicts 45,258 Frost damage on impact and 22,629 Frost damage every 2 sec for 30 sec. If dispelled, water erupts and inflicts 38157 Frost damage to nearby allies and knocks them back.",
                 image: "images/Putrid_Waters.jpg"
             }, {
                 name: "Call_of_the_Deep",
-                baseDamage: 81106,
-                damage: 81106,
+                baseDamage: 162825,
+                damage: 162825,
                 type: "frost",
                 bleed: false,
                 aoe: true,
-                description: "Belches a torrent of water that inflicts 81,106 Frost damage on impact to nearby enemies.",
+                description: "Belches a torrent of water that inflicts 162,825 Frost damage on impact to nearby enemies.",
                 image: "images/Call_of_the_Deep.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Brackish_Bolt",
-                baseDamage: 24692,
-                damage: 24692,
+                baseDamage: 48848,
+                damage: 48848,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Fires a bolt of foul water at the target that inflicts 24,692 Nature damage.",
+                description: "Fires a bolt of foul water at the target that inflicts 48,848 Nature damage.",
                 image: "images/Brackish_Bolt.jpg"
             }, {
                 name: "Molten_Slug",
-                baseDamage: 18592,
-                damage: 18592,
+                baseDamage: 36779,
+                damage: 36779,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Shoots at a random enemy, inflicting 18320 Fire damage.",
+                description: "Shoots at a random enemy, inflicting 36,779 Fire damage.",
                 image: "images/Molten_Slug.jpg"
             }, {
                 name: "Trample",
-                baseDamage: 28807,
-                damage: 28807,
+                baseDamage: 56989,
+                damage: 56989,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Charges towards a random enemy, inflicting 28,807 Shadow damage to all players caught in the path.  Victims are stunned for 2 sec.",
+                description: "Charges towards a random enemy, inflicting 56,989 Shadow damage to all players caught in the path.  Victims are stunned for 2 sec.",
                 image: "images/Trample.jpg"
             }, {
                 name: "Broadside",
-                baseDamage: 54105,
-                damage: 54105,
+                baseDamage: 107033,
+                damage: 107033,
                 type: "arcane",
                 bleed: false,
                 aoe: true,
-                description: "Fires a cannon that inflicts 54,105 Arcane damage to all enemies caught in the path.",
+                description: "Fires a cannon that inflicts 107,033 Arcane damage to all enemies caught in the path.",
                 image: "images/Broadside.jpg"
             }, {
                 name: "Banana_Rampage",
-                baseDamage: 17633,
-                damage: 17633,
+                baseDamage: 34885,
+                damage: 34885,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Enters a rampage, inflicting 17,633 Physical damage to all nearby enemies. Also, launches bananas at random enemy targets that inflict 17,633 to nearby enemies and leaves bananas on the ground that stun enemies that move over them for 2 sec.",
+                description: "Enters a rampage, inflicting 34,885 Physical damage to all nearby enemies. Also, launches bananas at random enemy targets that inflict 17,633 to nearby enemies and leaves bananas on the ground that stun enemies that move over them for 2 sec.",
                 image: "images/Banana_Rampage.jpg"
             }, {
                 name: "Viscous_Slobber",
-                baseDamage: 24692,
-                damage: 24692,
+                baseDamage: 48848,
+                damage: 48848,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Hurls slobber in a frontal cone that inflicts 24,692 Nature damage to enemies and reduces their movement speed by 65% for 6 sec.",
+                description: "Hurls slobber in a frontal cone that inflicts 48,848 Nature damage to enemies and reduces their movement speed by 65% for 6 sec.",
                 image: "images/Viscous_Slobber.jpg"
             }, {
                 name: "Ricochet",
-                baseDamage: 19827,
-                damage: 19827,
+                baseDamage: 39224,
+                damage: 39224,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Fires at an enemy, inflicting 19,827 Physical damage.",
+                description: "Fires at an enemy, inflicting 39,224 Physical damage.",
                 image: "images/Ricochet.jpg"
             }, {
                 name: "Shoot",
-                baseDamage: 15252,
-                damage: 15252,
+                baseDamage: 24138,
+                damage: 24138,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Shoots an enemy, inflicting 15,252 Physical damage.",
+                description: "Shoots an enemy, inflicting 24,138 Physical damage.",
                 image: "images/Shoot.jpg"
             }
         ]
@@ -972,114 +969,114 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Conduction",
-                baseDamage: 45088,
-                damage: 45088,
+                baseDamage: 90516,
+                damage: 90516,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Aspix charges the air around the victim, causing them to release a sudden burst of 45,088 Nature damage after 5 sec. Any allies within 8 yards of the victim will take Nature damage when this effect expires.",
+                description: "Aspix charges the air around the victim, causing them to release a sudden burst of 90,516 Nature damage after 5 sec. Any allies within 8 yards of the victim will take Nature damage when this effect expires.",
                 image: "images/Conduction.jpg"
             }, {
                 name: "Static_Shock",
-                baseDamage: 33816,
-                damage: 33816,
+                baseDamage: 67887,
+                damage: 67887,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Aspix unleashes a burst of electricity that inflicts 33,816 Nature damage.",
+                description: "Aspix unleashes a burst of electricity that inflicts 67,887 Nature damage.",
                 image: "images/Static_Shock.jpg"
             }, {
                 name: "Jolt",
-                baseDamage: 22544,
-                damage: 22544,
+                baseDamage: 45258,
+                damage: 45258,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Aspix jolts the target for 22,544 Nature damage.",
+                description: "Aspix jolts the target for 45,258 Nature damage.",
                 image: "images/Jolt.jpg"
             }, {
                 name: "Burrow",
-                baseDamage: 45088,
-                damage: 45088,
+                baseDamage: 90516,
+                damage: 90516,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Merektha burrows through floor, inflicting 45088 Physical damage to any players caught in her path. Victims are knocked back.",
+                description: "Merektha burrows through floor, inflicting 90,516 Physical damage to any players caught in her path. Victims are knocked back.",
                 image: "images/Burrow.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Power_Shot",
-                baseDamage: 32924,
-                damage: 32924,
+                baseDamage: 65130,
+                damage: 65130,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "The caster fires an bolt of lightning through the target, inflicting 32,924 Nature damage to all enemies caught in its path.",
+                description: "The caster fires an bolt of lightning through the target, inflicting 65,130 Nature damage to all enemies caught in its path.",
                 image: "images/Power_Shot.jpg"
             }, {
                 name: "Lightning_Bolt",
-                baseDamage: 33554,
-                damage: 33544,
+                baseDamage: 66379,
+                damage: 66379,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Shocks the target with a bolt of lightning, inflicting 33,554 Nature damage.",
+                description: "Shocks the target with a bolt of lightning, inflicting 66,379 Nature damage.",
                 image: "images/Lightning_Bolt.jpg"
             }, {
                 name: "Venomous_Spit",
-                baseDamage: 12347,
-                damage: 12347,
+                baseDamage: 24424,
+                damage: 24424,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "The caster spits venom at the target, poisoning them for 12,347 Nature damage every 3 sec for 9 sec.",
+                description: "The caster spits venom at the target, poisoning them for 24,424 Nature damage every 3 sec for 9 sec.",
                 image: "images/Venomous_Spit.jpg"
             }, {
                 name: "Lightning_in_a_Bottle",
-                baseDamage: 12347,
-                damage: 12347,
+                baseDamage: 24424,
+                damage: 24424,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "The caster hurls a vial that unleashes an electric field on the ground.  Players who stand in the field suffer 12,347 Nature damage every 3 sec.",
+                description: "The caster hurls a vial that unleashes an electric field on the ground.  Players who stand in the field suffer 24,424 Nature damage every 3 sec.",
                 image: "images/Lightning_in_a_Bottle.jpg"
             }, {
                 name: "Release_Charge",
-                baseDamage: 12345,
-                damage: 12345,
+                baseDamage: 24424,
+                damage: 24424,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Releases all stored charge, inflicting 12,345 Nature damage to all enemies within 40 yards. Consumes all applications of Accumulate Charge.",
+                description: "Releases all stored charge, inflicting 24,424 Nature damage to all enemies within 40 yards. Consumes all applications of Accumulate Charge.",
                 image: "images/Release_Charge.jpg"
             }, {
                 name: "Spark",
-                baseDamage: 16460,
-                damage: 16460,
+                baseDamage: 32557,
+                damage: 32557,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Leaps to a target location, inflicting 16,460 Nature damage to all targets within 5 yards of the impact.",
+                description: "Leaps to a target location, inflicting 32,557 Nature damage to all targets within 5 yards of the impact.",
                 image: "images/Spark.jpg"
             }, {
                 name: "Electrocute",
-                baseDamage: 8232,
-                damage: 8232,
+                baseDamage: 16283,
+                damage: 16283,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Electrocutes a random enemy for 8,232 Nature damage.",
+                description: "Electrocutes a random enemy for 16,283 Nature damage.",
                 image: "images/Electrocute.jpg"
             }, {
                 name: "Lava_Burst",
-                baseDamage: 30504,
-                damage: 30504,
+                baseDamage: 60345,
+                damage: 60345,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Hurls molten lava at an enemy, inflicting 30,504 Fire damage.",
+                description: "Hurls molten lava at an enemy, inflicting 60,345 Fire damage.",
                 image: "images/Lava_Burst.jpg"
             },
         ]
@@ -1088,132 +1085,132 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Static_Pulse",
-                baseDamage: 27053,
-                damage: 27053,
+                baseDamage: 54309,
+                damage: 54309,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Emits a pulse of electricity, inflicting 27,053 Nature damage instantly and 4,509 Nature damage every 2 sec for 6 sec. Also knocks back all enemies.",
+                description: "Emits a pulse of electricity, inflicting 54,309 Nature damage instantly and 4,509 Nature damage every 2 sec for 6 sec. Also knocks back all enemies.",
                 image: "images/Static_Pulse.jpg"
             }, {
                 name: "Chemical_Burn",
-                baseDamage: 18249,
-                damage: 18249,
+                baseDamage: 36636,
+                damage: 36636,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Sprays up to 2 players with a nasty chemical, inflicting 18,249 Nature damage every 2 sec for 10 sec.",
+                description: "Sprays up to 2 players with a nasty chemical, inflicting 36,636 Nature damage every 2 sec for 10 sec.",
                 image: "images/Chemical_Burn.jpg"
             }, {
                 name: "Gatling_Gun",
-                baseDamage: 16774,
-                damage: 16774,
+                baseDamage: 33675,
+                damage: 33675,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Spins in place and fires a hail of bullets, inflicting 16,774 Physical damage every 0.3 sec to all players in front of Mogul Razdunk.",
+                description: "Spins in place and fires a hail of bullets, inflicting 33,675 Physical damage every 0.3 sec to all players in front of Mogul Razdunk.",
                 image: "images/Gatling_Gun.jpg"
             }, {
                 name: "Homing_Missile",
-                baseDamage: 48664,
-                damage: 48664,
+                baseDamage: 97695,
+                damage: 97695,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "Fires a homing missile that chases a player. On impact, or after 10 sec, the missile explodes, inflicting 48,664 Fire damage immediately and 9,217 Fire damage every 2 sec for 6 sec to all players within 20 yards of the missile. The missile's speed increases as it travels.",
+                description: "Fires a homing missile that chases a player. On impact, or after 10 sec, the missile explodes, inflicting 97,695 Fire damage immediately and 9,217 Fire damage every 2 sec for 6 sec to all players within 20 yards of the missile. The missile's speed increases as it travels.",
                 image: "images/Homing_Missile.jpg"
             }, {
                 name: "Micro_Missiles",
-                baseDamage: 49597,
-                damage: 49597,
+                baseDamage: 99568,
+                damage: 99568,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "A B.O.O.M.B.A. drone launches a salvo of Micro Missiles, inflicting 49,597 Fire damage to players within 6 yards of each missile's impact.",
+                description: "A B.O.O.M.B.A. drone launches a salvo of Micro Missiles, inflicting 99,568 Fire damage to players within 6 yards of each missile's impact.",
                 image: "images/Micro_Missiles.jpg"
             }, {
                 name: "Drill_Smash",
-                baseDamage: 40553,
-                damage: 40553,
+                baseDamage: 81412,
+                damage: 81412,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Flies through the air and impacts a player's location, inflicting 81,107 Physical damage to targets within 8 yards, and 40,553 Physical damage to all targets beyond 8 yards.",
+                description: "Flies through the air and impacts a player's location, inflicting 162,825 Physical damage to targets within 8 yards, and 81,412 Physical damage to all targets beyond 8 yards.",
                 image: "images/Drill_Smash.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Grease_Gun",
-                baseDamage: 25007,
-                damage: 25007,
+                baseDamage: 49463,
+                damage: 49463,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Shoot the current threat target for 25,007 Physical damage.",
+                description: "Shoot the current threat target for 49,463 Physical damage.",
                 image: "images/Grease_Gun.jpg"
             }, {
                 name: "Clothesline",
-                baseDamage: 22734,
-                damage: 22734,
+                baseDamage: 48848,
+                damage: 48848,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Charges a random player, inflicting 22,734 Physical damage and stunning them for 2 sec.",
+                description: "Charges a random player, inflicting 48,848 Physical damage and stunning them for 2 sec.",
                 image: "images/Clothesline.jpg"
             }, {
                 name: "Iced_Spritzer",
-                baseDamage: 9472,
-                damage: 9472,
+                baseDamage: 20353,
+                damage: 20353,
                 type: "frost",
                 bleed: false,
                 aoe: false,
-                description: "Blasts an enemy with a jet of icy cold spritzer, inflicting 9,472 Frost damage every 1 sec and reducing movement speed by 15% for 6 sec. The final tick of Iced Spritzer will trigger Brain Freeze.",
+                description: "Blasts an enemy with a jet of icy cold spritzer, inflicting 20,353 Frost damage every 1 sec and reducing movement speed by 15% for 6 sec. The final tick of Iced Spritzer will trigger Brain Freeze.",
                 image: "images/Iced_Spritzer.jpg"
             }, {
                 name: "Hail_of_Flechettes",
-                baseDamage: 9095,
-                damage: 9095,
+                baseDamage: 17990,
+                damage: 17990,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Hurls flechettes at enemies within 45 yards, inflicting 9,095 Physical damage. If the caster has Toxic Blades, affected targets will also be poisoned by the Widomaker Toxin.",
+                description: "Hurls flechettes at enemies within 45 yards, inflicting 17,990 Physical damage. If the caster has Toxic Blades, affected targets will also be poisoned by the Widomaker Toxin.",
                 image: "images/Hail_of_Flechettes.jpg"
             }, {
                 name: "Throw_Wrench",
-                baseDamage: 43058,
-                damage: 43058,
+                baseDamage: 92514,
+                damage: 92514,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Throws a heavy wrench at a random enemy's head, inflicting 43,058 Physical damage. Ouch!",
+                description: "Throws a heavy wrench at a random enemy's head, inflicting 92,514 Physical damage. Ouch!",
                 image: "images/Throw_Wrench.jpg"
             }, {
                 name: "Charged_Claw",
-                baseDamage: 17222,
-                damage: 17222,
+                baseDamage: 34065,
+                damage: 34065,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Strikes a player with a lightning bolt that inflicts 17,222 Nature damage. The lightning chains to up to 3 targets.",
+                description: "Strikes a player with a lightning bolt that inflicts 34,065 Nature damage. The lightning chains to up to 3 targets.",
                 image: "images/Charged_Claw.jpg"
             }, {
                 name: "Throw_Rock",
-                baseDamage: 25833,
-                damage: 25833,
+                baseDamage: 55508,
+                damage: 55508,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Throws a rock at a player, inflicting 25,833 Physical damage.",
+                description: "Throws a rock at a player, inflicting 55,508 Physical damage.",
                 image: "images/Throw_Rock.jpg"
             }, {
                 name: "Rock_Lance",
-                baseDamage: 28417,
-                damage: 28417,
+                baseDamage: 61060,
+                damage: 61060,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Blasts a player with a magical stone lance, inflicting 28,417 Nature damage instantly and 11,233 Nature damage every 2 sec for 6 sec.",
+                description: "Blasts a player with a magical stone lance, inflicting 61,060 Nature damage instantly and 24,138 Nature damage every 2 sec for 6 sec.",
                 image: "images/Rock_Lance.jpg"
             },
         ]
@@ -1222,96 +1219,96 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Blood_Bolt",
-                baseDamage: 37574,
-                damage: 37574,
+                baseDamage: 75430,
+                damage: 75430,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Elder Leaxa blasts a player, inflicting 30,059 Shadow damage.",
+                description: "Elder Leaxa blasts a player, inflicting 75,430 Shadow damage.",
                 image: "images/Blood_Bolt.jpg"
             }, {
                 name: "Tantrum",
-                baseDamage: 18138,
-                damage: 18138,
+                baseDamage: 36414,
+                damage: 36414,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Throws a tantrum upon reaching 100 energy, periodically inflicts 18,138 Physical damage to all enemies.",
+                description: "Throws a tantrum upon reaching 100 energy, periodically inflicts 36,414 Physical damage to all enemies.",
                 image: "images/Tantrum.jpg"
             }, {
                 name: "Festering_Harvest",
-                baseDamage: 30058,
-                damage: 30058,
+                baseDamage: 60344,
+                damage: 60344,
                 type: "plague",
                 bleed: false,
                 aoe: true,
-                description: "Upon reaching 100 energy, Zancha forces all remaining spore pods to burst. Inflicts 30,058 Plague damage to all players and applies Decaying Spores to all players for each active spore pod.",
+                description: "Upon reaching 100 energy, Zancha forces all remaining spore pods to burst. Inflicts 60,344 Plague damage to all players and applies Decaying Spores to all players for each active spore pod.",
                 image: "images/Festering_Harvest.jpg"
             }, {
                 name: "Rotting_Spore",
-                baseDamage: 75147,
-                damage: 75147,
+                baseDamage: 150860,
+                damage: 150860,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Pools of Vile Expulsion periodically coalesce into Rotting Spores that move towards players. Each spore inflicts 75,147 Shadow damage to any player it comes into contact with, instantly killing the spore.",
+                description: "Pools of Vile Expulsion periodically coalesce into Rotting Spores that move towards players. Each spore inflicts 150,860 Shadow damage to any player it comes into contact with, instantly killing the spore.",
                 image: "images/Rotting_Spore.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Blood_Burst",
-                baseDamage: 8425,
-                damage: 8425,
+                baseDamage: 16664,
+                damage: 16664,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Explodes on death, inflicting 8,245 Shadow damage to all enemies.",
+                description: "Explodes on death, inflicting 16,664 Shadow damage to all enemies.",
                 image: "images/Blood_Burst.jpg"
             }, {
                 name: "Blood_Harvest",
-                baseDamage: 34102,
-                damage: 34102,
+                baseDamage: 73272,
+                damage: 73272,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Charges to a random enemy, inflicting 34,102 Physical damage.",
+                description: "Charges to a random enemy, inflicting 73,272 Physical damage.",
                 image: "images/Blood_Harvest.jpg"
             }, {
                 name: "Barbed_Spear",
-                baseDamage: 21064,
-                damage: 21064,
+                baseDamage: 45258,
+                damage: 45258,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 21,064 Physical damage to an enemy.",
+                description: "Inflicts 45,258 Physical damage to an enemy.",
                 image: "images/Barbed_Spear.jpg"
             }, {
                 name: "Hooked_Snare",
-                baseDamage: 13262,
-                damage: 13262,
+                baseDamage: 28494,
+                damage: 28494,
                 type: "nature",
                 bleed: true,
                 aoe: true,
-                description: "Inflicts 13,262 Physical damage to an enemy every 2 sec for 4 sec. Immobilizes an enemy for up to 4 sec.",
+                description: "Inflicts 28,494 Physical damage to an enemy every 2 sec for 4 sec. Immobilizes an enemy for up to 4 sec.",
                 image: "images/Hooked_Snare.jpg"
             }, {
                 name: "Wicked_Assault",
-                baseDamage: 13130,
-                damage: 13130,
+                baseDamage: 28211,
+                damage: 28211,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 13,130 Shadow damage to an enemy every 1 sec for 10 sec.",
+                description: "Inflicts 28,211 Shadow damage to an enemy every 1 sec for 10 sec.",
                 image: "images/Wicked_Assault.jpg"
             }, {
                 name: "Abyssal_Reach",
-                baseDamage: 46341,
-                damage: 46341,
+                baseDamage: 99568,
+                damage: 995681,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Summons tendrils from the void that inflict 46,341 Shadow damage to all enemies in front of them.",
+                description: "Summons tendrils from the void that inflict 99,568 Shadow damage to all enemies in front of them.",
                 image: "images/Abyssal_Reach.jpg"
             }
         ]
@@ -1320,60 +1317,60 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Upheaval",
-                baseDamage: 58615,
-                damage: 58615,
+                baseDamage: 90516,
+                damage: 90516,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Disappears beneath the sand, exploding up underneath a player. This eruption inflicts 58,615 Nature damage and knocks all targets upwards.",
+                description: "Disappears beneath the sand, exploding up underneath a player. This eruption inflicts 90,516 Nature damage and knocks all targets upwards.",
                 image: "images/Upheaval.jpg"
             }, {
                 name: "Sand_Trap",
-                baseDamage: 37145,
-                damage: 37145,
+                baseDamage: 74570,
+                damage: 74570,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Calls forth sand traps beneath all players for 4 sec. Coming into contact with a sand trap inflicts 37,145 Nature damage, knocking the target into the air and stunning them for 4 sec.",
+                description: "Calls forth sand traps beneath all players for 4 sec. Coming into contact with a sand trap inflicts 74,570 Nature damage, knocking the target into the air and stunning them for 4 sec.",
                 image: "images/Sand_Trap.jpg"
             }, {
                 name: "Deadeye",
-                baseDamage: 33359,
-                damage: 33359,
+                baseDamage: 66969,
+                damage: 66969,
                 type: "physical",
                 bleed: false,
                 aoe: false,
-                description: "Aims at a player, firing a precise round after 4 sec and striking the first player in the line. This shot inflicts 33,359 Physical damage and increases damage taken from Deadeye by 500% for 1.3 min.",
+                description: "Aims at a player, firing a precise round after 4 sec and striking the first player in the line. This shot inflicts 66,969 Physical damage and increases damage taken from Deadeye by 500% for 1.3 min.",
                 image: "images/Deadeye.jpg"
             }, {
                 name: "Explosive_Burst",
-                baseDamage: 42082,
-                damage: 42082,
+                baseDamage: 69396,
+                damage: 69396,
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                description: "Marks player for Explosive Burst. After 4 sec, shots ring out and inflict 42,082 Fire damage to all players within 5 yds.",
+                description: "Marks player for Explosive Burst. After 4 sec, shots ring out and inflict 69,396 Fire damage to all players within 5 yds.",
                 image: "images/Explosive_Burst.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Salt_Blast",
-                baseDamage: 33334,
-                damage: 33334,
+                baseDamage: 65944,
+                damage: 65944,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 33,334 Nature damage to an enemy.",
+                description: "Inflicts 65,944 Nature damage to an enemy.",
                 image: "images/Salt_Blast.jpg"
             }, {
                 name: "Blaze",
-                baseDamage: 56730,
-                damage: 56730,
+                baseDamage: 71440,
+                damage: 71440,
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                description: "Inflicts 56,730 Fire damage to an enemy.",
+                description: "Inflicts 71,440 Fire damage to an enemy.",
                 image: "images/Blaze.jpg"
             }
         ]
@@ -1382,35 +1379,35 @@ var dungeons = [
         bossAbilities: [
             {
                 name: "Unstable_Runic_Mark",
-                baseDamage: 26452,
-                damage: 26452,
+                baseDamage: 53103,
+                damage: 53103,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Marks all nearby enemies with cursed runes, inflicting 3,757 Shadow damage every 1 sec for 6 sec. Upon expiration, or if the mark is dispelled, the rune explodes, inflicting an additional 26,452 Shadow damage to all allies within 6 yards.",
+                description: "Marks all nearby enemies with cursed runes, inflicting 7,543 Shadow damage every 1 sec for 6 sec. Upon expiration, or if the mark is dispelled, the rune explodes, inflicting an additional 53,103 Shadow damage to all allies within 6 yards.",
                 image: "images/Unstable_Runic_Mark.jpg"
             }, {
                 name: "Dire_Ritual",
-                baseDamage: 61170,
-                damage: 61170,
+                baseDamage: 122801,
+                damage: 122801,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Releases a bust of dark energy, inflicting 61,170 Shadow damage to all enemies.",
+                description: "Releases a bust of dark energy, inflicting 122,801 Shadow damage to all enemies.",
                 image: "images/Dire_Ritual.jpg"
             }, {
                 name: "Rotten_Expulsion",
-                baseDamage: 28932,
-                damage: 28932,
+                baseDamage: 58081,
+                damage: 58081,
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                description: "Raal the Gluttonous expels a wave of rancid food, inflicting 28,932 Nature damage at each impact. Each expulsion remains at the impact point, inflicting 14884 Nature damage every 1 sec and reducing movement speed by 60%.",
+                description: "Raal the Gluttonous expels a wave of rancid food, inflicting 58,081 Nature damage at each impact. Each expulsion remains at the impact point, inflicting 29,879 Nature damage every 1 sec and reducing movement speed by 60%.",
                 image: "images/Rotten_Expulsion.jpg"
             }, {
                 name: "Virulent_Pathogen",
-                baseDamage: 7517,
-                damage: 7517,
+                baseDamage: 15090,
+                damage: 15090,
                 type: "nature",
                 bleed: false,
                 aoe: false,
@@ -1418,97 +1415,383 @@ var dungeons = [
                 image: "images/Virulent_Pathogen.jpg"
             }, {
                 name: "Wasting_Strike",
-                baseDamage: 33065,
-                damage: 33065,
+                baseDamage: 66379,
+                damage: 66379,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Claws at the enemy with rotten claws, inflicting 33,065 Nature damage and additional 8,266 Nature damage every 1 sec for 5 sec.",
+                description: "Claws at the enemy with rotten claws, inflicting 66,379 Nature damage and additional 16,595 Nature damage every 1 sec for 5 sec.",
                 image: "images/Wasting_Strike.jpg"
             }, {
                 name: "Dread_Essence",
-                baseDamage: 24799,
-                damage: 24799,
+                baseDamage: 49784,
+                damage: 49784,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "At 100 energy, the caster releases a torrent of dark energy, inflicting 24,799 Shadow damage to all enemies. Additionally, all Deathtouched Slavers are resurrected, brought back to their maximum health, and any crowd control effects on them are dispelled.",
+                description: "At 100 energy, the caster releases a torrent of dark energy, inflicting 49,784 Shadow damage to all enemies. Additionally, all Deathtouched Slavers are resurrected, brought back to their maximum health, and any crowd control effects on them are dispelled.",
                 image: "images/Dread_Essence.jpg"
             }
         ],
         trashAbilities: [
             {
                 name: "Shadow_Cleave",
-                baseDamage: 18456,
-                damage: 18456,
+                baseDamage: 36508,
+                damage: 36508,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Strikes in a wide arc with a rune-inscribed weapon, inflicting 18,456 Shadow damage to all enemies in a cone in front of the caster.",
+                description: "Strikes in a wide arc with a rune-inscribed weapon, inflicting 36,508 Shadow damage to all enemies in a cone in front of the caster.",
                 image: "images/Shadow_Cleave.jpg"
             }, {
                 name: "Infected_Thorn",
-                baseDamage: 14261,
-                damage: 14261,
+                baseDamage: 28211,
+                damage: 28211,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Hurls a plagued thorn at the enemy, inflicting 14,261 Nature damage and an additional 4,132 Nature damage every 1 sec for 8 sec.",
+                description: "Hurls a plagued thorn at the enemy, inflicting 28,211 Nature damage and an additional 8,297 Nature damage every 1 sec for 8 sec.",
                 image: "images/Infected_Thorn.jpg"
             }, {
                 name: "Spit",
-                baseDamage: 7551,
-                damage: 7551,
+                baseDamage: 14935,
+                damage: 14935,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "Spits a caustic fluid at an enemy, inflicting 7,551 Nature damage and additional 1,764 Nature damage every 1 sec for 10 sec.",
+                description: "Spits a caustic fluid at an enemy, inflicting 14,935 Nature damage and additional 3,701 Nature damage every 1 sec for 10 sec.",
                 image: "images/Spit.jpg"
             }, {
                 name: "Ravaging_Leap",
-                baseDamage: 10065,
-                damage: 10065,
+                baseDamage: 19914,
+                damage: 19914,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
+                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 19,914 Physical damage and additional Physical damage every 1 sec for 5 sec.",
                 image: "images/Ravaging_Leap.jpg"
             }, {
                 name: "Retch",
-                baseDamage: 16836,
-                damage: 16836,
+                baseDamage: 33305,
+                damage: 33305,
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                description: "The caster retches forth acidic bile, inflicting 16,836 Nature damage to all enemies in a cone in front of the caster.",
+                description: "The caster retches forth acidic bile, inflicting 33,305 Nature damage to all enemies in a cone in front of the caster.",
                 image: "images/Retch.jpg"
             }, {
                 name: "Soul_Bolt",
-                baseDamage: 22651,
-                damage: 22651,
+                baseDamage: 44806,
+                damage: 44806,
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                description: "Fires a bolt of crippling energy, inflicting 22,651 Shadow damage to the target. Holding the focusing iris increases the damage done by Soul Bolt.",
+                description: "Fires a bolt of crippling energy, inflicting 44,806 Shadow damage to the target.",
                 image: "images/Soul_Bolt.jpg"
             }, {
                 name: "Soul_Volley",
-                baseDamage: 12583,
-                damage: 12583,
+                baseDamage: 24892,
+                damage: 24892,
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                description: "Expels twisted souls at each enemy, inflicting 12,583 Shadow damage.",
+                description: "Expels twisted souls at each enemy, inflicting 24,892 Shadow damage.",
                 image: "images/Soul_Volley.jpg"
             }, {
                 name: "Dark_Leap",
-                baseDamage: 10065,
-                damage: 10065,
+                baseDamage: 19914,
+                damage: 19914,
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 10,065 Physical damage and additional Physical damage every 1 sec for 5 sec.",
+                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 19,914 Physical damage and additional Physical damage every 1 sec for 5 sec.",
                 image: "images/Dark_Leap.jpg"
+            }
+        ]
+    }, {
+        name: "Mechagon_Junkyard",
+        bossAbilities: [
+            {
+                name: "Toxic_Fumes",
+                baseDamage: 16133,
+                damage: 16133,
+                type: "plague",
+                bleed: false,
+                aoe: false,
+                description: "Gunker emits Toxic Fumes throughout the encounter, inflicting 16,133 Plague damage to all players every 3 sec.",
+                image: "images/Toxic_Fumes.jpg"
+            }, {
+                name: "Taze",
+                baseDamage: 35851,
+                damage: 35851,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Inflicts 35,851 Nature damage instantly, and 23,303 Nature damage every 2 sec for 20 sec.",
+                image: "images/Taze.jpg"
+            }, {
+                name: "Turbo_Boost",
+                baseDamage: 46606,
+                damage: 46606,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "When defeated, Trixie uses Turbo Boost on Naeno causing his successful melee attacks to inflict 46607 Nature damage to all players for the remainder of the encounter.",
+                image: "images/Turbo_Boost.jpg"
+            }, {
+                name: "Charged_Smash",
+                baseDamage: 286810,
+                damage: 286810,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Upon reaching 100 energy, Gobbamak smashes his primary target inflicting 179,256 Physical damage. Additionally, Charged Smash inflicts 286,810 Nature damage split evenly among all players within 8 yards of the primary target and knocks them back.",
+                image: "images/Charged_Smash.jpg"
+            }, {
+                name: "Rumble",
+                baseDamage: 16133,
+                damage: 16133,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                description: "Gobbamak bounces up and down, inflicting 16,133 Physical damage to all players every 1 sec and causing Cave In.",
+                image: "images/Rumble.jpg"
+            }, {
+                name: "Fulminating_Zap",
+                baseDamage: 35851,
+                damage: 35851,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Inflicts 35,851 Nature damage and an additional 43,021 Nature damage every 3 sec for 9 sec.",
+                image: "images/Fulminating_Zap.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "B.O.R.K.",
+                baseDamage: 53777,
+                damage: 53777,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Fires a sonic wave in front of the caster. Enemies struck suffer 53,777 Nature damage and have their Haste and movement speed reduced by 50% for 10 sec.",
+                image: "images/bork.jpg"
+            }, {
+                name: "Shock_Coil",
+                baseDamage: 17926,
+                damage: 17926,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 17,926 Nature damage to all enemies every 1 sec.",
+                image: "images/Shock_Coil.jpg"
+            }, {
+                name: "Scrap_Cannon",
+                baseDamage: 60947,
+                damage: 60947,
+                type: "fire",
+                bleed: false,
+                aoe: false,
+                description: "Inflicts 60,947 Fire damage to enemies within 45 yards of the impact.",
+                image: "images/Scrap_Cannon.jpg"
+            }, {
+                name: "Pounce",
+                baseDamage: 35851,
+                damage: 35851,
+                type: "physical",
+                bleed: false,
+                aoe: false,
+                description: "Leaps at an enemy, inflicting 35,851 Physical damage and causing 28,681 Physical damage every 2 sec for 8 sec.",
+                image: "images/Pounce.jpg"
+            }, {
+                name: "Slimebolt",
+                baseDamage: 46607,
+                damage: 46607,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Inflicts 46,607 Plague damage to a target and reduces their movement speed by 50% for 8 sec.",
+                image: "images/Slimebolt.jpg"
+            }, {
+                name: "Consuming_Slime",
+                baseDamage: 53777,
+                damage: 53777,
+                type: "plague",
+                bleed: false,
+                aoe: false,
+                description: "53,777 Plague damage inflicted every 3 sec. Absorbs up to 146,093 of all healing received.",
+                image: "images/Consuming_Slime.jpg"
+            }
+        ]
+    }, {
+        name: "Mechagon_Workshop",
+        bossAbilities: [
+            {
+                name: "Whirling_Edge",
+                baseDamage: 143405,
+                damage: 143405,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 143405 Physical damage to enemies within 8 yards of the bot.",
+                image: "images/Whirling_Edge.jpg"
+            }, {
+                name: "Vent_Jets",
+                baseDamage: 21511,
+                damage: 21511,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                description: "Vents around the bot unleash gouts of flame, slowing the bot's movement speed by 60% and inflicting 107,554 Fire damage to enemies within 9 yards of the bot's front, and 21,511 Fire damage to all enemies every 1 sec for 8 sec.",
+                image: "images/Vent_Jets.jpg"
+            }, {
+                name: "Explosive_Leap",
+                baseDamage: 46606,
+                damage: 46606,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                description: "The caster leaps towards random players, heating Junk Cubes and inflicting 78,873 Fire damage to all enemies within 8 yards of the impact.",
+                image: "images/Explosive_Leap.jpg"
+            }, {
+                name: "Venting_Flames",
+                baseDamage: 286810,
+                damage: 286810,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                description: "The caster vents massive jets of flame from their core, inflicting 107,554 Fire damage to all players outside of cover every 1 sec for 5 sec.",
+                image: "images/Venting_Flames.jpg"
+            }, {
+                name: "Self-Trimming_Hedge",
+                baseDamage: 71758,
+                damage: 71758,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                description: "Launches a blade that bounces around the garden, inflicting 71,758 Physical damage.",
+                image: "images/Hedge.jpg"
+            }, {
+                name: "Blossom_Blast",
+                baseDamage: 9859,
+                damage: 9859,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Unleashes bolts of lightning at a target, inflicting 9,859 Nature damage every 0.5 sec for 6 sec.",
+                image: "images/Blossom_Blast.jpg"
+            }, {
+                name: "Giga-Zap",
+                baseDamage: 89628,
+                damage: 89628,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Unleashes a bolt of energy towards a player, inflicting 89628 Nature damage and an additional 17,939 Nature damage every 2 sec for 12 sec to all players in a line from the caster.  In addition, the target takes 100% increased damage from Giga-Zap for 12 sec.",
+                image: "images/Zap.jpg"
+            }, {
+                name: "Plasma_Orb",
+                baseDamage: 53585,
+                damage: 53585,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Touching an orb inflicts 53,585 Nature damage, and knocks the player back.",
+                image: "images/Zap.jpg"
+            }, {
+                name: "Recalibrate",
+                baseDamage: 107554,
+                damage: 107554,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Adjusts the location of all Plasma Orbs.  Upon arriving at their new location each orb unleashes a blast of energy, inflicting 107,554 Nature damage to all players within 6 yards.",
+                image: "images/Recalibrate.jpg"
+            }, {
+                name: "Giga-Zap",
+                baseDamage: 71702,
+                damage: 71702,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Unleashes 3 bolts of energy towards a random players. Each bolt inflicts 71,702 Nature damage and an additional 17,926 Nature damage every 2 sec for 12 sec.  In addition, the target takes 100% increased damage from Giga-Zap for 12 sec.",
+                image: "images/Zap.jpg"
+            }
+        ],
+        trashAbilities: [
+            {
+                name: "Detonate",
+                baseDamage: 64532,
+                damage: 64532,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 64,532 Fire damage to enemies within 200 yards.",
+                image: "images/Detonate.jpg"
+            }, {
+                name: "Process_Waste",
+                baseDamage: 107554,
+                damage: 107554,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 107,554 Physical damage every 1 sec for 5 sec.",
+                image: "images/Process_Waste.jpg"
+            }, {
+                name: "Mega_Drill",
+                baseDamage: 143405,
+                damage: 143405,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 143,405 Physical damage to enemies within 10 yards.",
+                image: "images/Mega_Drill.jpg"
+            }, {
+                name: "Volatile_Waste",
+                baseDamage: 35851,
+                damage: 35851,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "After dying, the caster inflicts 35,851 Nature damage to all enemies within 100 yards.",
+                image: "images/Volatile_Waste.jpg"
+            }, {
+                name: "Giga-Wallop",
+                baseDamage: 43022,
+                damage: 43022,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Unleashes an arc of electricity at a player, inflicting 43,022 Nature damage and then jumping to additional nearby enemies within 3 yards.",
+                image: "images/Wallop.jpg"
+            }, {
+                name: "Activate Anti-Personnel Squirrel",
+                baseDamage: 179256,
+                damage: 179256,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Creates a mechanical squirrel that chases towards a random player, inflicting 179,256 Nature damage to all enemies within 10 yards of the detonation.",
+                image: "images/Squirrel.jpg"
+            }, {
+                name: "Arcing_Zap",
+                baseDamage: 21151,
+                damage: 21151,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                description: "Inflicts 21511 Nature damage and an additional 21,151 Nature damage every 2 sec for 20 sec.",
+                image: "images/Arcing_Zap.jpg"
+            }, {
+                name: "Short_Out",
+                baseDamage: 14340,
+                damage: 14340,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                description: "Inflicts 14,340 Nature damage to all players every 0.5 sec for 3 sec.",
+                image: "images/Short_Out.jpg"
             }
         ]
     }
@@ -2879,6 +3162,31 @@ var versTrinkets = [
         image: "images/Dread_Gladiators_Medallion.jpg"
     }
 ];
+
+// dungeons.forEach(dungeon => {
+//     if (dungeon.name !== "Operation_Mechagon") {
+//         dungeon.bossAbilities.forEach(bossAbility => {
+//             if (bossAbility.name !== "Upheaval" && bossAbility.name !== "Explosive_Burst" && bossAbility.name !== "Pistol_Shot" && bossAbility.name !== "Azerite_Powder_Shot" && bossAbility.name !== "Severing_Axe" && bossAbility.name !== "Powder_Shot") {
+//                 bossAbility.damage = bossAbility.damage * 1.3;
+//                 bossAbility.baseDamage = bossAbility.baseDamage * 1.3;
+//             }
+//         });
+//         dungeon.trashAbilities.forEach(trashAbility => {
+//             trashAbility.damage = trashAbility.damage * 1.3;
+//             trashAbility.baseDamage = trashAbility.baseDamage * 1.3;
+//             if (trashAbility.name === "Bladestorm") {
+//                 trashAbility.damage = trashAbility.damage - (trashAbility.damage * .15);
+//             }
+//             if (trashAbility.name === "Frost_Shock") {
+//                 trashAbility.damage = trashAbility.damage - (trashAbility.damage * .19);
+//             }
+//             if (trashAbility.name === "Deathly_Chill") {
+//                 trashAbility.damage = trashAbility.damage - (trashAbility.damage * .15);
+//             }
+//         });
+//     }
+// });
+
 $.ajax({
     type: "GET",
     url: "https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en"
@@ -3237,6 +3545,26 @@ $(document).on("click", "#changeDungeon", function (event) {
             </div>
         </div>
     </div>
+    <div class="row">
+    <div class="imgContainer col-md-6" data-dungeon="Mechagon_Junkyard">
+        <img class="dungeonImage" data-dungeon="Mechagon_Junkyard" src="images/Mechagon_Junkyard.png" alt="Mechagon Junkyard">
+        <div class="overlay">
+            <div class="text">Mechagon Junkyard</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Mechagon Junkyard</div>
+        </div>
+    </div>
+    <div class="imgContainer col-md-6" data-dungeon="Mechagon_Workshop">
+        <img class="dungeonImage" data-dungeon="Mechagon_Workshop" src="images/Mechagon_Workshop.png" alt="Mechagon Workshop">
+        <div class="overlay">
+            <div class="text">Mechagon Workshop</div>
+        </div>
+        <div class="hide imgText">
+            <div class="text">Mechagon Workshop</div>
+        </div>
+    </div>
+</div>
     `);
 });
 
