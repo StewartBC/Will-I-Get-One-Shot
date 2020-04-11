@@ -1656,8 +1656,8 @@ var dungeons = [
                 image: "images/Explosive_Leap.jpg"
             }, {
                 name: "Venting_Flames",
-                baseDamage: 286810,
-                damage: 286810,
+                baseDamage: 107554,
+                damage: 107554,
                 type: "fire",
                 bleed: false,
                 aoe: true,
