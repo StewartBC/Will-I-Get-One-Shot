@@ -3269,9 +3269,9 @@ $(document).on("mouseleave", ".imgContainer", function () {
 });
 
 function displaySpecs() {
-    $("#classInput").empty();
+    $("#classEmpty").empty();
     if (playerClass === "Demon Hunter") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">                            
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Havoc</h6>" class="specImage" data-spec="Havoc"
                 src="images/Havoc.jpg" alt="Havoc">
@@ -3280,7 +3280,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Death Knight") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Blood</h6>" class="specImage" data-spec="Blood"
                 src="images/Blood.png" alt="Blood">
@@ -3291,7 +3291,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Druid") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Feral</h6>" class="specImage" data-spec="Feral"
                 src="images/Feral.png" alt="Feral">
@@ -3304,7 +3304,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Hunter") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Beast Mastery</h6>" class="specImage" data-spec="Beast Mastery"
                 src="images/Beast Mastery.png" alt="Beast Mastery">
@@ -3315,7 +3315,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Mage") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Frost</h6>" class="specImage" data-spec="Frost"
                 src="images/Frost Mage.png" alt="Frost">
@@ -3326,7 +3326,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Monk") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Brewmaster</h6>" class="specImage" data-spec="Brewmaster"
                 src="images/Brewmaster.png" alt="Brewmaster">
@@ -3337,7 +3337,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Paladin") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Protection</h6>" class="specImage" data-spec="Protection"
                 src="images/Protection Paladin.png" alt="Protection">
@@ -3348,7 +3348,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Priest") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Shadow</h6>" class="specImage" data-spec="Shadow"
                 src="images/Shadow.png" alt="Shadow">
@@ -3359,7 +3359,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Rogue") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Assassination</h6>" class="specImage" data-spec="Assassination"
                 src="images/Assassination.png" alt="Assassination">
@@ -3370,7 +3370,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Shaman") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Restoration</h6>" class="specImage" data-spec="Restoration"
                 src="images/Restoration Shaman.png" alt="Restoration">
@@ -3381,7 +3381,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Warlock") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Demonology</h6>" class="specImage" data-spec="Demonology"
                 src="images/Demonology.png" alt="Demonology">
@@ -3392,7 +3392,7 @@ function displaySpecs() {
         </div>    
         `);
     } else if (playerClass === "Warrior") {
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <div class="row">
             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Protection</h6>" class="specImage" data-spec="Protection"
                 src="images/Protection.png" alt="Protection">
@@ -3403,7 +3403,7 @@ function displaySpecs() {
         </div>    
         `);
     }
-    $("#classInput").append(`<button type="button" id="changeClass" class="btn btn-primary">Choose Another Class</button>`);
+    $("#classEmpty").append(`<button type="button" id="changeClass" class="btn btn-primary">Choose Another Class</button>`);
     $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 }
 
@@ -3418,8 +3418,8 @@ $(document).on("click", ".classImage", function (event) {
 
 $(document).on("click", "#changeClass", function (event) {
     event.preventDefault();
-    $("#classInput").empty();
-    $("#classInput").append(`
+    $("#classEmpty").empty();
+    $("#classEmpty").append(`
         <div class="row">
         <img class="classImage" data-class="Death Knight" src="images/deathKnight.svg"
             alt="Death Knight">
@@ -3611,8 +3611,8 @@ $(document).on("click", ".specImage", function (event) {
     playerSpec = $(this).attr("data-spec");
     $('#classInput [data-toggle="tooltip"]').tooltip('dispose');
     if (playerSpec !== "") {
-        $("#classInput").empty();
-        $("#classInput").append(`
+        $("#classEmpty").empty();
+        $("#classEmpty").append(`
         <div class="row personalRow">
             <div class="col-md-6 personalCol">
                 <h2>Personals:</h2>
@@ -3629,7 +3629,7 @@ $(document).on("click", ".specImage", function (event) {
                 $(".personalCol").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${personal.name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${personal.description}" class="personalImage" data-name=${personal.name} src=${personal.image} alt=${personal.name}>`);
             }
         });
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#externals" aria-expanded="false" aria-controls="externals">
         Externals Show/Hide
         </button></br>
@@ -3638,7 +3638,7 @@ $(document).on("click", ".specImage", function (event) {
         externals.forEach(external => {
             $("#externals").append(`<img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${external.name.replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${external.description}"class="externalImage" data-name=${external.name} src=${external.image} alt=${external.name}>`);
         });
-        $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#absorbs" aria-expanded="false" aria-controls="absorbs">
+        $("#classEmpty").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#absorbs" aria-expanded="false" aria-controls="absorbs">
         Absorbs Show/Hide
         </button></br>
         <div class="collapse" id="absorbs">`);
@@ -3691,8 +3691,8 @@ $(document).on("click", ".specImage", function (event) {
                 </div
             </div>
             `);
-        $("#classInput").append(`</div>`);
-        $("#classInput").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#versCollapse" aria-expanded="false" aria-controls="versCollapse">
+        $("#classEmpty").append(`</div>`);
+        $("#classEmpty").append(`<button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#versCollapse" aria-expanded="false" aria-controls="versCollapse">
         Vers Trinkets Show/Hide
         </button></br>
         <div class="collapse" id="versCollapse">`);
@@ -3713,7 +3713,7 @@ $(document).on("click", ".specImage", function (event) {
             </div>
             `);
         });
-        $("#classInput").append(`
+        $("#classEmpty").append(`
         <h2>Stats:</h2>
         <div class="row">
             <div class="col-md-6">
@@ -3769,7 +3769,7 @@ $(document).on("click", ".specImage", function (event) {
 </div>
         `);
         if (playerSpec === "Vengeance" || playerSpec === "Blood" || playerSpec === "Guardian" || (playerSpec === "protection" && playerClass === "Paladin")) {
-            $("#classInput").append(`
+            $("#classEmpty").append(`
             <div class="row">
             <div class="col-md-6">
             <p class="playerInput" style="margin-top: 4px">Main stat (no buffs):</p>
@@ -3786,7 +3786,7 @@ $(document).on("click", ".specImage", function (event) {
             `);
         }
         if (playerSpec === "Vengeance" || (playerClass === "Paladin" && playerSpec === "Protection")) {
-            $("#classInput").append(`
+            $("#classEmpty").append(`
             <div class="row">
             <div class="col-md-6">
             <p class="playerInput">Mastery (no buffs):</p>
@@ -3803,7 +3803,7 @@ $(document).on("click", ".specImage", function (event) {
             `);
         }
         if (playerSpec === "Brewmaster") {
-            $("#classInput").append(`
+            $("#classEmpty").append(`
             <div class="row">
             <div class="col-md-6">
             <p class="playerInput">Stagger (with buffs):</p>
@@ -3845,7 +3845,7 @@ $(document).on("click", ".specImage", function (event) {
             calcDamage();
         }
     };
-    $("#classInput").append("<button type=\"button\" id=\"changeSpec\" class=\"btn btn-primary\">Choose Another Spec</button>");
+    $("#classEmpty").append("<button type=\"button\" id=\"changeSpec\" class=\"btn btn-primary\">Choose Another Spec</button>");
     $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 });
 

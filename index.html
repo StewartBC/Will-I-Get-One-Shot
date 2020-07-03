@@ -86,6 +86,10 @@
             width: 100%
         }
 
+        #twitchRow {
+            margin-top: 25px;
+        }
+
         body {
             background-color: #141A26;
         }
@@ -289,23 +293,9 @@
                 </div>
             </nav>
             <div id="content">
-                <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-                <div id="twitch"></div>
-                <script type="text/javascript">
-                    var options = {
-                        width: 800,
-                        height: 600,
-                        channel: "trancebrew",
-                        // video: "<video ID>",
-                        // collection: "<collection ID>",
-                        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
-                        parent: ["justhealus.com"]
-                    };
-                    var player = new Twitch.Player("twitch", options);
-                    player.setVolume(0.5);
-                </script>
                 <div class="row">
                     <div id="classInput" class="col-lg-6">
+                        <div id="classEmpty">
                         <div class="row">
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Death Knight</h6>" class="classImage" data-class="Death Knight"
                                 src="images/deathKnight.svg" alt="Death Knight">
@@ -335,6 +325,24 @@
                                 src="images/warlock.svg" alt="Warlock">
                             <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Warrior</h6>" class="classImage" data-class="Warrior"
                                 src="images/warrior.svg" alt="Warrior">
+                        </div>
+                    </div>
+                        <div id="twitchRow" class="row">
+                        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+                        <div id="twitch"></div> 
+                        <script type="text/javascript">
+                            var options = {
+                                width: 800*(2/3),
+                                height: 600*(2/3),
+                                channel: "trancebrew",
+                                // video: "<video ID>",
+                                // collection: "<collection ID>",
+                                // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+                                parent: ["justhealus.com"]
+                            };
+                            var player = new Twitch.Player("twitch", options);
+                            player.setVolume(0.5);
+                        </script>
                         </div>
                     </div>
 
