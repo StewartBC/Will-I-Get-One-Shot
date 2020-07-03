@@ -862,8 +862,8 @@ var dungeons = [
                 image: "images/Gut_Shot.jpg"
             }, {
                 name: "Break_Water",
-                baseDamage: 97695,
-                damage: 97695,
+                baseDamage: 59739,
+                damage: 59739,
                 type: "frost",
                 bleed: false,
                 aoe: true,
@@ -2990,6 +2990,19 @@ var externals = [
         description: "Reduces all damage taken by a friendly target by 40% for 8 sec. Castable while stunned.",
         image: "images/Pain_Suppression.jpg"
     }, {
+        name: "Uwavering_Ward",
+        magicDR: .03,
+        physicalDR: .03,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Targets protected by Unwavering Ward take 3% reduced damage.",
+        image: "images/Unwavering_Ward.webp"
+    },{
         name: "Spirit_Link_Totem",
         magicDR: .1,
         physicalDR: .1,
