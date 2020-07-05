@@ -229,6 +229,9 @@ function calcDamage() {
                 damage = damage - (damage * .3);
             }
             ability.damage = Math.round(damage);
+            if (ability.damage < 0) { 
+                ability.damage = 0;
+            }
         });
 
     });
@@ -265,8 +268,14 @@ function calcDamage() {
                 damage = damage - (damage * .3);
             }
             ability.damage = Math.round(damage);
+            if (ability.damage < 0) { 
+                ability.damage = 0;
+            }
         });
     });
+    if (vers > 0) {
+        absorbAmount = absorbAmount + (absorbAmount * (0.01 * (vers/485)));
+    }
     playerAbsorb = absorbAmount;
     playerAbsorb = health;
     $(".totalHealth").html(`<span style="font-size: 23px">Total Health: ${Math.round(health)}</span>`);
@@ -3953,6 +3962,9 @@ $(document).keypress(function (keyPressed) {
                 playerArmor = amount;
             } else if (recentInput === "avoidance") {
                 avoidance = amount;
+                if (avoidance > 560) {
+                    avoidance = 560;
+                }
             } else if (recentInput === "mainStat") {
                 playerMainStat = amount;
             } else if (recentInput === "Lustruous_Golden_Plumage" || recentInput === "Dread_Gladiators_Medallion") {
@@ -4001,6 +4013,9 @@ $(document).on("click", ".avoidanceOkay", function (event) {
     }
     if (Number.isInteger(avoidanceAmount)) {
         avoidance = avoidanceAmount;
+        if (avoidance > 560) {
+            avoidance = 560;
+        }
         calcDamage();
     }
 });
