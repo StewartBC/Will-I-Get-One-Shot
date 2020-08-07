@@ -2944,7 +2944,7 @@ var externals = [
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Damage dealt to allies within 10 yards is reduced by up to 10%, diminishing as more allies enter the aura.",
+        description: "Damage dealt to allies within 10 yards is reduced by 3%.",
         image: "images/Devotion_Aura.jpg"
     }, {
         name: "Blessing_of_Sacrifice",
