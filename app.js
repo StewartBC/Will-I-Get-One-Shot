@@ -3482,7 +3482,7 @@ $(document).on("click", "#changeClass", function (event) {
             alt="Hunter">
     </div>
     <div class="row">
-        <img class="classImage" data-class="Mage" src="images/mage.svg" alt="Mage">
+        <img class="classImage" data-class="Mage" src="images/jay.png" alt="Mage">
         <img class="classImage" data-class="Monk" src="images/monk.svg" alt="Monk">
         <img class="classImage" data-class="Paladin" src="images/paladin.svg"
             alt="Paladin">
