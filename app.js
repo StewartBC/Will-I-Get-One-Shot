@@ -2910,6 +2910,20 @@ var absorbs = [
 ];
 var externals = [
     {
+        name: "Conflict_and_Strife",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 560,
+        selected: false,
+        description: "Your spells and abilities have a chance to increase your Versatility by 70 for 14 sec, stacking up to 8 times. Being the vicitim of a loss of control or movement impairing effect also grants a stack of Strife.",
+        image: "images/Conflict.jpg"
+    },
+    {
         name: "Ironbark",
         magicDR: .2,
         physicalDR: .2,
@@ -2922,7 +2936,7 @@ var externals = [
         selected: false,
         description: "The target's skin becomes as tough as Ironwood, reducing all damage taken by 20% for 12 sec.",
         image: "images/Ironbark.jpg"
-    }, {
+    },{
         name: "Aegis_of_Light",
         magicDR: .2,
         physicalDR: .2,
