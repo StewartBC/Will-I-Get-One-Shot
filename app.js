@@ -136,6 +136,8 @@ function calcDamage() {
     var absorbAmount = 0;
     var absorbsArray = [];
     var healthArray = [];
+    var endurance = false;
+    var aspect = false;
     personals.forEach(personal => {
         if (personal.selected) {
             if (personal.magicDR > 0) {
@@ -151,7 +153,18 @@ function calcDamage() {
             if (personal.absorb > 0) {
                 absorbsArray.push(personal.absorb);
             }
-            if (personal.healthPercentIncrease > 0) {
+            if (personal.name === "Aspect_of_the_Beast" || personal.name === "Endurance_Training") {
+                if (personal.name === "Endurance_Training") {
+                    endurance = true;
+                } else if (personal.name === "Aspect_of_the_Beast"){
+                    aspect = true;
+                }
+                if (endurance && aspect) {
+                    healthArray.push(.07);
+                } else if (endurance && !aspect) {
+                    healthArray.push(0.05);
+                }
+            } else if (personal.healthPercentIncrease > 0) {
                 healthArray.push(personal.healthPercentIncrease);
             }
             health = health + personal.healthIncrease;
@@ -2124,6 +2137,21 @@ var personals = [
         image: "images/Survival_of_the_Fittest.jpg"
     }, {
         class: "Hunter",
+        specs: ["Beast Mastery"],
+        name: "Aspect_of_the_Beast",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: .07,
+        versIncrease: 0,
+        selected: false,
+        description: "Increases the effectiveness of your pet's Predator's Thirst, Endurance Training, and Pathfinding passives by 50%.",
+        image: "images/Aspect_of_the_Beast.jpg"
+    }, {
+        class: "Hunter",
         specs: ["Marksmanship", "Survival", "Beast Mastery"],
         name: "Endurance_Training",
         magicDR: 0,
@@ -2137,7 +2165,7 @@ var personals = [
         selected: false,
         description: "You and your pet gain 5% increased maximum health.",
         image: "images/Endurance_Training.jpg"
-    }, {
+    },{
         class: "Mage",
         specs: ["Frost"],
         name: "Glacial_Insulation",
@@ -3603,6 +3631,8 @@ $(document).on("click", "#changeSpec", function (event) {
         external.selected = false;
     });
     feint = false;
+    aspect = false;
+    endurance = false;
     elusiveness = false;
     playerMainStat = 0;
     playerArmor = 0;
