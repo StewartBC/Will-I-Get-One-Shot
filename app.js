@@ -160,7 +160,7 @@ function calcDamage() {
                     aspect = true;
                 }
                 if (endurance && aspect) {
-                    healthArray.push(.07);
+                    healthArray.push(.075);
                 } else if (endurance && !aspect) {
                     healthArray.push(0.05);
                 }
@@ -2145,7 +2145,7 @@ var personals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
-        healthPercentIncrease: .07,
+        healthPercentIncrease: .075,
         versIncrease: 0,
         selected: false,
         description: "Increases the effectiveness of your pet's Predator's Thirst, Endurance Training, and Pathfinding passives by 50%.",
