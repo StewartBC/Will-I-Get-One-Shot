@@ -2921,7 +2921,7 @@ var externals = [
         versIncrease: 560,
         selected: false,
         description: "Your spells and abilities have a chance to increase your Versatility by 70 for 14 sec, stacking up to 8 times. Being the vicitim of a loss of control or movement impairing effect also grants a stack of Strife.",
-        image: "images/Conflict.jpg"
+        image: "images/conflict.jpg"
     },
     {
         name: "Ironbark",
