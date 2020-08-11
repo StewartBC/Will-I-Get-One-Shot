@@ -1901,13 +1901,13 @@ var personals = [
         magicDR: 0,
         physicalDR: 0,
         armorIncrease: 0,
-        armorPercentIncrease: 1,
+        armorPercentIncrease: 2,
         absorb: 0,
         healthIncrease: 0,
-        healthPercentIncrease: .3,
+        healthPercentIncrease: .5,
         versIncrease: 0,
         selected: false,
-        description: "Transform to demon form for 15 sec, increasing current and maximum health by 30% and Armor by 100%.",
+        description: "Transform to demon form for 15 sec, increasing current and maximum health by 50% and Armor by 200%.",
         image: "images/Metamorphosis.jpg"
     }, {
         class: "Demon Hunter",
