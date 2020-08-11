@@ -1002,7 +1002,7 @@ var dungeons = [
                 name: "Static_Shock",
                 baseDamage: 67887,
                 damage: 67887,
-                type: "physical",
+                type: "nature",
                 bleed: false,
                 aoe: true,
                 description: "Aspix unleashes a burst of electricity that inflicts 67,887 Nature damage.",
