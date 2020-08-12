@@ -3209,6 +3209,19 @@ var externals = [
         selected: false,
         description: "Infuses the target with vitality, increasing their Stamina by 10% for until cancelled.",
         image: "images/Infusion_Fortitude.jpg"
+    }, {
+        name: "Reinforced",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: .1,
+        versIncrease: 0,
+        selected: false,
+        description: "Maximum health and healing received increased by 10%.",
+        image: "images/Reinforced.jpg"
     }
 ];
 var versTrinkets = [
@@ -3915,6 +3928,14 @@ $(document).on("click", ".imgContainer", function (event) {
             }
         });
     }
+    if (dungeon !== "Mechagon_Junkyard") {
+        externals.forEach(external => {
+            if (external.name === "Reinforced" && external.selected) {
+                external.selected = false;
+                $(`[data-name="Reinforced"`).removeClass("selected");
+            }
+        });
+    }
     calcDamage();
 });
 
@@ -4301,7 +4322,7 @@ $(document).on("click", ".externalImage", function (event) {
             }
         });
     }
-    if (externalName !== "Infusion:_Fortitude") {
+    if (externalName !== "Infusion:_Fortitude" && externalName !== "Reinforced") {
         externals.forEach(external => {
             if (external.name === externalName) {
                 if (external.selected) {
@@ -4315,6 +4336,19 @@ $(document).on("click", ".externalImage", function (event) {
         });
         calcDamage();
     } else if (externalName === "Infusion:_Fortitude" && dungeon === "Tol_Dagor") {
+        externals.forEach(external => {
+            if (external.name === externalName) {
+                if (external.selected) {
+                    external.selected = false;
+                    $(this).removeClass("selected");
+                } else {
+                    external.selected = true;
+                    $(this).addClass("selected");
+                }
+            }
+        });
+        calcDamage();
+    } else if (externalName === "Reinforced" && dungeon === "Mechagon_Junkyard") {
         externals.forEach(external => {
             if (external.name === externalName) {
                 if (external.selected) {
