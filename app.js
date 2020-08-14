@@ -216,8 +216,14 @@ function calcDamage() {
         dung.bossAbilities.forEach(ability => {
             var damage = ability.baseDamage;
             damage = damage * scaling[level - 2];
-            if (tyrannical) {
-                damage = damage * 1.15;
+            if (ability.scaling === "default") {
+                if (tyrannical) {
+                    damage = damage * 1.15;
+                }
+            } else if (ability.scaling === "fortified") {
+                if (fortified) {
+                    damage = damage * 1.3;
+                }
             }
             if (ability.name === "Conduction") {
                 damage = damage + (damage * 0.01 * (vers * (1 / 85)));
@@ -256,7 +262,7 @@ function calcDamage() {
             var damage = ability.baseDamage;
             damage = damage * scaling[level - 2];
             if (fortified) {
-                damage = damage * 1.15;
+                damage = damage * 1.3;
             }
             if (raging) {
                 damage = damage * 2;
@@ -311,7 +317,7 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "Creates a pool of noxious fumes at random locations, that inflict 60,520 Nature damage every 2 sec to players standing within the pool.",
                 image: "images/Toxic_Pool.jpg"
             }, {
@@ -331,7 +337,7 @@ var dungeons = [
                 type: "fire",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "none",
                 description: "Priestess Alun'za agitates a pool of molten gold, splattering a player at random. The victim burns for 54,310 Fire damage every 3 sec for 30 sec.",
                 image: "images/Molten_Gold.jpg"
             }, {
@@ -341,7 +347,7 @@ var dungeons = [
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "none",
                 description: "The victim's blood is tainted, inflicting 21,120 Shadow damage every 3 sec.",
                 image: "images/Tainted_Blood.jpg"
             }, {
@@ -479,9 +485,19 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "fortified",
                 description: "Sharkbait charges across the battlefield, inflicting 90,516 Nature damage and knocking back all players in the way.",
                 image: "images/Dive_Bomb.jpg"
+            }, {
+                name: "Vile_Bombardment",
+                baseDamage: 30621,
+                damage: 30621,
+                type: "nature",
+                bleed: false,
+                aoe: true,
+                scaling: "none",
+                description: "Sharkbait bombards his enemies with a vile puddle, inflicting 30,621 Nature damage every 1.5 sec and movement speed is decreased by 40% to anyone in the area.",
+                image: "images/Vile_Bombardment.jpg"
             }, {
                 name: "Powder_Shot",
                 baseDamage: 87499,
@@ -503,6 +519,16 @@ var dungeons = [
                 description: "Eudora leaps to a new location and fires wide blasts of grapeshot from her rifle across the arena. Each blast deals 77,712 Fire damage in a cone.",
                 image: "images/Grapeshot.jpg"
             }, {
+                name: "Barrel_Smash",
+                baseDamage: 45258,
+                damage: 45258,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                scaling: "default",
+                description: "Raoul lifts his emptied barrel of grog and slams it to the ground repeatedly for 4 sec. All enemies within 10 yards suffer 45,258 Physical damage and are knocked back every second.",
+                image: "images/Barrel_Smash.jpg"
+            },{
                 name: "Rearm",
                 baseDamage: 77712,
                 damage: 77712,
@@ -529,7 +555,7 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "fortified",
                 description: "With a flick of his saber, Harlan bends the tradewinds to his will and sends them flying forward. Enemies that collide with the winds are knocked back and suffer 66,378 Nature damage.",
                 image: "images/Swiftwind_Saber.jpg"
             }
@@ -611,6 +637,16 @@ var dungeons = [
                 description: "Spits molten gold at a player, inflicting 54,310 Fire damage every 3 sec. for 9 sec, and creating a pool of Molten Gold at the player's location afterwards.",
                 image: "images/Spit_Gold.jpg"
             }, {
+                name: "Molten_Gold",
+                baseDamage: 60712,
+                damage: 60712,
+                type: "fire",
+                bleed: false,
+                aoe: true,
+                scaling: "none",
+                description: "Inflicts 60,712 Fire damage every 2 sec. to players who touch the molten gold.",
+                image: "images/Animated_Gold.jpg"
+            }, {
                 name: "Drain_Fluids",
                 baseDamage: 49060,
                 damage: 49060,
@@ -627,7 +663,7 @@ var dungeons = [
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "Inflicts 110,350 Fire damage every 2 sec. to any players inside a patch of Burning Ground.",
                 image: "images/Burning_Ground.jpg"
             }, {
@@ -647,7 +683,7 @@ var dungeons = [
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "Unleashes a whirling attack that inflicts 105,602 Physical damage to players within 10 yards, knocking them back. Also, she throws two whirling axes which iflict 33,803 Physical damage every 2 sec. for 6 sec to players who come into contact with them.",
                 image: "images/Whirling_Axes.jpg"
             }, {
@@ -660,6 +696,16 @@ var dungeons = [
                 scaling: "default",
                 description: "Dazar leaps at the targeted player, inflicting up to 122,651 Physical damage to all players. This damage is reduced the further players are from the targeted location.",
                 image: "images/Quaking_Leap.jpg"
+            }, {
+                name: "Gale_Slash",
+                baseDamage: 18103,
+                damage: 18103,
+                type: "nature",
+                bleed: false,
+                aoe: false,
+                scaling: "none",
+                description: "Dazar gathers the power of wind in his blade and slashes, creating a tornado that moves to a player's location and then swirls around the area, inflicting 18,103 Nature damage every 2 sec.",
+                image: "images/Slicing_Blast.jpg"
             }
         ],
         trashAbilities: [
@@ -775,7 +821,7 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "both",
                 description: "Interrupts while affected by Blessing of the Tempest create a Blowback at a nearby location which inflicts 69,396 Nature damage and kocks back enemies that come in contact with it.",
                 image: "images/Blowback.jpg"
             }, {
@@ -805,7 +851,7 @@ var dungeons = [
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "The Forgotten Denizen tears a fragment from the minds of all players, inflicting 65,088 Shadow damage to them and restoring health to the caster.",
                 image: "images/Consume_Essence.jpg"
             }, {
@@ -815,7 +861,7 @@ var dungeons = [
                 type: "shadow",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "Manifestations of the Deep explode upon death, inflicting 9,655 Shadow damage to all players. This effect grants Vol'zith the Whisperer energy if the manifestation reaches it.",
                 image: "images/Abyssal_Eruption.jpg"
             }, {
@@ -947,6 +993,16 @@ var dungeons = [
                 description: "When not being melee attacked, shoots at random enemies inflicting 48,847 Physical damage on impact and an additional 22,305 Physical damage every 2 sec for 8 sec.",
                 image: "images/Gut_Shot.jpg"
             }, {
+                name: "Dread_Volley",
+                baseDamage: 162825,
+                damage: 162825,
+                type: "arcane",
+                bleed: false,
+                aoe: true,
+                scaling: "default",
+                description: "Inflicts 162,825 Arcane damage to all nearby enemies.",
+                image: "images/Scrap_Cannon.jpg"
+            },{
                 name: "Break_Water",
                 baseDamage: 59739,
                 damage: 59739,
@@ -966,6 +1022,16 @@ var dungeons = [
                 scaling: "default",
                 description: "Spits putrid water at random enemies that inflicts 45,258 Frost damage on impact and 22,629 Frost damage every 2 sec for 30 sec. If dispelled, water erupts and inflicts 38157 Frost damage to nearby allies and knocks them back.",
                 image: "images/Putrid_Waters.jpg"
+            }, {
+                name: "Slam",
+                baseDamage: 97695,
+                damage: 97695,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                scaling: "none",
+                description: "The tentacle slams the ground, inflicting 97695 Physical damage and knocking back all enemies in a cone in front of the caster.",
+                image: "images/Rumble.jpg"
             }, {
                 name: "Call_of_the_Deep",
                 baseDamage: 162825,
@@ -1101,7 +1167,7 @@ var dungeons = [
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "fortified",
                 description: "Merektha burrows through floor, inflicting 90,516 Physical damage to any players caught in her path. Victims are knocked back.",
                 image: "images/Burrow.jpg"
             }
@@ -1229,7 +1295,7 @@ var dungeons = [
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "fortified",
                 description: "Fires a homing missile that chases a player. On impact, or after 10 sec, the missile explodes, inflicting 97,695 Fire damage immediately and 9,217 Fire damage every 2 sec for 6 sec to all players within 20 yards of the missile. The missile's speed increases as it travels.",
                 image: "images/Homing_Missile.jpg"
             }, {
@@ -1239,7 +1305,7 @@ var dungeons = [
                 type: "fire",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "fortified",
                 description: "A B.O.O.M.B.A. drone launches a salvo of Micro Missiles, inflicting 99,568 Fire damage to players within 6 yards of each missile's impact.",
                 image: "images/Micro_Missiles.jpg"
             }, {
@@ -1377,7 +1443,7 @@ var dungeons = [
                 type: "shadow",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "none",
                 description: "Pools of Vile Expulsion periodically coalesce into Rotting Spores that move towards players. Each spore inflicts 150,860 Shadow damage to any player it comes into contact with, instantly killing the spore.",
                 image: "images/Rotting_Spore.jpg"
             }
@@ -1576,6 +1642,26 @@ var dungeons = [
                 scaling: "default",
                 description: "At 100 energy, the caster releases a torrent of dark energy, inflicting 49,784 Shadow damage to all enemies. Additionally, all Deathtouched Slavers are resurrected, brought back to their maximum health, and any crowd control effects on them are dispelled.",
                 image: "images/Dread_Essence.jpg"
+            }, {
+                name: "Darkened_Lightning",
+                baseDamage: 44806,
+                damage: 44806,
+                type: "shadow",
+                bleed: false,
+                aoe: false,
+                scaling: "default",
+                description: "A shadowy arc of lightning strikes an enemy, inflicting 44,806 Shadow damage and then jumping to additional nearby enemies.",
+                image: "images/Darkened_Lightning.jpg"
+            }, {
+                name: "Dark_Leap",
+                baseDamage: 19914,
+                damage: 19914,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                scaling: "none",
+                description: "Leaps to the furthest target and attacks all nearby enemies within 5 yards, inflicting 19,914 Physical damage and additional Physical damage every 1 sec for 5 sec.",
+                image: "images/Dark_Leap.jpg"
             }
         ],
         trashAbilities: [
@@ -1839,7 +1925,7 @@ var dungeons = [
                 type: "physical",
                 bleed: false,
                 aoe: true,
-                scaling: "default",
+                scaling: "none",
                 description: "Launches a blade that bounces around the garden, inflicting 71,758 Physical damage.",
                 image: "images/Hedge.jpg"
             }, {
@@ -1849,7 +1935,7 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "none",
                 description: "Unleashes bolts of lightning at a target, inflicting 9,859 Nature damage every 0.5 sec for 6 sec.",
                 image: "images/Blossom_Blast.jpg"
             }, {
@@ -1869,7 +1955,7 @@ var dungeons = [
                 type: "nature",
                 bleed: false,
                 aoe: false,
-                scaling: "default",
+                scaling: "fortified",
                 description: "Touching an orb inflicts 53,585 Nature damage, and knocks the player back.",
                 image: "images/Zap.jpg"
             }, {
