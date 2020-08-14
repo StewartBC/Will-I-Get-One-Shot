@@ -264,7 +264,11 @@ function calcDamage() {
                     damage = damage - damage * item;
                 });
                 if (!ability.bleed) {
-                    damage = damage - (damage * 0.01 * ((armor / (armor + 14282)) * 100));
+                    var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                    if (physicalDR > .85) {
+                        physicalDR = .85;
+                    }
+                    damage = damage - (damage * physicalDR);
                 }
             } else {
                 magic.forEach(item => {
@@ -335,7 +339,11 @@ function calcDamage() {
                     damage = damage - damage * item;
                 });
                 if (!ability.bleed) {
-                    damage = damage - (damage * 0.01 * ((armor / (armor + 8467)) * 100));
+                    var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                    if (physicalDR > .85) {
+                        physicalDR = .85;
+                    }
+                    damage = damage - (damage * physicalDR);
                 }
             } else {
                 magic.forEach(item => {
