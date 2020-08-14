@@ -138,6 +138,12 @@ function calcDamage() {
     var healthArray = [];
     var endurance = false;
     var aspect = false;
+    var shadow = false;
+    var frost = false;
+    var holy = false;
+    var fire = false;
+    var arcane = false;
+    var nature = false;
     personals.forEach(personal => {
         if (personal.selected) {
             if (personal.magicDR > 0) {
@@ -173,7 +179,31 @@ function calcDamage() {
     });
     externals.forEach(external => {
         if (external.selected) {
-            if (external.magicDR > 0) {
+            if (external.magicDR === .01) {
+                if (external.name === "Shadow_Resistance") {
+                    shadow = true;
+                }
+                if (external.name == "Fire_Resistance") {
+                    fire = true;
+                }
+                if (external.name == "Holy_Resistance") {
+                    holy = true;
+                }
+                if (external.name == "Frost_Resistance") {
+                    frost = true;
+                }
+                if (external.name == "Arcane_Resistance") {
+                    arcane = true;
+                }
+                if (external.name == "Nature_Resistance") {
+                    nature = true;
+                }
+                if (external.name == "Rime_Of_The_Ancient_Mariner") {
+                    frost = true;
+                    nature = true;
+                }
+            }
+            if (external.magicDR > .01) {
                 magic.push(external.magicDR);
             }
             if (external.physicalDR > 0) {
@@ -240,6 +270,30 @@ function calcDamage() {
                 magic.forEach(item => {
                     damage = damage - damage * item;
                 });
+                if (ability.type === "shadow" && shadow) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "shadowfrost" && shadow) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "shadowfrost" && frost) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "arcane" && arcane) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "nature" && nature) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "fire" && fire) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "holy" && holy) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "frost" && frost) {
+                    damage = damage - (damage * .01);
+                }
             }
             if (ability.aoe) {
                 damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
@@ -250,6 +304,14 @@ function calcDamage() {
             if (!ability.aoe && elusiveness) {
                 damage = damage - (damage * .3);
             }
+            externals.forEach(external => {
+                if (external.name === "Rugged_Tenacity" && external.selected) {
+                    damage = damage - (playerStamina * 20 * .0003);
+                }
+                if (external.name === "Nose_For_Trouble" && external.selected) {
+                    damage = damage - (playerStamina * .05);
+                }
+            });
             ability.damage = Math.round(damage);
             if (ability.damage < 0) { 
                 ability.damage = 0;
@@ -279,6 +341,30 @@ function calcDamage() {
                 magic.forEach(item => {
                     damage = damage - damage * item;
                 });
+                if (ability.type === "shadow" && shadow) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "shadowfrost" && shadow) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "shadowfrost" && frost) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "arcane" && arcane) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "nature" && nature) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "fire" && fire) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "holy" && holy) {
+                    damage = damage - (damage * .01);
+                }
+                if (ability.type === "frost" && frost) {
+                    damage = damage - (damage * .01);
+                }
             }
             if (ability.aoe) {
                 damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
@@ -289,6 +375,14 @@ function calcDamage() {
             if (!ability.aoe && elusiveness) {
                 damage = damage - (damage * .3);
             }
+            externals.forEach(external => {
+                if (external.name === "Rugged_Tenacity" && external.selected) {
+                    damage = damage - (playerStamina * 20 * .0003);
+                }
+                if (external.name === "Nose_For_Trouble" && external.selected) {
+                    damage = damage - (playerStamina * .05);
+                }
+            });
             ability.damage = Math.round(damage);
             if (ability.damage < 0) { 
                 ability.damage = 0;
@@ -3469,6 +3563,149 @@ var externals = [
         selected: false,
         description: "Maximum health and healing received increased by 10%.",
         image: "images/Reinforced.jpg"
+    }, {
+        name: "Stoneform",
+        magicDR: 0,
+        physicalDR: .1,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Removes all poison, disease and bleed effects and reduces all physical damage taken by 10% for 8 sec.",
+        image: "images/Rearm.jpg"
+    }, {
+        name: "Shadow_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Shadow damage taken by 1%.",
+        image: "images/Shadow_Resistance.jpg"
+    }, {
+        name: "Frost_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Frost damage taken by 1%.",
+        image: "images/Frost_Resistance.jpg"
+    }, {
+        name: "Arcane_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Arcane damage taken by 1%.",
+        image: "images/Arcane_Resistance.jpg"
+    }, {
+        name: "Nature_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Nature damage taken by 1%.",
+        image: "images/Nature_Resistance.jpg"
+    }, {
+        name: "Fire_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Fire damage taken by 1%.",
+        image: "images/Fire_Resistance.jpg"
+    }, {
+        name: "Holy_Resistance",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Holy damage taken by 1%.",
+        image: "images/Holy_Resistance.jpg"
+    }, {
+        name: "Rime_Of_The_Ancient_Mariner",
+        magicDR: .01,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces Frost and Nature damage taken by 1%.",
+        image: "images/Rime.jpg"
+    }, {
+        name: "Forged_In_The_Flames",
+        magicDR: 0,
+        physicalDR: .01,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces damage taken from Physical attacks by 1%.",
+        image: "images/Forged_In_The_Flames.jpg"
+    }, {
+        name: "Rugged_Tenacity",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Reduces damage taken by (Stamina * 0.0003 * 20).",
+        image: "images/Rugged_Tenacity.jpg"
+    }, {
+        name: "Nose_For_Trouble",
+        magicDR: 0,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "When you first take damage from an enemy, reduce that damage by 5% of your maximum health.",
+        image: "images/Nose_For_Trouble.jpg"
     }
 ];
 var versTrinkets = [
@@ -4505,11 +4742,101 @@ $(document).on("click", ".personalImage", function (event) {
 $(document).on("click", ".externalImage", function (event) {
     event.preventDefault();
     var externalName = $(this).attr("data-name");
+    if (externalName === "Stoneform") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+        externals.forEach(external => {
+            if (external.name === "Frost_Resistance" && !external.selected) {
+                external.selected = true;
+                $(`img[data-name='${external.name}']`).addClass("selected");
+            }
+        });
+    } else if (externalName === "Shadow_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Frost_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Frost_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Arcane_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Nature_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Fire_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Holy_Resistance") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Rime_Of_The_Ancient_Mariner") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Forged_In_The_Flames") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Rugged_Tenacity") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Fire_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Nose_For_Trouble" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+    } else if (externalName === "Nose_For_Trouble") {
+        externals.forEach(external => {
+            if ((external.name === "Shadow_Resistance" && external.selected) || (external.name === "Arcane_Resistance" && external.selected) || (external.name === "Frost_Resistance" && external.selected) || (external.name === "Nature_Resistance" && external.selected) || (external.name === "Holy_Resistance" && external.selected) || (external.name === "Rime_Of_The_Ancient_Mariner" && external.selected) || (external.name === "Forged_In_The_Flames" && external.selected) || (external.name === "Rugged_Tenacity" && external.selected) || (external.name === "Stoneform" && external.selected)) {
+                external.selected = false;
+                $(`img[data-name='${external.name}']`).removeClass("selected");
+            }
+        });
+        externals.forEach(external => {
+            if (external.name === "Fire_Resistance" && !external.selected) {
+                external.selected = true;
+                $(`img[data-name='${external.name}']`).addClass("selected");
+            }
+        });
+    }
     if (externalName === "War_Scroll_of_Fortitude") {
         externals.forEach(external => {
             if (external.name === "Power_Word:_Fortitude" && external.selected) {
                 external.selected = false;
-                $(`img[data-name="Power_Word:_Fortitude"]`).removeClass("selected");
+                $(`img[data-name='${external.name}']`).removeClass("selected");
             }
         });
     }
@@ -4517,7 +4844,7 @@ $(document).on("click", ".externalImage", function (event) {
         externals.forEach(external => {
             if (external.name === "War_Scroll_of_Fortitude" && external.selected) {
                 external.selected = false;
-                $(`img[data-name=War_Scroll_of_Fortitude]`).removeClass("selected");
+                $(`img[data-name='${external.name}'`).removeClass("selected");
             }
         });
     }
