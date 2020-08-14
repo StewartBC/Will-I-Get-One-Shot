@@ -1070,7 +1070,7 @@ var dungeons = [
                 damage: 90516,
                 type: "nature",
                 bleed: false,
-                aoe: true,
+                aoe: false,
                 scaling: "default",
                 description: "Aspix charges the air around the victim, causing them to release a sudden burst of 90,516 Nature damage after 5 sec. Any allies within 8 yards of the victim will take Nature damage when this effect expires.",
                 image: "images/Conduction.jpg"
