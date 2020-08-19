@@ -1168,6 +1168,26 @@ var dungeons = [
                 description: "Shoots at a random enemy, inflicting 36,779 Fire damage.",
                 image: "images/Molten_Slug.jpg"
             }, {
+                name: "Iron_Hook",
+                baseDamage: 70829,
+                damage: 70829,
+                type: "physical",
+                bleed: false,
+                aoe: false,
+                scaling: "default",
+                description: "Inflicts 70,829 Physical damage to an enemy and pulls them to the caster.",
+                image: "images/Iron_Hook.jpg"
+            }, {
+                name: "Iron_Ambush",
+                baseDamage: 122119,
+                damage: 122119,
+                type: "physical",
+                bleed: false,
+                aoe: true,
+                scaling: "default",
+                description: "Appears behind a random enemy, inflicting 122,119 Physical damage to all nearby enemies and stunning them for 2 sec.",
+                image: "images/Iron_Ambush.jpg"
+            }, {
                 name: "Trample",
                 baseDamage: 56989,
                 damage: 56989,
