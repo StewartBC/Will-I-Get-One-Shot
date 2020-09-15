@@ -4884,6 +4884,22 @@ $(document).on("click", ".externalImage", function (event) {
             }
         });
     }
+    if (externalName === "Aura_Mastery") {
+        externals.forEach(external => {
+            if (external.name === "Devotion_Aura" && external.selected) {
+                external.selected = false;
+                $(`img[data-name=Devotion_Aura]`).removeClass("selected");
+            }
+        });
+    }
+    if (externalName === "Devotion_Aura") {
+        externals.forEach(external => {
+            if (external.name === "Aura_Mastery" && external.selected) {
+                external.selected = false;
+                $(`img[data-name=Aura_Mastery]`).removeClass("selected");
+            }
+        });
+    }
     if (externalName === "Fragrant_Kakavia") {
         externals.forEach(external => {
             if (external.name === "Bil_Tong" && external.selected) {
