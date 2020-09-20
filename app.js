@@ -2013,8 +2013,8 @@ var dungeons = [
                 image: "images/Whirling_Edge.jpg"
             }, {
                 name: "Vent_Jets",
-                baseDamage: 21511,
-                damage: 21511,
+                baseDamage: 18103,
+                damage: 18103,
                 type: "fire",
                 bleed: false,
                 aoe: true,
@@ -2043,8 +2043,8 @@ var dungeons = [
                 image: "images/Venting_Flames.jpg"
             }, {
                 name: "Self-Trimming_Hedge",
-                baseDamage: 71758,
-                damage: 71758,
+                baseDamage: 60954,
+                damage: 60954,
                 type: "physical",
                 bleed: false,
                 aoe: true,
@@ -2053,8 +2053,8 @@ var dungeons = [
                 image: "images/Hedge.jpg"
             }, {
                 name: "Blossom_Blast",
-                baseDamage: 9859,
-                damage: 9859,
+                baseDamage: 8318,
+                damage: 8318,
                 type: "nature",
                 bleed: false,
                 aoe: false,
@@ -2073,8 +2073,8 @@ var dungeons = [
                 image: "images/Zap.jpg"
             }, {
                 name: "Plasma_Orb",
-                baseDamage: 53585,
-                damage: 53585,
+                baseDamage: 58626,
+                damage: 58626,
                 type: "nature",
                 bleed: false,
                 aoe: false,
@@ -2093,8 +2093,8 @@ var dungeons = [
                 image: "images/Recalibrate.jpg"
             }, {
                 name: "Giga-Zap",
-                baseDamage: 71702,
-                damage: 71702,
+                baseDamage: 60344,
+                damage: 60344,
                 type: "nature",
                 bleed: false,
                 aoe: true,
