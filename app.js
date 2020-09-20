@@ -22,6 +22,7 @@ var output = document.getElementById("keyLevel");
 slider.oninput = function () {
     level = this.value;
     output.innerHTML = "Key Level: " + this.value;
+    $("#percentValue").html("+" + Math.round((scaling[level - 2] - 1) * 100) + "%");
     dungeons.forEach(dung => {
         dung.bossAbilities.forEach(ability => {
             ability.damage = Math.round(ability.baseDamage * scaling[level - 2]);
