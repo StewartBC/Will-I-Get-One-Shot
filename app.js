@@ -2063,8 +2063,8 @@ var dungeons = [
                 image: "images/Blossom_Blast.jpg"
             }, {
                 name: "Giga-Zap",
-                baseDamage: 89628,
-                damage: 89628,
+                baseDamage: 75430,
+                damage: 75430,
                 type: "nature",
                 bleed: false,
                 aoe: true,
