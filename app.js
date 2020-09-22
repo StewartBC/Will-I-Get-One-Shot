@@ -1726,6 +1726,16 @@ var dungeons = [
                 description: "Releases a bust of dark energy, inflicting 122,801 Shadow damage to all enemies.",
                 image: "images/Dire_Ritual.jpg"
             }, {
+                name: "Jagged_Nettles",
+                baseDamage: 100473,
+                damage: 100473,
+                type: "physical",
+                bleed: false,
+                aoe: false,
+                scaling: "default",
+                description: "Strikes the enemy with razor-sharp nettles, inflicting 100473 Physical damage and leaves a grievous wound, inflicting  12069 Physical damage every 1 sec until the target is healed above 90% of their maximum health.",
+                image: "images/Jagged_Nettles.jpg"
+            }, {
                 name: "Rotten_Expulsion",
                 baseDamage: 58081,
                 damage: 58081,
@@ -1735,16 +1745,6 @@ var dungeons = [
                 scaling: "default",
                 description: "Raal the Gluttonous expels a wave of rancid food, inflicting 58,081 Nature damage at each impact. Each expulsion remains at the impact point, inflicting 29,879 Nature damage every 1 sec and reducing movement speed by 60%.",
                 image: "images/Rotten_Expulsion.jpg"
-            }, {
-                name: "Virulent_Pathogen",
-                baseDamage: 15090,
-                damage: 15090,
-                type: "nature",
-                bleed: false,
-                aoe: false,
-                scaling: "default",
-                description: "Infects the target with a highly infectious plague, inflicting 7,517 Nature damage every 1 sec and reducing movement speed by 50% for 5 sec. Upon expiration or being dispelled, the target explodes, infecting nearby allies with Virulent Pathogen.",
-                image: "images/Virulent_Pathogen.jpg"
             }, {
                 name: "Wasting_Strike",
                 baseDamage: 66379,
