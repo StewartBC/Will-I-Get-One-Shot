@@ -81,6 +81,40 @@ function displayDungeons() {
                     </div>
                     `);
                     }
+                }                
+                $("#dungeonInput").append(`<h2>Awakened Abilities</h2>`);
+                for (k = 0; k < awakenedAbilities.length; k = k + 2) {
+                    if (k === awakenedAbilities.length - 1) {
+                        $("#dungeonInput").append(`
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${awakenedAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${awakenedAbilities[k].description}" class="abilityImage" src="${awakenedAbilities[k].image}" alt="${awakenedAbilities[k].name}">
+                        </div>
+                        <div class="col-md-1">
+                            <p class="abilityDamage">${awakenedAbilities[k].damage.toLocaleString()}</p>
+                        </div>
+                    </div>
+                    `);
+                    } else {
+                        $("#dungeonInput").append(`
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${awakenedAbilities[k].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${awakenedAbilities[k].description}" class="abilityImage" src="${awakenedAbilities[k].image}" alt="${awakenedAbilities[k].name}">
+                        </div>
+                        <div class="col-md-1">
+                            <p class="abilityDamage">${awakenedAbilities[k].damage.toLocaleString()}</p>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${awakenedAbilities[k + 1].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${awakenedAbilities[k + 1].description}" class="abilityImage" src="${awakenedAbilities[k + 1].image}" alt="${awakenedAbilities[k + 1].name}">
+                        </div>
+                        <div class="col-md-1">
+                            <p class="abilityDamage">${awakenedAbilities[k + 1].damage.toLocaleString()}</p>
+                        </div>
+                    </div>
+                    `);
+                    }
                 }
                 $("#dungeonInput").append(`<h2>Trash Abilities</h2>`);
                 for (k = 0; k < dungeons[i].trashAbilities.length; k = k + 2) {
@@ -398,6 +432,72 @@ function calcDamage() {
             }
         });
     });
+    awakenedAbilities.forEach(ability => {
+        var damage = ability.baseDamage;
+        damage = damage * scaling[level - 2];
+        damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
+        if (ability.type === "physical") {
+            physical.forEach(item => {
+                damage = damage - damage * item;
+            });
+            if (!ability.bleed) {
+                var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                if (physicalDR > .85) {
+                    physicalDR = .85;
+                }
+                damage = damage - (damage * physicalDR);
+            }
+        } else {
+            magic.forEach(item => {
+                damage = damage - damage * item;
+            });
+            if (ability.type === "shadow" && shadow) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "shadowfrost" && shadow) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "shadowfrost" && frost) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "arcane" && arcane) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "nature" && nature) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "fire" && fire) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "holy" && holy) {
+                damage = damage - (damage * .01);
+            }
+            if (ability.type === "frost" && frost) {
+                damage = damage - (damage * .01);
+            }
+        }
+        if (ability.aoe) {
+            damage = damage - (damage * 0.01 * (avoidance * (1 / 28)));
+        }
+        if (ability.aoe && feint) {
+            damage = damage - (damage * .4);
+        }
+        if (!ability.aoe && elusiveness) {
+            damage = damage - (damage * .3);
+        }
+        externals.forEach(external => {
+            if (external.name === "Rugged_Tenacity" && external.selected) {
+                damage = damage - (playerStamina * 20 * .0003);
+            }
+            if (external.name === "Nose_For_Trouble" && external.selected) {
+                damage = damage - (playerStamina * .05);
+            }
+        });
+        ability.damage = Math.round(damage);
+        if (ability.damage < 0) { 
+            ability.damage = 0;
+        }
+    });
     if (vers > 0) {
         absorbAmount = absorbAmount + (absorbAmount * (0.01 * (vers/485)));
     }
@@ -408,6 +508,70 @@ function calcDamage() {
     $(".effectiveHealth").html(`<span style="font-size: 23px">Effective Health: ${Math.round(health + absorbAmount)}</span>`);
     displayDungeons();
 }
+
+var awakenedAbilities = [
+    {
+        name: "Spirit_Breaker",
+        baseDamage: 233650,
+        damage: 233650,
+        type: "physical",
+        bleed: false,
+        aoe: false,
+        scaling: "none",
+        description: "Viciously strike current target for 200% of weapon damage as Physical, and increase all damage they take by 100% for 8 sec.",
+        image: "images/Spirit_Breaker.jpg"
+    }, {
+        name: "Dark_Fury",
+        baseDamage: 108620,
+        damage: 108620,
+        type: "shadow",
+        bleed: false,
+        aoe: true,
+        scaling: "none",
+        description: "Blast players within 4 yds for 108,620 Shadow damage.",
+        image: "images/Dark_Leap.jpg"
+    }, {
+        name: "Crippling_Pestilence",
+        baseDamage: 72413,
+        damage: 72413,
+        type: "nature",
+        bleed: false,
+        aoe: false,
+        scaling: "none",
+        description: "Inflict 72,413 Nature damage to a player and reduce their movement speed by 70% for 8 sec.",
+        image: "images/Crippling_Pestilence.jpg"
+    }, {
+        name: "Lingering_Doubt",
+        baseDamage: 72413,
+        damage: 72413,
+        type: "shadow",
+        bleed: false,
+        aoe: false,
+        scaling: "none",
+        description: "Inflict 72,413 Shadow damage to a player and reduce their casting speed by 70% for 8 sec.",
+        image: "images/Lingering_Doubt.jpg"
+    }, {
+        name: "Cascading_Terror",
+        baseDamage: 36207,
+        damage: 36207,
+        type: "shadow",
+        bleed: false,
+        aoe: true,
+        scaling: "none",
+        description: "Upon expiration, inflict 36,207 Shadow damage to all players within 5 yds and force them to run in fear.",
+        image: "images/Cascading_Terror.jpg"
+    }, {
+        name: "Defiled_Ground",
+        baseDamage: 36207,
+        damage: 36207,
+        type: "shadow",
+        bleed: false,
+        aoe: true,
+        scaling: "none",
+        description: "Inflicts 36,207 Shadow damage every 1 sec to players standing within.",
+        image: "images/Defiled_Ground.jpg"
+    }
+]
 
 var dungeons = [
     {
