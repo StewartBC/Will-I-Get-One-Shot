@@ -16,7 +16,8 @@ var playerHealth = 0;
 var playerAbsorb = 0;
 var level = 2;
 var recentInput = "";
-var scaling = [1, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36, 2.59, 2.85, 3.14, 3.45, 3.8, 4.18, 4.59, 5.05, 5.56, 6.12, 6.73, 7.4, 8.14, 8.95, 9.85, 10.83, 11.92, 13.11, 14.42, 15.86, 17.58];
+var bfaScaling = [1, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36, 2.59, 2.85, 3.14, 3.45, 3.8, 4.18, 4.59, 5.05, 5.56, 6.12, 6.73, 7.4, 8.14, 8.95, 9.85, 10.83, 11.92, 13.11, 14.42, 15.86, 17.58];
+var scaling = [1.065, 1.065, 1.134, 1.208, 1.286, 1.37, 1.459, 1.554, 1.655, 1.763, 1.877, 1.999, 2.13, 2.27, 2.45, 2.64, 2.86, 3.08, 3.33, 3.6, 3.89, 4.2, 4.53, 4.9, 5.29, 5.71, 6.17, 6.66, 7.19];
 var slider = document.getElementById("myRange");
 var output = document.getElementById("keyLevel");
 slider.oninput = function () {
@@ -279,7 +280,7 @@ function calcDamage() {
     });
     dungeons.forEach(dung => {
         dung.bossAbilities.forEach(ability => {
-            var damage = ability.baseDamage;
+            var damage = ability.baseDamage / 21.6545;
             damage = damage * scaling[level - 2];
             if (ability.scaling === "default") {
                 if (tyrannical) {
@@ -299,7 +300,7 @@ function calcDamage() {
                     damage = damage - damage * item;
                 });
                 if (!ability.bleed) {
-                    var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                    var physicalDR = 0.01 * ((armor / (armor + 1021)) * 100);
                     if (physicalDR > .85) {
                         physicalDR = .85;
                     }
@@ -360,7 +361,7 @@ function calcDamage() {
     });
     dungeons.forEach(dung => {
         dung.trashAbilities.forEach(ability => {
-            var damage = ability.baseDamage;
+            var damage = ability.baseDamage / 21.6545;
             damage = damage * scaling[level - 2];
             if (fortified) {
                 damage = damage * 1.3;
@@ -374,7 +375,7 @@ function calcDamage() {
                     damage = damage - damage * item;
                 });
                 if (!ability.bleed) {
-                    var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                    var physicalDR = 0.01 * ((armor / (armor + 1021)) * 100);
                     if (physicalDR > .85) {
                         physicalDR = .85;
                     }
@@ -433,7 +434,7 @@ function calcDamage() {
         });
     });
     awakenedAbilities.forEach(ability => {
-        var damage = ability.baseDamage;
+        var damage = ability.baseDamage / 21.6545;
         damage = damage * scaling[level - 2];
         damage = damage - (damage * 0.01 * (vers * (.5 / 85)));
         if (ability.type === "physical") {
@@ -441,7 +442,7 @@ function calcDamage() {
                 damage = damage - damage * item;
             });
             if (!ability.bleed) {
-                var physicalDR = 0.01 * ((armor / (armor + 14282)) * 100);
+                var physicalDR = 0.01 * ((armor / (armor + 1021)) * 100);
                 if (physicalDR > .85) {
                     physicalDR = .85;
                 }
@@ -2566,7 +2567,7 @@ var personals = [
         image: "images/Thick_Hide.jpg"
     }, {
         class: "Druid",
-        specs: ["Guardian"],
+        specs: ["Guardian", "Feral"],
         name: "Survival_Instincts",
         magicDR: .5,
         physicalDR: .5,
@@ -3331,19 +3332,19 @@ var personals = [
         image: "images/Touch_of_Karma.jpg"
     }, {
         class: "Monk",
-        specs: ["Mistweaver"],
+        specs: ["Mistweaver", "Windwalker"],
         name: "Fortifying_Brew",
-        magicDR: .2,
-        physicalDR: .2,
+        magicDR: .15,
+        physicalDR: .15,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
-        healthPercentIncrease: .2,
+        healthPercentIncrease: .15,
         versIncrease: 0,
         selected: false,
-        description: "Turns your skin to stone, increasing your current and maximum health by 20%, and reducing damage taken by 20% for 15 sec.",
-        image: "images/Fortifying_Brew.jpg"
+        description: "Turns your skin to stone, increasing your current and maximum health by 15%, and reducing damage taken by 15% for 15 sec.",
+        image: "images/Fort_Brew.jpg"
     }, {
         class: "Monk",
         specs: ["Brewmaster"],
@@ -4914,6 +4915,42 @@ $(document).on("click", ".personalImage", function (event) {
                 if (personal.name === "Bear_Form" && personal.selected) {
                     personal.selected = false;
                     $(`img[data-name=Bear_Form]`).removeClass("selected");
+                }
+            });
+        }
+        if (personalName === "Dampen_Harm") {
+            personals.forEach(personal => {
+                if (personal.name === "Inner_Strength" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Inner_Strength]`).removeClass("selected");
+                }
+                if (personal.name === "Diffuse_Magic" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Diffuse_Magic]`).removeClass("selected");
+                }
+            });
+        }
+        if (personalName === "Inner_Strength") {
+            personals.forEach(personal => {
+                if (personal.name === "Dampen_Harm" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Dampen_Harm]`).removeClass("selected");
+                }
+                if (personal.name === "Diffuse_Magic" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Diffuse_Magic]`).removeClass("selected");
+                }
+            });
+        }
+        if (personalName === "Diffuse_Magic") {
+            personals.forEach(personal => {
+                if (personal.name === "Inner_Strength" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Inner_Strength]`).removeClass("selected");
+                }
+                if (personal.name === "Dampen_Harm" && personal.selected) {
+                    personal.selected = false;
+                    $(`img[data-name=Dampen_Harm]`).removeClass("selected");
                 }
             });
         }
