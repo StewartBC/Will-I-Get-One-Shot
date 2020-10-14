@@ -2373,8 +2373,8 @@ var personals = [
         class: "Demon Hunter",
         specs: ["Havoc"],
         name: "Blur",
-        magicDR: .35,
-        physicalDR: .35,
+        magicDR: .2,
+        physicalDR: .2,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -2382,14 +2382,14 @@ var personals = [
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Increases your chance to dodge by 50% and reduces all damage taken by 35% for 10 sec.",
+        description: "Increases your chance to dodge by 50% and reduces all damage taken by 20% for 10 sec.",
         image: "images/Blur.jpg"
     }, {
         class: "Demon Hunter",
         specs: ["Havoc"],
         name: "Desperate_Instincts",
-        magicDR: .5,
-        physicalDR: .5,
+        magicDR: .3,
+        physicalDR: .3,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -2397,7 +2397,7 @@ var personals = [
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Blur now reduces damage taken by an additional 15%. Additionally, you automatically trigger Blur when you fall below 35% health. This effect can only occur when Blur is not on cooldown.",
+        description: "Blur now reduces damage taken by an additional 10%. Additionally, you automatically trigger Blur when you fall below 35% health. This effect can only occur when Blur is not on cooldown.",
         image: "images/Desperate_Instincts.jpg"
     }, {
         class: "Demon Hunter",
@@ -2852,21 +2852,6 @@ var personals = [
         image: "images/Guardian_of_Ancient_Kings.jpg"
     }, {
         class: "Paladin",
-        specs: ["Retribution"],
-        name: "Retribution",
-        magicDR: .2,
-        physicalDR: .2,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        healthPercentIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "When any party or raid member within 40 yds dies, you gain 20% increased damage done and 30% reduced damage taken for 10 sec.",
-        image: "images/Retribution.jpg"
-    }, {
-        class: "Paladin",
         specs: ["Protection"],
         name: "Ardent_Defender",
         magicDR: .2,
@@ -2942,7 +2927,7 @@ var personals = [
         image: "images/Dispersion.jpg"
     }, {
         class: "Priest",
-        specs: ["Shadow"],
+        specs: ["Shadow", "Holy", "Discipline"],
         name: "Desperate_Prayer",
         magicDR: 0,
         physicalDR: 0,
@@ -3420,14 +3405,6 @@ var absorbs = [
     }, {
         class: "all",
         specs: "all",
-        name: "Luminous_Barrier",
-        amount: 0,
-        selected: false,
-        description: "Create a shield on all allies within 40 yards, absorbing damage on each of them for 10 sec.",
-        image: "images/Luminous_Barrier.jpg"
-    }, {
-        class: "all",
-        specs: "all",
         name: "otherAbsorb",
         amount: 0,
         selected: false,
@@ -3453,9 +3430,9 @@ var externals = [
         absorb: 0,
         healthIncrease: 0,
         healthPercentIncrease: 0,
-        versIncrease: 560,
+        versIncrease: 72,
         selected: false,
-        description: "Your spells and abilities have a chance to increase your Versatility by 70 for 14 sec, stacking up to 8 times. Being the vicitim of a loss of control or movement impairing effect also grants a stack of Strife.",
+        description: "Your spells and abilities have a chance to increase your Versatility by 9 for 14 sec, stacking up to 8 times. Being the vicitim of a loss of control or movement impairing effect also grants a stack of Strife.",
         image: "images/conflict.jpg"
     },
     {
@@ -3486,8 +3463,8 @@ var externals = [
         image: "images/Aegis_of_Light.jpg"
     }, {
         name: "Aura_Mastery",
-        magicDR: .2,
-        physicalDR: .2,
+        magicDR: .15,
+        physicalDR: .15,
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
@@ -3495,21 +3472,8 @@ var externals = [
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Devotion Aura: all affected allies gain 20% damage reduction.",
+        description: "Devotion Aura: all affected allies gain 15% damage reduction.",
         image: "images/Aura_Mastery.jpg"
-    }, {
-        name: "Aura_of_Sacrifice",
-        magicDR: .1,
-        physicalDR: .1,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        healthPercentIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "While you are above 75% health, 10% of all damage taken by allies within 10 yds is redirected to you and reduced by half.",
-        image: "images/Aura_of_Sacrifice.jpg"
     }, {
         name: "Devotion_Aura",
         magicDR: 0.03,
@@ -3536,6 +3500,19 @@ var externals = [
         selected: false,
         description: "Blesses a party or raid member, reducing their damage taken by 30%, but you suffer 100% of damage prevented. Lasts 12 sec, or until transferred damage would cause you to fall below 20% health.",
         image: "images/Blessing_of_Sacrifice.jpg"
+    }, {
+        name: "Anti-Magic_Zone",
+        magicDR: .2,
+        physicalDR: 0,
+        armorIncrease: 0,
+        armorPercentIncrease: 0,
+        absorb: 0,
+        healthIncrease: 0,
+        healthPercentIncrease: 0,
+        versIncrease: 0,
+        selected: false,
+        description: "Places an Anti-Magic Zone for 10 sec that reduces spell damage taken by party or raid members by 20%.",
+        image: "images/Anti_Magic_Zone.jpg"
     }, {
         name: "Lenience",
         magicDR: .03,
@@ -3618,14 +3595,14 @@ var externals = [
         name: "Superior_Steelskin_Potion",
         magicDR: 0,
         physicalDR: 0,
-        armorIncrease: 1215,
+        armorIncrease: 129,
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Infuses your body with resilient energy, increasing your Armor by 1215 for 25 sec. (1 Min Cooldown)",
+        description: "Use: Infuses your body with resilient energy, increasing your Armor by 129 for 25 sec. (1 Min Cooldown)",
         image: "images/Superior_Steelskin_Potion.jpg"
     }, {
         name: "Bil_Tong",
@@ -3636,9 +3613,9 @@ var externals = [
         absorb: 0,
         healthIncrease: 0,
         healthPercentIncrease: 0,
-        versIncrease: 93,
+        versIncrease: 14,
         selected: false,
-        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 93 Versatility for 1 hour.",
+        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 14 Versatility for 1 hour.",
         image: "images/Biltong.jpg"
     }, {
         name: "Superior_Battle_Potion_of_Stamina",
@@ -3647,11 +3624,11 @@ var externals = [
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 29700,
+        healthIncrease: 3160,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Increases your Stamina by 1485 for 25 sec. (1 Min Cooldown)",
+        description: "Use: Increases your Stamina by 158 for 25 sec. (1 Min Cooldown)",
         image: "images/Superior_Battle_Potion_of_Stamina.jpg"
     }, {
         name: "Greater_Flask_of_the_Vast_Horizon",
@@ -3660,11 +3637,11 @@ var externals = [
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 10800,
+        healthIncrease: 1140,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Increases Stamina by 540 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
+        description: "Use: Increases Stamina by 57 for 1 hour. Counts as both a Battle and Guardian elixir.  This effect persists through death. (3 Sec Cooldown)",
         image: "images/Greater_Flask_of_the_Vast_Horizon.jpg"
     }, {
         name: "Fragrant_Kakavia",
@@ -3673,11 +3650,11 @@ var externals = [
         armorIncrease: 0,
         armorPercentIncrease: 0,
         absorb: 0,
-        healthIncrease: 3996,
+        healthIncrease: 580,
         healthPercentIncrease: 0,
         versIncrease: 0,
         selected: false,
-        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 198 Stamina for 1 hour.",
+        description: "Use: Restores 219459 health and 109730 mana over 20 sec.  Must remain seated while eating.  If you spend at least 10 seconds eating you will become well fed and gain 29 Stamina for 1 hour.",
         image: "images/Fragrant_Kakavia.jpg"
     }, {
         name: "Ancestral_Protection_Totem",
@@ -3713,10 +3690,10 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
-        healthPercentIncrease: .1,
+        healthPercentIncrease: .05,
         versIncrease: 0,
         selected: false,
-        description: "Infuses the target with vitality, increasing their Stamina by 10% for 60 min.",
+        description: "Infuses the target with vitality, increasing their Stamina by 5% for 60 min.",
         image: "images/Power_Word_Fortitude.jpg"
     }, {
         name: "War_Scroll_of_Fortitude",
@@ -3726,10 +3703,10 @@ var externals = [
         armorPercentIncrease: 0,
         absorb: 0,
         healthIncrease: 0,
-        healthPercentIncrease: .07,
+        healthPercentIncrease: .03,
         versIncrease: 0,
         selected: false,
-        description: "Use: Increases the target's Stamina by 7% for 30 min.",
+        description: "Use: Increases the target's Stamina by 3% for 30 min.",
         image: "images/War_Scroll_of_Fortitude.jpg"
     }, {
         name: "Infusion:_Fortitude",
