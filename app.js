@@ -17,7 +17,7 @@ var playerAbsorb = 0;
 var level = 2;
 var recentInput = "";
 var bfaScaling = [1, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36, 2.59, 2.85, 3.14, 3.45, 3.8, 4.18, 4.59, 5.05, 5.56, 6.12, 6.73, 7.4, 8.14, 8.95, 9.85, 10.83, 11.92, 13.11, 14.42, 15.86, 17.58];
-var scaling = [1.065, 1.065, 1.134, 1.208, 1.286, 1.37, 1.459, 1.554, 1.655, 1.763, 1.877, 1.999, 2.13, 2.27, 2.45, 2.64, 2.86, 3.08, 3.33, 3.6, 3.89, 4.2, 4.53, 4.9, 5.29, 5.71, 6.17, 6.66, 7.19];
+var scaling = [1.065, 1.065, 1.134, 1.208, 1.286, 1.37, 1.459, 1.554, 1.655, 1.763, 1.877, 1.999, 2.13, 2.27, 2.45, 2.64, 2.86, 3.08, 3.33, 3.6, 3.89, 4.2, 4.53, 4.9, 5.29, 5.71, 6.17, 6.66, 7.19, 7.77, 8.39, 9.06];
 var slider = document.getElementById("myRange");
 var output = document.getElementById("keyLevel");
 slider.oninput = function () {
@@ -3579,19 +3579,6 @@ var externals = [
         description: "Summons a totem at the target location for 6 sec, which reduces damage taken by all party and raid members within 10 yards by 10%. Every 1 sec the health of all affected players is redistributed, such that all players are at the same percentage of maximum health.",
         image: "images/Spirit_Link_Totem.jpg"
     }, {
-        name: "Safeguard",
-        magicDR: 0.3,
-        physicalDR: 0.3,
-        armorIncrease: 0,
-        armorPercentIncrease: 0,
-        absorb: 0,
-        healthIncrease: 0,
-        healthPercentIncrease: 0,
-        versIncrease: 0,
-        selected: false,
-        description: "Intercepting a friendly target now also causes 30% of their damage taken to transfer to you for 6 sec.",
-        image: "images/Safeguard.jpg"
-    }, {
         name: "Superior_Steelskin_Potion",
         magicDR: 0,
         physicalDR: 0,
@@ -4384,13 +4371,13 @@ $(document).on("click", ".specImage", function (event) {
             $("#absorbs").append(`
             <div class="row absorbRow">
                 <div class="col-md-3">
-                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[5].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${absorbs[5].description}"class="absorbImage" data-name=${absorbs[5].name} src=${absorbs[5].image} alt=${absorbs[5].name}>
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>${absorbs[4].name.replace("_", " ").replace("_", " ").replace("_", " ")}</h6>${absorbs[4].description}"class="absorbImage" data-name=${absorbs[4].name} src=${absorbs[4].image} alt=${absorbs[4].name}>
                 </div>
                 <div class="col-md-5">
                     <div class="input-group mb-3 absorbInput" style="margin-top: 9px">
-                        <input type="text" class="form-control" data-name=${absorbs[5].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" data-name=${absorbs[4].name} placeholder="Amount" aria-label="Shield Amount" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[5].name} type="button">OK</button>
+                            <button class="btn btn-outline-secondary shieldOkay" data-name=${absorbs[4].name} type="button">OK</button>
                         </div>
                     </div>
                 </div
