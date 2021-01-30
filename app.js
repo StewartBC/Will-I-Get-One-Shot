@@ -730,7 +730,7 @@ var dungeons = [
                 aoe: true,
                 scaling: "default",
                 description: "Thrash violently upon reaching 50% health, inflicting 1,758 Physical damage to players within 50 yds every 1 sec for 6 sec.",
-                image: "images/thrash.jpg"
+                image: "images/Thrash.jpg"
             }, {
                 name: "Volatile_Acid",
                 baseDamage: 3515,
@@ -1020,7 +1020,7 @@ var dungeons = [
             }
         ]
     }, {
-        name: "Temple_of_Sethraliss",
+        name: "Spires_Of_Ascension",
         bossAbilities: [
             {
                 name: "Charged_Spear",
@@ -1370,7 +1370,7 @@ var dungeons = [
                 aoe: true,
                 scaling: "default",
                 description: "Interrupts spell casting and inflicts 4,394 Physical damage to all players.",
-                image: "images/Interruption_Roar.jpg"
+                image: "images/Interrupting_Roar.jpg"
             }, {
                 name: "Ricocheting_Blade",
                 baseDamage: 5113,
@@ -2500,7 +2500,7 @@ var externals = [
         selected: false,
         description: "The target's skin becomes as tough as Ironwood, reducing all damage taken by 20% for 12 sec.",
         image: "images/Ironbark.jpg"
-    },{
+    }, {
         name: "Aegis_of_Light",
         magicDR: .2,
         physicalDR: .2,
