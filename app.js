@@ -3287,7 +3287,7 @@ $(document).on("click", ".specImage", function (event) {
         Absorbs Show/Hide
         </button></br>
         <div class="collapse" id="absorbs">`);
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 3; i++) {
             $("#absorbs").append(`
             <div class="row absorbRow">
                 <div class="col-md-3">
