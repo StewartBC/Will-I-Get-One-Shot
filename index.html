@@ -11,84 +11,469 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-        
-    <title>Price</title>
+    <title>Just Heal Us</title>
     <style>
-        .searchForm {
-            width: 1500px;
+        @font-face {
+            font-family: logo;
+            src: url(font.ttf);
         }
 
-        #mainRow {
-            background-color: lightgrey;
-            max-height: 700px;
-            overflow: scroll
+        #wrap {
+            color: white
         }
 
-        .cardRow {
-            margin-bottom: 25px;
+        .abilityImage {
+            width: 56px !important;
+            height: 56px !important;
+            border-radius: 5px;
+            float: left !important;
+            margin-bottom: 15px;
         }
 
-        .cardImage {
-            width: 106%
+        .abilityDamage {
+            margin-top: 13px;
         }
 
-        .add {
-            margin-left: 5px;
+        .absorbImage,
+        .personalImage,
+        .externalImage,
+        .versTrinketImage {
+            opacity: 0.5 !important;
+            width: 56px !important;
+            height: 56px !important;
+            border-radius: 5px;
+            margin-bottom: 7px;
+            margin-right: 7px;
         }
 
-        .footerImage {
-            width: 5%;
+        .playerInput {
+            font-size: 22px;
+            color: white;
+            margin-top: 4px;
+        }
+
+        .selected {
+            opacity: 1 !important;
+            border: 3px solid #87C5CA;
+        }
+
+        .selectedClass {
+            opacity: 1 !important;
+        }
+
+        .specImage {
+            width: 112px !important;
+            height: 112px !important;
+            margin-right: 20px;
+            margin-left: 19px;
+            margin-bottom: 20px;
+            outline: 9px solid #141A26;
+            outline-offset: -9px;
+            border-radius: 40px;
+            opacity: .5;
+        }
+
+        #classInput img {
+            width: 20%
+        }
+
+        #classInput button {
+            width: 83%
+        }
+
+        #disc {
+            width: 10% !important;
             margin-left: 10px;
-            
         }
 
+        #twitter {
+            width: 10% !important;
+            margin-left: 15px;
+        }
 
-/* [class*="col-"]{
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
-} */
+        #discord {
+            margin-top: 10px;
+        }
+
+        #dungeonInput img {
+            width: 110%;
+        }
+
+        #dungeonInput button {
+            width: 100%
+        }
+
+        #twitchRow {
+            margin-top: 25px;
+        }
+
+        body {
+            background-color: #141A26;
+        }
+
+        .slidecontainer {
+            width: 50%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .classImage:hover,
+        .specImage:hover {
+            opacity: 1;
+        }
+
+        .hovering {
+            opacity: 1 !important;
+        }
+
+        .hide {
+            visibility: hidden;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border-radius: 25px;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #45628e;
+            cursor: pointer;
+        }
+
+        .imgContainer:hover .overlay {
+            opacity: 1;
+        }
+
+        .imgContainer:hover .dungeonImage {
+            opacity: 0.5;
+            box-shadow: 0 8px 16px 0 black, 0 8px 16px 0 black;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .text {
+            color: white;
+            font-size: 25px;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            border-radius: 25px;
+            height: 25px;
+            background: #45628e;
+            cursor: pointer;
+        }
+
+        .affix {
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+
+        .affixImage {
+            border-radius: 10px;
+            margin-right: 8px;
+        }
+
+        .classImage {
+            opacity: 0.5;
+        }
+
+        .dungeonImage {
+            opacity: 0.5;
+            margin-bottom: 10px;
+            margin-right: 17px;
+        }
+
+        #dungeonContinue {
+            width: 97% !important
+        }
+
+        #percentValue {
+            text-align: right;
+        }
+
+        .btn {
+            background-color: #141A26 !important;
+            border: 2px solid #87C5CA;
+            margin-top: 10px;
+        }
+
+        .btn-outline-secondary {
+            color: white;
+            margin-right: 10px;
+            margin-top: 0px !important;
+            border: 1px solid #87C5CA;
+
+        }
+
+        .bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+        .bs-tooltip-bottom .arrow::before {
+            border-bottom-color: #45628e !important;
+        }
+
+        .bs-tooltip-auto[x-placement^=top] .arrow::before,
+        .bs-tooltip-top .arrow::before {
+            border-top-color: #45628e !important;
+        }
+
+        .bs-tooltip-auto[x-placement^=right] .arrow::before,
+        .bs-tooltip-right .arrow::before {
+            border-right-color: #45628e !important;
+        }
+
+        .tooltip-inner {
+            background-color: #45628e;
+        }
+
+        .absorbInput {
+            width: 200px !important;
+        }
+
+        a,
+        a:hover {
+            color: #FFF;
+            text-decoration: none;
+            font-family: logo;
+            font-size: 40px;
+            color: #87C5CA;
+        }
+
+        .classImage,
+        .dungeonImage,
+        .personalImage,
+        .externalImage,
+        .absorbImage,
+        .specImage,
+        .imgContainer,
+        .affix {
+            cursor: pointer;
+        }
+
+        .navbar {
+            padding: 15px 15px 15px 0px !important;
+        }
     </style>
 
 </head>
 
-<body class="overflow-scroll">
+<body>
 
     <div id="wrap">
-        
-            <nav class="navbar navbar-light bg-light">
-            <form class="form-inline md-form form-sm searchForm">
-                <input id="cardSearch" class="form-control form-control-sm mr-3 w-75" type="text" onkeypress="setTimeout(searchCards, 1)" placeholder="Search for a Card" aria-label="Search for a Card">
-                <i id="search" class="fa fa-search" aria-hidden="true"></i>
-            </form>
-            </nav>
-        
-        <div id="main">
-            <div id="mainRow" class="row overflow-scroll">
-                <div id="img1" class="col-md-3">
+        <div id="main" class="container clear-top">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid mainNav">
+                    <div class="navbar-header">
+                        <a href="">Just Heal Us</a>
+                    </div>
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Tyrannical:</h6>Boss enemies have 40% more health and inflict up to 15% increased damage."
+                        class="affix hide" id="tyrannical" src="images/Tyrannical.jpg">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Fortified:</h6>Non-boss enemies have 20% more health and inflict up to 30% increased damage."
+                        class="affix hide" id="fortified" src="images/Fortified.jpg">
+                    <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Raging:</h6>Non-boss enemies enrage at 30% health remaining, dealing 100% increased damage until defeated."
+                        class="affix hide" id="raging" src="images/Raging.jpg">
+                    <div class="slidecontainer hide">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 id="keyLevel">Key level: 2</h3> 
+                            </div>
+                            <div class="col-md-6">
+                                <h3 id="percentValue"> +0%</h3>    
+                            </div>
+                        </div>
 
+                        <input type="range" min="2" max="30" value="2" class="slider" id="myRange">
+                    </div>
+                    <div>
+                    </div>
                 </div>
-                <div id="img2" class="col-md-3">
-                    
-                </div>
-                <div id="img3" class="col-md-3">
-                    
-                </div>
-                <div id="img4" class="col-md-3">
-                    
+            </nav>
+            <div id="content">
+                <div class="row">
+                    <div id="classInput" class="col-lg-6">
+                        <div id="classEmpty">
+                        <div class="row">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Death Knight</h6>" class="classImage" data-class="Death Knight"
+                                src="images/deathKnight.svg" alt="Death Knight">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Demon Hunter</h6>" class="classImage" data-class="Demon Hunter"
+                                src="images/demonHunter.svg" alt="Death Knight">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Druid</h6>" class="classImage" data-class="Druid"
+                                src="images/druid.svg" alt="Druid">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Hunter</h6>" class="classImage" data-class="Hunter"
+                                src="images/hunter.svg" alt="Hunter">
+                        </div>
+                        <div class="row">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Mage</h6>" class="classImage" data-class="Mage"
+                                src="images/mage.svg" alt="Mage">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Monk</h6>" class="classImage" data-class="Monk"
+                                src="images/monk.svg" alt="Monk">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Paladin</h6>" class="classImage" data-class="Paladin"
+                                src="images/paladin.svg" alt="Paladin">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Priest</h6>" class="classImage" data-class="Priest"
+                                src="images/priest.svg" alt="Priest">
+                        </div>
+                        <div class="row">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Rogue</h6>" class="classImage" data-class="Rogue"
+                                src="images/rogue.svg" alt="Rogue">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Shaman</h6>" class="classImage" data-class="Shaman"
+                                src="images/shaman.svg" alt="Shaman">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Warlock</h6>" class="classImage" data-class="Warlock"
+                                src="images/warlock.svg" alt="Warlock">
+                            <img data-toggle="tooltip" data-placement="top" data-html="true" title="<h6>Warrior</h6>" class="classImage" data-class="Warrior"
+                                src="images/warrior.svg" alt="Warrior">
+                        </div>
+                    </div>
+                    <div id="discord">
+                        <h4>
+                        give feedback and report bugs: 
+                        <a href="https://twitter.com/justhealus" target="_blank">
+                            <img id="twitter"src="images/Twitter.png">
+                        </a>  
+                        <a href="https://discord.gg/PcvKP6h" target="_blank">
+                            <img id="disc"src="images/discord.png">
+                        </a>                 
+                        </h4>
+                    </div>
+                        <div id="twitchRow" class="row">
+                        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+                        <div id="twitch"></div> 
+                        <script type="text/javascript">
+                            var options = {
+                                width: 800*(2/3),
+                                height: 600*(2/3),
+                                channel: "trancebrew",
+                                // video: "<video ID>",
+                                // collection: "<collection ID>",
+                                // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+                                parent: ["justhealus.com"]
+                            };
+                            var player = new Twitch.Player("twitch", options);
+                            player.setVolume(0.5);
+                        </script>
+                        </div>
+                    </div>
+
+                    <div id="dungeonInput" class="col-lg-6">
+                        <div class="row">
+                            <div class="imgContainer col-md-6" data-dungeon="De_Other_Side">
+                                <img class="dungeonImage" data-dungeon="De_Other_Side" src="images/De_Other_Side.jpg" alt="De_Other_Side">
+                                <div class="overlay">
+                                    <div class="text">De Other Side</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">De Other Side</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Halls_Of_Atonement">
+                                <img class="dungeonImage" data-dungeon="Halls_Of_Atonement" src="images/Halls_Of_Atonement.jpg" alt="Halls_Of_Atonement">
+                                <div class="overlay">
+                                    <div class="text">Halls of Atonement</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Halls of Atonement</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="imgContainer col-md-6" data-dungeon="Mists_Of_Tirna_Scithe">
+                                <img class="dungeonImage" data-dungeon="Mists_Of_Tirna_Scithe" src="images/Mists_Of_Tirna_Scithe.jpg" alt="Mists_Of_Tirna_Scithe">
+                                <div class="overlay">
+                                    <div class="text">Mists Of Tirna Scithe</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Mists Of Tirna Scithe</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Plaguefall">
+                                <img class="dungeonImage" data-dungeon="Plaguefall" src="images/Plaguefall.jpg" alt="Plaguefall">
+                                <div class="overlay">
+                                    <div class="text">Plaguefall</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Plaguefall</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="imgContainer col-md-6" data-dungeon="Sanguine_Depths">
+                                <img class="dungeonImage" data-dungeon="Sanguine_Depths" src="images/Sanguine_Depths.jpg" alt="Sanguine_Depths">
+                                <div class="overlay">
+                                    <div class="text">Sanguine Depths</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Sanguine Depths</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Spires_Of_Ascension">
+                                <img class="dungeonImage" data-dungeon="Spires_Of_Ascension" src="images/Spires_Of_Ascension.jpg" alt="Spires_Of_Ascension">
+                                <div class="overlay">
+                                    <div class="text">Spires of Ascension</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Spires of Ascension</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="imgContainer col-md-6" data-dungeon="The_Necrotic_Wake">
+                                <img class="dungeonImage" data-dungeon="The_Necrotic_Wake" src="images/The_Necrotic_Wake.jpg" alt="The_Necrotic_wake">
+                                <div class="overlay">
+                                    <div class="text">The Necrotic Wake</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">The Necrotic Wake</div>
+                                </div>
+                            </div>
+                            <div class="imgContainer col-md-6" data-dungeon="Theater_Of_Pain">
+                                <img class="dungeonImage" data-dungeon="The_Underrot" src="images/Theater_Of_Pain.jpg" alt="Theater_Of_Pain">
+                                <div class="overlay">
+                                    <div class="text">Theater of Pain</div>
+                                </div>
+                                <div class="hide imgText">
+                                    <div class="text">Theater of Pain</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="footer">
-            <div class="row">
-                <h4 id="total">
-                    $0
-                </h4>
-            </div>
-            <div id="chosen" class="row">
-            </div>
-        </div>
-   
-</div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
