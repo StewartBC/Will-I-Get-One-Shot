@@ -1405,6 +1405,19 @@ var dungeons = [
         ]
     }
 ];
+
+dungeons.forEach(dungeon => {
+    dungeon.bossAbilities.forEach(bossAbility => {
+        bossAbility.baseDamage = Math.round(bossAbility.baseDamage * 1.12564);
+        bossAbility.damage = Math.round(bossAbility.damage * 1.12564);
+
+    });
+    dungeon.trashAbilities.forEach(trashAbility => {
+        trashAbility.baseDamage = Math.round(trashAbility.baseDamage * 1.12564);
+        trashAbility.damage = Math.round(trashAbility.damage * 1.12564);
+    });
+});
+
 var personals = [
     {
         class: "Demon Hunter",
