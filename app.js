@@ -305,7 +305,7 @@ function calcDamage() {
                     damage = damage - (playerStamina * .05);
                 }
             });
-            ability.damage = Math.round(damage);
+            ability.damage = Math.round(damage)*1.15;
             if (ability.damage < 0) { 
                 ability.damage = 0;
             }
@@ -380,7 +380,7 @@ function calcDamage() {
                     damage = damage - (playerStamina * .05);
                 }
             });
-            ability.damage = Math.round(damage);
+            ability.damage = Math.round(damage)*1.15;
             if (ability.damage < 0) { 
                 ability.damage = 0;
             }
