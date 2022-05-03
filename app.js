@@ -1139,7 +1139,7 @@ var dungeons = [
                 aoe: true,
                 scaling: "default",
                 description: "Blightbone hurls a toxic spew at all players in a cone in front of him, inflicting 8,788 Nature damage.",
-                image: "images/Static_Pulse.jpg"
+                image: "images/Heaving_Retch.jpg"
             }, {
                 name: "Frostbolt_Volley",
                 baseDamage: 2929,
